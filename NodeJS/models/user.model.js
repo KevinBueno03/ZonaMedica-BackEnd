@@ -22,7 +22,7 @@ var userSchema = new mongoose.Schema({
         require: true
     } ,
 
-    id: {
+    hn_id: {
         type: String,
         require: true
     } ,
