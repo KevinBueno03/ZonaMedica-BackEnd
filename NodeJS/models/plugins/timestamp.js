@@ -1,4 +1,4 @@
-modolue.exports = function timestamp(schema) {
+module.exports = function timestamp(schema) {
     schema.add({
         createdAt: Date,
         updatedAt: Date,
