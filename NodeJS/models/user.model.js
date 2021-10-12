@@ -1,46 +1,96 @@
-const mongoose =require('mongoose');
+let mongoose = require("mongoose");
+let validator = require("validator");
+const bcrypt = require("bcryptjs");
+let timestampPlugin = require("./plugins/timestamp");
 
 var userSchema = new mongoose.Schema({
-    
-    firstName : {
+    firstName: {
         type: String,
-        require: true
-    } ,
-   
-    secondName : {
+        required: true,
+    },
+
+    secondName: {
         type: String,
-        require: true
-    } ,
-   
-    firstLastName : {
+        required: false,
+    },
+
+    firstLastName: {
         type: String,
-        require: true
-    } ,
-   
-    secondLastName : {
+        required: true,
+    },
+
+    secondLastName: {
         type: String,
-        require: true
-    } ,
+        required: false,
+    },
 
     hn_id: {
         type: String,
-        require: true
-    } ,
+        required: true,
+        validate: {
+            validator: function (value) {
+                return value.length == 13;
+            },
+            message: "DNI debe ser igual a 13",
+        },
+    },
 
     department: {
         type: String,
-        require: true
-    } ,
-    
+        required: true,
+    },
+
     email: {
         type: String,
-        require: true
-    } ,
+        required: true,
+        unique: true,
+        lowercase: true,
+        validate: (value) => {
+            return validator.isEmail(value);
+        },
+    },
     password: {
         type: String,
-        require: true
-    } 
-
+        required: true,
+    },
+    active: { type: Boolean, default: false },
 });
 
-mongoose.model('Users',userSchema);
+userSchema.virtual("fullName").get(function () {
+    return (
+        this.firstName +
+        " " +
+        this.secondName +
+        " " +
+        this.firstLastName +
+        " " +
+        this.secondLastName
+    );
+});
+
+userSchema.plugin(timestampPlugin);
+
+userSchema.pre("save", function (next) {
+    const user = this;
+
+    if (this.isModified("password") || this.isNew) {
+        bcrypt.genSalt(10, function (saltError, salt) {
+            if (saltError) {
+                return next(saltError);
+            } else {
+                bcrypt.hash(user.password, salt, function (hashError, hash) {
+                    if (hashError) {
+                        return next(hashError);
+                    }
+
+                    user.password = hash;
+                    next();
+                });
+            }
+        });
+    } else {
+        return next();
+    }
+});
+
+module.exports = mongoose.model("Users", userSchema);
