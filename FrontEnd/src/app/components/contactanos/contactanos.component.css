@@ -1,0 +1,40 @@
+.container-fluid{
+    
+    background: linear-gradient(180deg, #F4F1F1 0%, rgba(244, 241, 241, 0) 100%);
+   
+}
+input, textarea{
+    padding:0.5em;
+    margin-top:1em;
+    font-size:1em;
+    width:80%;
+    align-self: center;
+    border:1px solid #F4F1F1;
+    color: #a1a1a1
+}
+.container{
+    padding-top:2em;
+}
+i{
+    display:block;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    /* identical to box height */
+    
+    display: flex;
+    align-items: center;
+    
+    color: #0E6EA5;
+}
+span{
+    display: block;
+}
+button{
+    padding:0.5em;
+    margin-left:50%;
+    margin-right:50%;
+}
+span img{
+    width:2em;
+}
