@@ -9,6 +9,8 @@ import { AcercaDeNosotrosComponent } from './components/acerca-de-nosotros/acerc
 import { ContactanosComponent } from './components/contactanos/contactanos.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { FormularioRegistroUsuarioComponent } from './components/formulario-registro-usuario/formulario-registro-usuario.component';
+import { CarouselFuncionalidadesComponent } from './components/carousel-funcionalidades/carousel-funcionalidades.component';
+import { ContactanosPageComponent } from './components/contactanos-page/contactanos-page.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { FormularioRegistroUsuarioComponent } from './components/formulario-regi
     AcercaDeNosotrosComponent,
     ContactanosComponent,
     FooterComponent,
-    FormularioRegistroUsuarioComponent
+    FormularioRegistroUsuarioComponent,
+    CarouselFuncionalidadesComponent,
+    ContactanosPageComponent
   ],
   imports: [
     BrowserModule,
