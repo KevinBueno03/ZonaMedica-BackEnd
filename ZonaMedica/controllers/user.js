@@ -14,6 +14,10 @@ module.exports.register = (req, res) => {
     user.password = req.body.password;
 
     user.save((err, doc) => {
-        if (!err) res.send(doc);
+        if (!err) {
+            res.send(doc);
+        } else {
+            res.send(err);
+        }
     });
 };

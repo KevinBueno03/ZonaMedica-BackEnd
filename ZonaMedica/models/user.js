@@ -45,8 +45,11 @@ var userSchema = new mongoose.Schema({
         required: true,
         unique: true,
         lowercase: true,
-        validate: (value) => {
-            return validator.isEmail(value);
+        validate: {
+            validator: function (value) {
+                return validator.isEmail(value);
+            },
+            message: "El email se encuentra en uso",
         },
     },
     password: {
