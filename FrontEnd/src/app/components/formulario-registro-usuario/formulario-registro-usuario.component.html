@@ -15,29 +15,29 @@
           <div class="col col-6" style="margin-top: 5em;">
             <mat-form-field class="example-full-width input" appearance="fill">
               <mat-label>Primer Nombre</mat-label>
-              <input matInput placeholder="Ingresa tu primer nombre" type="text" name="p_nombre" formControlName="p_nombre" [ngClass]="{ 'is-invalid': submitted && f.p_nombre.errors }" required/><br>
-              <div *ngIf="submitted && f.p_nombre.errors" class="invalid-feedback">
-                <div *ngIf="f.p_nombre.errors.required">Debe escribir el primer nombre.</div>
+              <input matInput placeholder="Ingresa tu primer nombre" type="text" name="firstName" formControlName="firstName" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" required/><br>
+              <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+                <div *ngIf="f.firstName.errors.required">Debe escribir el primer nombre.</div>
               </div>
               <mat-icon matSuffix>person</mat-icon>
             </mat-form-field>
 
             <mat-form-field class="example-full-width input" appearance="fill">
               <mat-label>Primer Apellido</mat-label>
-              <input matInput placeholder="Ingresa tu primer apellido" type="text" name="p_apellido" formControlName="p_apellido"
-              [ngClass]="{ 'is-invalid': submitted && f.p_apellido.errors }" required/><br>
-              <div *ngIf="submitted && f.p_apellido.errors" class="invalid-feedback">
-                <div *ngIf="f.p_apellido.errors.required">Debe escribir el primer apellido.</div>
+              <input matInput placeholder="Ingresa tu primer apellido" type="text" name="firstLastName" formControlName="firstLastName"
+              [ngClass]="{ 'is-invalid': submitted && f.firstLastName.errors }" required/><br>
+              <div *ngIf="submitted && f.firstLastName.errors" class="invalid-feedback">
+                <div *ngIf="f.firstLastName.errors.required">Debe escribir el primer apellido.</div>
               </div>
               <mat-icon matSuffix>person</mat-icon>
             </mat-form-field>
 
             <mat-form-field class="example-full-width input" appearance="fill">
               <mat-label>Identidad</mat-label>
-              <input matInput placeholder="Ingresa tu identidad" type="text" name="identidad" formControlName="identidad"
-              [ngClass]="{ 'is-invalid': submitted && f.identidad.errors }" required/><br>
-              <div *ngIf="submitted && f.identidad.errors" class="invalid-feedback">
-                <div *ngIf="f.identidad.errors.required">Debe escribir la identidad.</div>
+              <input matInput placeholder="Ingresa tu identidad" type="text" name="hn_id" formControlName="hn_id"
+              [ngClass]="{ 'is-invalid': submitted && f.hn_id.errors }" required/><br>
+              <div *ngIf="submitted && f.hn_id.errors" class="invalid-feedback">
+                <div *ngIf="f.hn_id.errors.required">Debe escribir la identidad.</div>
               </div>
               <mat-icon matSuffix>badge</mat-icon>
             </mat-form-field>
@@ -69,16 +69,16 @@
           <div class="col col-6" style="margin-top: 5em;">
             <mat-form-field class="example-full-width input" appearance="fill">
               <mat-label>Segundo Nombre</mat-label>
-              <input matInput placeholder="Ingresa tu segundo nombre" />
+              <input matInput placeholder="Ingresa tu segundo nombre" formControlName="secondName"/>
               <mat-icon matSuffix>person</mat-icon>
             </mat-form-field>
 
             <mat-form-field class="example-full-width input" appearance="fill">
               <mat-label>Segundo Apellido</mat-label>
-              <input matInput placeholder="Ingresa tu segundo apellido" type="text" name="s_apellido" formControlName="s_apellido"
-              [ngClass]="{ 'is-invalid': submitted && f.s_apellido.errors }" required/><br>
-              <div *ngIf="submitted && f.s_apellido.errors" class="invalid-feedback">
-                <div *ngIf="f.s_apellido.errors.required">Debe escribir el segundo apellido.</div>
+              <input matInput placeholder="Ingresa tu segundo apellido" type="text" name="secondLastName" formControlName="secondLastName"
+              [ngClass]="{ 'is-invalid': submitted && f.secondLastName.errors }" required/><br>
+              <div *ngIf="submitted && f.secondLastName.errors" class="invalid-feedback">
+                <div *ngIf="f.secondLastName.errors.required">Debe escribir el segundo apellido.</div>
               </div>
               <mat-icon matSuffix>person</mat-icon>
 
@@ -87,26 +87,26 @@
 
             <mat-form-field class="example-full-width input" appearance="fill">
               <mat-label>Correo Electrónico</mat-label>
-              <input matInput type="email" placeholder="Ejem. sofia@gmail.com" formControlName="correo" style="width: 28em;" class="form-control"
-              [ngClass]="{ 'is-invalid':f.correo.errors }" required/>
-              <div *ngIf="f.correo.errors" class="invalid-feedback">
-                <mat-error *ngIf="f.correo.errors.required">El correo no puede estar en blanco.</mat-error>
-                <!--<div *ngIf="f.correo.errors.required">Escriba un correo Electrónico</div>-->
-                <div *ngIf="f.correo.errors.email">Ingrese un correo válido.</div>
+              <input matInput type="email" placeholder="Ejem. sofia@gmail.com" formControlName="email" style="width: 28em;" class="form-control"
+              [ngClass]="{ 'is-invalid':f.email.errors }" required/>
+              <div *ngIf="f.email.errors" class="invalid-feedback">
+                <mat-error *ngIf="f.email.errors.required">El correo no puede estar en blanco.</mat-error>
+                <!--<div *ngIf="f.email.errors.required">Escriba un email Electrónico</div>-->
+                <div *ngIf="f.email.errors.email">Ingrese un correo válido.</div>
               </div>
               <mat-icon matSuffix>email</mat-icon>
             </mat-form-field>
-
+<!--
             <mat-form-field class="example-full-width input" appearance="fill">
               <mat-label>Teléfono</mat-label>
               <span matPrefix>+504 &nbsp;</span>
-              <input type="tel" matInput placeholder="8921-3037" />
+              <input type="tel" matInput placeholder="8921-3037" formControlName="telephone"/>
               <mat-icon matSuffix>call</mat-icon>
             </mat-form-field>
-
+-->
             <mat-form-field class="input" appearance="fill">
               <mat-label>Departamento</mat-label>
-              <select matNativeControl required>
+              <select matNativeControl required formControlName="department">
                 <option value="Comayagua">Comayagua</option>
                 <option value="Tegucigalpa">Tegucigalpa</option>
                 <option value="San Pedro Sula">San Pedro Sula</option>
@@ -142,7 +142,7 @@
 
 
         <div class="col col-12 align-content-center">
-          <button id="boton" mat-raised-button color="primary" type="submit" [disabled]=reactiveForm.invalid>
+          <button id="boton" mat-raised-button color="primary" type="submit" [disabled]=reactiveForm.invalid (click)="registrarUsuario()">
             <mat-icon>send</mat-icon> Registrarme
           </button>
         </div>

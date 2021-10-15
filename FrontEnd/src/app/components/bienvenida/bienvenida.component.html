@@ -36,6 +36,7 @@
               <div #paciente="ngbCollapse" [(ngbCollapse)]="isCollapsedP">
                 <div class="card cardP">
                   <div class="card-body">
+                    <form action="">
                     <mat-form-field class="example-full-width input" appearance="fill">
                       <mat-label>Email</mat-label>
                       <input type="email" matInput placeholder="Ejemplo: sofia@gmail.com" ngModel name="correo" email
@@ -56,6 +57,7 @@
                       (click)="sweetAlertSuccess()">
                       Iniciar Sesión
                     </button>
+                  </form>
                   </div>
                 </div>
               </div>

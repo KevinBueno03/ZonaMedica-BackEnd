@@ -7,7 +7,7 @@ import { AcercaDeNosotrosComponent} from './components/acerca-de-nosotros/acerca
 
 const routes: Routes = [
   { path: '', component: BienvenidaComponent},
-  { path: 'registar-usuario', component: FormularioRegistroUsuarioComponent},
+  { path: 'api/register', component: FormularioRegistroUsuarioComponent},
   { path: 'contactanos', component: ContactanosPageComponent},
   { path: 'acerca-nosotros', component: AcercaDeNosotrosComponent},
   { path: 'formulario-usuario', component: FormularioRegistroUsuarioComponent}
