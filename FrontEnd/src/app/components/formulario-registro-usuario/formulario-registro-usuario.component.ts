@@ -111,10 +111,11 @@ export class FormularioRegistroUsuarioComponent implements OnInit {
   */
 
   registrarUsuario() {
-    if (!this.reactiveForm.valid && (this.reactiveForm.controls.password.value != this.reactiveForm.controls.confirmPassword.value)) {
+    if (!this.reactiveForm.valid || (this.reactiveForm.controls.password.value != this.reactiveForm.controls.confirmPassword.value)) {
       console.log('Formulario Invalido');
       return;
     }
+    console.log(JSON.stringify(this.reactiveForm.value));
     this._userService.registrar(JSON.stringify(this.reactiveForm.value))
       .subscribe(
         data => { console.log(data); this._router.navigate(['/']); this.sweetAlertSuccess() },

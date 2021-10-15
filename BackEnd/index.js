@@ -9,12 +9,17 @@ const rtsIndex = require("./routes/router");
 //middleware
 var app = express();
 
-app.use(cors());
+app.use(cors({
+    origin:['http://localhost:4200','http:127.0.0.1:4200'],
+    credentials:true,
+    
+}));
 app.use(express.urlencoded());
 app.use(express.json());
 
 //routers
 app.use("/api", rtsIndex); // api endpoint
+
 
 //server
 app.listen(process.env.PORT, function () {
