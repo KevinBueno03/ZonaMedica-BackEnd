@@ -6,11 +6,11 @@ import { ContactanosPageComponent} from './components/contactanos-page/contactan
 import { AcercaDeNosotrosComponent} from './components/acerca-de-nosotros/acerca-de-nosotros.component';
 
 const routes: Routes = [
-  { path: '', component: BienvenidaComponent},
+  { path: '', redirectTo:'login', pathMatch:'full'},
+  { path: 'login', component:BienvenidaComponent},
   { path: 'api/register', component: FormularioRegistroUsuarioComponent},
   { path: 'contactanos', component: ContactanosPageComponent},
-  { path: 'acerca-nosotros', component: AcercaDeNosotrosComponent},
-  { path: 'formulario-usuario', component: FormularioRegistroUsuarioComponent}
+  { path: 'acerca-nosotros', component: AcercaDeNosotrosComponent}
 ];
 
 @NgModule({

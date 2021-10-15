@@ -16,8 +16,9 @@ export class FormularioRegistroUsuarioComponent implements OnInit {
 
 
   closeResult = '';
+  reactiveForm: FormGroup;
   //rutas: Routes[];
-
+/*
   reactiveForm: FormGroup = new FormGroup({
     firstName: new FormControl('', Validators.required),
     firstLastName: new FormControl('', Validators.required),
@@ -33,9 +34,10 @@ export class FormularioRegistroUsuarioComponent implements OnInit {
   })
 
   constructor(private _router: Router, private _userService: UserService) { }
-  /*
 
-    constructor(private formBuilder: FormBuilder) {
+  */
+
+    constructor(private formBuilder: FormBuilder, private _router: Router, private _userService: UserService) {
       this.reactiveForm = this.formBuilder.group({
         firstName: new FormControl('', Validators.required),
         firstLastName: new FormControl('', Validators.required),
@@ -52,7 +54,6 @@ export class FormularioRegistroUsuarioComponent implements OnInit {
         validators: this.MustMatch('password', 'confirmPassword')
       });
     }
-  */
 
 
   submitted: boolean = false;
@@ -95,7 +96,7 @@ export class FormularioRegistroUsuarioComponent implements OnInit {
     }
   }
 
-  title = 'sweetAlert';
+
   sweetAlertSuccess() {
     Swal.fire('¡Muy Bien!', 'Te has registrado satisfactoriamente.', 'success');
   }
@@ -110,12 +111,11 @@ export class FormularioRegistroUsuarioComponent implements OnInit {
   }
   */
 
-  registrarUsuario() {
-    if (!this.reactiveForm.valid || (this.reactiveForm.controls.password.value != this.reactiveForm.controls.confirmPassword.value)) {
+  register() {
+    if (!this.reactiveForm.valid) {
       console.log('Formulario Invalido');
       return;
     }
-    console.log(JSON.stringify(this.reactiveForm.value));
     this._userService.registrar(JSON.stringify(this.reactiveForm.value))
       .subscribe(
         data => { console.log(data); this._router.navigate(['/']); this.sweetAlertSuccess() },
