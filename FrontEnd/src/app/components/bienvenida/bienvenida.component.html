@@ -1,0 +1,219 @@
+<app-navbar></app-navbar>
+
+<!--Parte de la bienvenida-->
+<div class="container">
+  <div class="row">
+    <div class="col col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+      <h1 class="header_z_m">ZONA MÉDICA</h1>
+      <p class="z_m">
+        Zona médica es una aplicación que simplifica la comunicación entre el
+        personal de salud y el paciente. Dando la oportunidad al personal médico
+        de virtualizar su cartera de servicios. Y para los pacientes la
+        comodidad de agendar sus servicios desde sus dispositivos.
+      </p>
+      <img src="../assets/img/cuate.png" alt="" />
+    </div>
+    <div id="loginPaciente" class="col col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+
+      <form fxLayout="column" fxLayoutAlign="center center" #f="ngForm" (ngSubmit)="login(f)">
+        <div class="bienvenido_de_nuevo">
+          <div class="row mensaje">
+            <span>Elije el tipo de usuario para iniciar sesión</span>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+              <div class="contenedor" (click)="paciente.toggle()" [attr.aria-expanded]="!isCollapsedP"
+                aria-controls="collapseExample">
+                <img src="../assets/img/loginDoctor.svg" alt="" style="width: 22em" />
+                <div class="centradoD">Doctor</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col">
+              <div #paciente="ngbCollapse" [(ngbCollapse)]="isCollapsedP">
+                <div class="card cardP">
+                  <div class="card-body">
+                    <mat-form-field class="example-full-width input" appearance="fill">
+                      <mat-label>Email</mat-label>
+                      <input type="email" matInput placeholder="Ejemplo: sofia@gmail.com" ngModel name="correo" email
+                        required #emailInput="ngModel" />
+                      <mat-error *ngIf="emailInput.hasError('required')">El correo no puede estar en blanco.
+                      </mat-error>
+                      <mat-error *ngIf="!emailInput.hasError('required')">¡El correo es invalido!</mat-error>
+                    </mat-form-field>
+                    <mat-form-field class="example-full-width input" appearance="fill">
+                      <mat-label>Contraseña</mat-label>
+                      <input type="password" matInput placeholder="Ingresa tu contraseña" ngModel name="contra" required
+                        minlength="8" />
+                      <mat-error>¡La contraseña debe tener más de 8 caracteres!</mat-error>
+                    </mat-form-field>
+                    <a href="#" style="margin-top: 5px" class="olvidar" style="color: black;">¿Olvidaste la
+                      contraseña?</a>
+                    <button mat-raised-button style="margin-top: 10px; margin-right: 5px" color="primary"
+                      (click)="sweetAlertSuccess()">
+                      Iniciar Sesión
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+              <div class="contenedor" (click)="paciente.toggle()" [attr.aria-expanded]="!isCollapsedP"
+                aria-controls="collapseExample">
+                <img src="../assets/img/loginPaciente.svg" alt="" style="width: 22em" />
+                <div class="centradoP">Paciente</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col">
+              <div #paciente="ngbCollapse" [(ngbCollapse)]="isCollapsedP">
+                <div class="card cardP">
+                  <div class="card-body">
+                    <mat-form-field class="example-full-width input" appearance="fill">
+                      <mat-label>Email</mat-label>
+                      <input type="email" matInput placeholder="Ejemplo: sofia@gmail.com" ngModel name="correo" email
+                        required #emailInput="ngModel" />
+                      <mat-error *ngIf="emailInput.hasError('required')">El correo no puede estar en blanco.
+                      </mat-error>
+                      <mat-error *ngIf="!emailInput.hasError('required')">¡El correo es invalido!</mat-error>
+                    </mat-form-field>
+                    <mat-form-field class="example-full-width input" appearance="fill">
+                      <mat-label>Contraseña</mat-label>
+                      <input type="password" matInput placeholder="Ingresa tu contraseña" ngModel name="contra" required
+                        minlength="8" />
+                      <mat-error>¡La contraseña debe tener más de 8 caracteres!</mat-error>
+                    </mat-form-field>
+                    <a href="#" style="margin-top: 5px" class="olvidar" style="color: black;">¿Olvidaste la
+                      contraseña?</a>
+                    <button mat-raised-button style="margin-top: 10px; margin-right: 5px" color="primary"
+                      (click)="sweetAlertSuccess()">
+                      Iniciar Sesión
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!--<h2>¡Bienvenido de nuevo!</h2>
+          <img src="../assets/img/undraw_Hello_re_3evm 1.png" alt="" />
+          Validacion del correo
+          <mat-form-field class="example-full-width input" appearance="fill">
+            <mat-label>Email</mat-label>
+            <input type="email" matInput placeholder="Ejemplo: sofia@gmail.com" ngModel name="correo" email required
+              #emailInput="ngModel" />
+            <mat-error *ngIf="emailInput.hasError('required')">El correo no puede estar en blanco.</mat-error>
+            <mat-error *ngIf="!emailInput.hasError('required')">¡El correo es invalido!</mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width input" appearance="fill">
+            <mat-label>Contraseña</mat-label>
+            <input type="password" matInput placeholder="Ingresa tu contraseña" ngModel name="contra" required
+              minlength="=8" />
+            <mat-error>¡La contraseña debe tener más de caracteres!</mat-error>
+          </mat-form-field>
+
+          <input type="email" name="" id="" placeholder="ingrese su correo electrónico">
+                <input type="password" name="" id="" placeholder="ingrese su contraseña">
+
+          <a href="#" style="margin-top: 5px" class="olvidar">¿Olvidaste la contraseña?</a>
+          -->
+          <!--<button mat-raised-button style="margin-top: 10px; margin-right: 5px" color="primary" (click)="open(usuario)">
+            Iniciar Sesión
+          </button>-->
+          <hr />
+          <button mat-raised-button style="margin-top: 10px" color="primary" class="registrar" (click)="open(content)">
+            Registrate
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col col-12 flecha ml-auto mr-auto align-content-center" style="align-items: center"></div>
+  </div>
+</div>
+
+<app-carousel-funcionalidades></app-carousel-funcionalidades>
+<app-acerca-de-nosotros></app-acerca-de-nosotros>
+<app-contactanos></app-contactanos>
+<app-footer></app-footer>
+
+<!--MODALES-->
+<ng-template #content let-modal>
+  <div class="modal-header  align-items-center align-content-center" style="text-align: center">
+    <h2 class="modal-title" id="modal-basic-title" style="text-align: center !important; font-weight: 100">
+      Escoje para quien crearás la cuenta
+      <h5>Haz click sobre la imagen que desees.</h5>
+    </h2>
+
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="form-group">
+        <div class="row">
+          <div class="col-6">
+            <a href="#" class="hover">
+              <img src="../assets/img/modalD.png" alt="" style="width: 17em; height: 18em" />
+            </a>
+            <h3 style="text-align: center">Doctor</h3>
+          </div>
+          <div class="col-6">
+            <a href="/formulario-usuario" class="hover">
+              <img src="../assets/img/modalP.png" alt="" style="width: 16em; height: 17em" />
+            </a>
+            <h3 style="text-align: center">Paciente</h3>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</ng-template>
+
+<!--Modal Inicio Sesion Doctor-->
+<ng-template #doctor let-modal>
+  <div class="modal-header" style="text-align: center">
+    <h2 class="modal-title" id="modal-basic-title" style="text-align: center !important; font-weight: 100">
+      Escoje para quien crearás la cuenta
+      <h5>Haz click sobre la imagen que desees.</h5>
+    </h2>
+
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="form-group">
+        <div class="row">
+          <div class="col-6">
+            <a href="#" class="hover">
+              <img src="../assets/img/modalD.png" alt="" style="width: 17em; height: 18em" />
+            </a>
+            <h3 style="text-align: center">Doctor</h3>
+          </div>
+          <div class="col-6">
+            <a href="/formulario-usuario" class="hover">
+              <img src="../assets/img/modalP.png" alt="" style="width: 16em; height: 17em" />
+            </a>
+            <h3 style="text-align: center">Paciente</h3>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</ng-template>
+
+<pre>{{ closeResult }}</pre>

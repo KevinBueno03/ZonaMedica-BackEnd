@@ -1,0 +1,73 @@
+<app-navbar></app-navbar>
+
+<div class="container-fluid fondo">
+  <h2>
+    Ponte en contacto
+  </h2>
+  <div class="container">
+    <div class="row">
+      <div class="col col-8 ">
+        <div class="container-fluid bloque">
+          <div class="row">
+            <div class="col col-6">
+              <img src="../assets/img/up (9).svg" title="PROBANDO" style="width:15em" alt="">
+              <span>
+                <img src="../assets/img/Gmail.png" alt="">
+                zonamedica@gmail.com
+              </span>
+              <span>
+                <img src="../assets/img/Telegram App.png" alt="">zonamedica504
+              </span>
+              <span>
+                <img src="../assets/img/WhatsApp.png" alt="">+504 99887766
+              </span>
+              <span>
+                <img src="../assets/img/Instagram.png" alt="">@zonamedica504
+              </span>
+              <span>
+                <img src="../assets/img/Facebook.png" alt="">@zonamedica504
+              </span>
+              <span>
+                <img src="../assets/img/YouTube.png" alt="">@zonamedica504
+              </span>
+            </div>
+            <div class="col col-6 " style="text-align: center;">
+              <h4>Contáctanos</h4>
+              <mat-form-field class="example-full-width input" appearance="fill">
+                <mat-label>Nombre Completo</mat-label>
+                <input matInput placeholder="Ingresa tu nombre completo" ngModel name="p_nombre" required /><mat-icon matSuffix>person</mat-icon>
+              </mat-form-field>
+
+              <mat-form-field class="example-full-width input" appearance="fill">
+                <mat-label>Email</mat-label>
+                <input type="email" matInput placeholder="Ejemplo: sofia@gmail.com" ngModel name="correo" email required
+                  #emailInput="ngModel" /><mat-icon matSuffix>email</mat-icon>
+                <mat-error *ngIf="emailInput.hasError('required')">El correo no puede estar en blanco.</mat-error>
+                <mat-error *ngIf="!emailInput.hasError('required')">¡El correo es invalido!</mat-error>
+              </mat-form-field>
+
+              <mat-form-field class="example-full-width textarea" appearance="fill">
+                <mat-label>Mensaje</mat-label>
+                <textarea cols="30" rows="10" matInput placeholder="Aqui puedes escribir tu mensaje..."></textarea><mat-icon matSuffix>chat</mat-icon>
+              </mat-form-field>
+
+              <button (click)="probarSweet()" id="boton" mat-raised-button color="primary"><mat-icon>send</mat-icon> Enviar Mensaje</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col col-4">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3901.306134113171!2d-86.23126618626092!3d12.091182436857618!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8f73ffb326492ab1%3A0x4b9184c085f78af8!2s3%20Ent.%20a%20las%20Colinas%2C%20Managua%2C%20Nicaragua!5e0!3m2!1sen!2shn!4v1634127759462!5m2!1sen!2shn" width="350" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        <!--<img src="../assets/img/image 1.png" class="w-100">-->
+        <div class="w-100 bloque">
+          <p>
+            Col Las Colinas, tercera entrada, casa N° 3212, Tegucigalpa, M.D.C. Francisco
+            Morazán, Honduras C.A.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>

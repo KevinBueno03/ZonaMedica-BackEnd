@@ -1,0 +1,55 @@
+.container-fluid{
+    background: linear-gradient(180deg, #FFF9F9 0%, rgba(255, 249, 249, 0) 100%);
+}
+h2{
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 2em;
+    font-size: 4em;
+    line-height: 2em;
+    text-transform: capitalize;
+
+    color: #8DCBB4;
+    }
+p{
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 1em;
+    font-size: 1.5em;
+    line-height: 1em;
+    text-align: justify;
+    letter-spacing: -0.02em;
+
+    color: #315235;
+}
+H6{
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 1em;
+    font-size: 1em;
+    line-height: 1em;
+    /* identical to box height */
+
+    text-align: justify;
+    letter-spacing: -0.02em;
+    text-decoration-line: underline;
+
+    color: #0A97FC;
+    display: inline !important;
+}
+.go{
+    border-radius: 2em;
+    color:white;
+    background-color: #e9c7c7 ;
+}
+i{
+    padding:1em;
+}
+.h6{
+    text-align: center;
+}
+
+span img{
+    width: 1em;
+    display:block
+}

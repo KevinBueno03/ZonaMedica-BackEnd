@@ -1,0 +1,61 @@
+<div class="container-fluid align-content-center">
+    <div class="container">
+        <div class="row">
+            <div class="but col col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
+                <h2>Contáctanos</h2>
+                <mat-form-field class="example-full-width input" appearance="fill">
+                  <mat-label>Nombre Completo</mat-label>
+                  <input matInput placeholder="Ingresa tu nombre completo" ngModel name="p_nombre" required /><mat-icon matSuffix>person</mat-icon>
+                </mat-form-field>
+
+                <mat-form-field class="example-full-width input" appearance="fill">
+                  <mat-label>Email</mat-label>
+                  <input type="email" matInput placeholder="Ejemplo: sofia@gmail.com" ngModel name="correo" email required
+                    #emailInput="ngModel" /><mat-icon matSuffix>email</mat-icon>
+                  <mat-error *ngIf="emailInput.hasError('required')">El correo no puede estar en blanco.</mat-error>
+                  <mat-error *ngIf="!emailInput.hasError('required')">¡El correo es invalido!</mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="example-full-width textarea" appearance="fill">
+                  <mat-label>Mensaje</mat-label>
+                  <textarea cols="30" rows="10" matInput placeholder="Aqui puedes escribir tu mensaje..."></textarea><mat-icon matSuffix>chat</mat-icon>
+                </mat-form-field>
+
+                <button (click)="mostrarSweet()" id="boton" mat-raised-button color="primary"><mat-icon>send</mat-icon> Enviar Mensaje</button>
+
+                <!--<button type="button" class="btn btn-primary ml-auto mr-auto">Enviar</button>-->
+            </div>
+            <div class="col col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
+                <h2>Mapa de página</h2>
+                <i>Inicio</i>
+                <i>Acercade nosotros</i>
+                <i>Funcionalidades</i>
+                <i>Contáctanos</i>
+            </div>
+            <div class="col col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
+                <img src="../assets/img/up (9).svg" alt="" style="width:12em">
+
+                    <span>
+                        <img src="../assets/img/Gmail.png" alt="">
+                        zonamedica@gmail.com
+                    </span>
+                    <span>
+                        <img src="../assets/img/Telegram App.png" alt="">zonamedica504
+                    </span>
+                    <span>
+                        <img src="../assets/img/WhatsApp.png" alt="">+504 99887766
+                    </span>
+                    <span>
+                        <img src="../assets/img/Instagram.png" alt="">@zonamedica504
+                    </span>
+                    <span>
+                        <img src="../assets/img/Facebook.png" alt="">@zonamedica504
+                    </span>
+                    <span>
+                        <img src="../assets/img/YouTube.png" alt="">@zonamedica504
+                    </span>
+
+            </div>
+        </div>
+    </div>
+</div>

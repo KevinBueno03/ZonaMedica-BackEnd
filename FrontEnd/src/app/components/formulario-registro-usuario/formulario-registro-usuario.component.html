@@ -1,0 +1,278 @@
+<app-navbar></app-navbar>
+
+<!--CODIGO CON POSIBLES ERRORES-->
+<div class="container-fluid">
+  <div class="container align-items-center align-content-center">
+    <div class="row col-azul">
+      <div class="
+          col col-12 col-xs-12 col-sm-12
+          align-items-center align-content-center
+        ">
+        <h1>Registro como paciente</h1>
+      </div>
+      <form (ngSubmit)="onSubmit()" [formGroup]="reactiveForm">
+        <div class="row">
+          <div class="col col-6" style="margin-top: 5em;">
+            <mat-form-field class="example-full-width input" appearance="fill">
+              <mat-label>Primer Nombre</mat-label>
+              <input matInput placeholder="Ingresa tu primer nombre" type="text" name="p_nombre" formControlName="p_nombre" [ngClass]="{ 'is-invalid': submitted && f.p_nombre.errors }" required/><br>
+              <div *ngIf="submitted && f.p_nombre.errors" class="invalid-feedback">
+                <div *ngIf="f.p_nombre.errors.required">Debe escribir el primer nombre.</div>
+              </div>
+              <mat-icon matSuffix>person</mat-icon>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width input" appearance="fill">
+              <mat-label>Primer Apellido</mat-label>
+              <input matInput placeholder="Ingresa tu primer apellido" type="text" name="p_apellido" formControlName="p_apellido"
+              [ngClass]="{ 'is-invalid': submitted && f.p_apellido.errors }" required/><br>
+              <div *ngIf="submitted && f.p_apellido.errors" class="invalid-feedback">
+                <div *ngIf="f.p_apellido.errors.required">Debe escribir el primer apellido.</div>
+              </div>
+              <mat-icon matSuffix>person</mat-icon>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width input" appearance="fill">
+              <mat-label>Identidad</mat-label>
+              <input matInput placeholder="Ingresa tu identidad" type="text" name="identidad" formControlName="identidad"
+              [ngClass]="{ 'is-invalid': submitted && f.identidad.errors }" required/><br>
+              <div *ngIf="submitted && f.identidad.errors" class="invalid-feedback">
+                <div *ngIf="f.identidad.errors.required">Debe escribir la identidad.</div>
+              </div>
+              <mat-icon matSuffix>badge</mat-icon>
+            </mat-form-field>
+
+            <mat-form-field hintLabel="La contraseña debe tener 8 caracteres" class="example-full-width input" appearance="fill">
+              <mat-label>Contraseña</mat-label>
+              <input matInput placeholder="Escriba su contraseña" type="password" style="width: 30em;" formControlName="password" class="form-control" value=""
+                  [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
+                minlength="8" required/>
+                <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                  <div *ngIf="f.password.errors.required">Escriba la contraseña</div>
+                  <div *ngIf="f.password.errors.minlength">La contraseña debe tener 8 caracteres.</div>
+                </div>
+                <mat-icon matSuffix>lock</mat-icon>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width input" appearance="fill">
+              <mat-label>Confirmar Contraseña</mat-label>
+              <input matInput placeholder="Escriba de nuevo su contraseña" type="password" formControlName="confirmPassword" style="width: 28em;" class="form-control"
+              [ngClass]="{ 'is-invalid':f.confirmPassword.errors }"
+                minlength="8" />
+              <div *ngIf="f.confirmPassword.errors" class="invalid-feedback">
+                <div *ngIf="f.confirmPassword.errors.required">Debe confirmar la contraseña</div>
+                <div *ngIf="f.confirmPassword.errors.mustMatch">Las contraseñas deben coincidir</div>
+              </div>
+              <mat-icon matSuffix>lock</mat-icon>
+            </mat-form-field>
+          </div>
+          <div class="col col-6" style="margin-top: 5em;">
+            <mat-form-field class="example-full-width input" appearance="fill">
+              <mat-label>Segundo Nombre</mat-label>
+              <input matInput placeholder="Ingresa tu segundo nombre" />
+              <mat-icon matSuffix>person</mat-icon>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width input" appearance="fill">
+              <mat-label>Segundo Apellido</mat-label>
+              <input matInput placeholder="Ingresa tu segundo apellido" type="text" name="s_apellido" formControlName="s_apellido"
+              [ngClass]="{ 'is-invalid': submitted && f.s_apellido.errors }" required/><br>
+              <div *ngIf="submitted && f.s_apellido.errors" class="invalid-feedback">
+                <div *ngIf="f.s_apellido.errors.required">Debe escribir el segundo apellido.</div>
+              </div>
+              <mat-icon matSuffix>person</mat-icon>
+
+            </mat-form-field>
+
+
+            <mat-form-field class="example-full-width input" appearance="fill">
+              <mat-label>Correo Electrónico</mat-label>
+              <input matInput type="email" placeholder="Ejem. sofia@gmail.com" formControlName="correo" style="width: 28em;" class="form-control"
+              [ngClass]="{ 'is-invalid':f.correo.errors }" required/>
+              <div *ngIf="f.correo.errors" class="invalid-feedback">
+                <mat-error *ngIf="f.correo.errors.required">El correo no puede estar en blanco.</mat-error>
+                <!--<div *ngIf="f.correo.errors.required">Escriba un correo Electrónico</div>-->
+                <div *ngIf="f.correo.errors.email">Ingrese un correo válido.</div>
+              </div>
+              <mat-icon matSuffix>email</mat-icon>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width input" appearance="fill">
+              <mat-label>Teléfono</mat-label>
+              <span matPrefix>+504 &nbsp;</span>
+              <input type="tel" matInput placeholder="8921-3037" />
+              <mat-icon matSuffix>call</mat-icon>
+            </mat-form-field>
+
+            <mat-form-field class="input" appearance="fill">
+              <mat-label>Departamento</mat-label>
+              <select matNativeControl required>
+                <option value="Comayagua">Comayagua</option>
+                <option value="Tegucigalpa">Tegucigalpa</option>
+                <option value="San Pedro Sula">San Pedro Sula</option>
+              </select>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="
+          col col-12 col-xs-12 col-sm-12
+          align-items-center align-content-center
+        " style="margin-top: 2em;">
+          <mat-checkbox class="example-margin" name="terminos" formControlName="terminos"
+          [ngClass]="{ 'is-invalid': submitted && f.terminos.errors }" required>Acepto los
+            <a href="">Términos y Condiciones</a><br>
+            <div *ngIf="submitted && f.terminos.errors" class="invalid-feedback">
+              <div *ngIf="f.terminos.errors.required">Debe aceptar los terminos.</div>
+            </div>
+          </mat-checkbox>
+
+        </div>
+        <div class="
+      col col-12 col-xs-12 col-sm-12
+      align-items-center align-content-center
+    ">
+    <mat-checkbox class="example-margin" name="politicas" formControlName="politicas"
+    [ngClass]="{ 'is-invalid': submitted && f.politicas.errors }" required>Acepto las
+      <a href="">Politicas</a><br>
+      <div *ngIf="submitted && f.politicas.errors" class="invalid-feedback">
+        <div *ngIf="f.politicas.errors.required">Debe aceptar las politicas.</div>
+      </div>
+    </mat-checkbox>
+        </div>
+
+
+        <div class="col col-12 align-content-center">
+          <button id="boton" mat-raised-button color="primary" type="submit" [disabled]=reactiveForm.invalid>
+            <mat-icon>send</mat-icon> Registrarme
+          </button>
+        </div>
+        <div class="col col-12 mr-auto" style="color: white; text-align: left !important; font-size: 3em">
+          <h3><i class="fas fa-arrow-circle-left"></i> Atrás</h3>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+
+<!--CODIGO SIN ERRORES-->
+<!--
+<div class="container-fluid">
+  <div class="container align-items-center align-content-center">
+    <div class="row col-azul">
+      <div class="
+          col col-12 col-xs-12 col-sm-12
+          align-items-center align-content-center
+        ">
+        <h1>Registro como paciente</h1>
+        </div>
+      <form class="form-horizontal form-material"
+                    id="loginform"
+                    autocomplete="off"
+                    #f='ngForm' (ngSubmit)="validarContras(f)">
+                    <div class="row">
+      <div class="col col-6" style="margin-top: 5em;">
+        <mat-form-field class="example-full-width input" appearance="fill">
+          <mat-label>Primer Nombre</mat-label>
+          <input matInput placeholder="Ingresa tu primer nombre" required/>
+          <mat-icon matSuffix>person</mat-icon>
+        </mat-form-field>
+        <mat-form-field class="example-full-width input" appearance="fill">
+          <mat-label>Primer Apellido</mat-label>
+          <input matInput placeholder="Ingresa tu primer apellido" required/>
+          <mat-icon matSuffix>person</mat-icon>
+          <mat-error>¡El apellido puede estar vacio!</mat-error>
+        </mat-form-field>
+        <mat-form-field class="example-full-width input" appearance="fill">
+          <mat-label>Identidad</mat-label>
+          <input matInput placeholder="Ingresa tu identidad sin guiones ni espacios." required/>
+          <mat-icon matSuffix>badge</mat-icon>
+          <mat-error>¡La identidad puede estar vacia!</mat-error>
+        </mat-form-field>
+        <mat-form-field hintLabel="La contraseña debe tener 8 caracteres" class="example-full-width input" appearance="fill">
+          <mat-label>Contraseña</mat-label>
+          <input type="password" matInput placeholder="Ingresa tu contraseña" ngModel name="contra1" required
+            minlength="8" />
+          <mat-icon matSuffix>lock</mat-icon>
+          <mat-error>¡La contraeña debe tener más de 8 caracteres!</mat-error>
+        </mat-form-field>
+        <mat-form-field hintLabel="La contraseña debe tener 8 caracteres" class="example-full-width input" appearance="fill">
+          <mat-label>Contraseña</mat-label>
+          <input type="password" matInput placeholder="Ingresa tu contraseña" ngModel name="contra2" required
+            minlength="8" />
+          <mat-icon matSuffix>lock</mat-icon>
+          <mat-error>¡La contraeña debe tener 8 caracteres!</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col col-6" style="margin-top: 5em;">
+        <mat-form-field class="example-full-width input" appearance="fill">
+          <mat-label>Segundo Nombre</mat-label>
+          <input matInput placeholder="Ingresa tu segundo nombre"/>
+          <mat-icon matSuffix>person</mat-icon>
+        </mat-form-field>
+        <mat-form-field class="example-full-width input" appearance="fill">
+          <mat-label>Segundo Apellido</mat-label>
+          <input matInput placeholder="Ingresa tu segundo apellido" required/>
+          <mat-icon matSuffix>person</mat-icon>
+          <mat-error>¡El apellido no puede estar vacio!</mat-error>
+        </mat-form-field>
+        <mat-form-field class="example-full-width input" appearance="fill">
+          <mat-label>Email</mat-label>
+          <input type="email" matInput placeholder="Ejemplo: sofia@gmail.com" ngModel name="correo" email required
+            #emailInput="ngModel" /><mat-icon matSuffix>email</mat-icon>
+          <mat-error *ngIf="emailInput.hasError('required')">El correo no puede estar en blanco.</mat-error>
+          <mat-error *ngIf="!emailInput.hasError('required')">¡El correo es invalido!</mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width input" appearance="fill">
+          <mat-label>Teléfono</mat-label>
+          <span matPrefix>+504 &nbsp;</span>
+          <input type="tel" matInput placeholder="8921-3037"/>
+          <mat-icon matSuffix>call</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field class="input" appearance="fill">
+          <mat-label>Departamento</mat-label>
+          <select matNativeControl required>
+            <option value="Comayagua">Comayagua</option>
+            <option value="Tegucigalpa">Tegucigalpa</option>
+            <option value="San Pedro Sula">San Pedro Sula</option>
+          </select>
+        </mat-form-field>
+      </div>
+    </div>
+      <div class="
+          col col-12 col-xs-12 col-sm-12
+          align-items-center align-content-center
+        " style="margin-top: 2em;">
+        <mat-checkbox class="example-margin" ngModel name="terminos" required
+        #terminos="ngModel" required>Acepto los <a href="" (click)="open(terminos)">Términos y Condiciones</a>
+        <mat-error *ngIf="terminos.hasError('required')"></mat-error></mat-checkbox>
+
+      </div>
+      <div class="
+      col col-12 col-xs-12 col-sm-12
+      align-items-center align-content-center
+    ">
+        <mat-checkbox class="example-margin" ngModel name="politicas" required
+        #politicas="ngModel" required>Acepto las <a href="" (click)="open(politicas)">Políticas de Privacidad</a>
+          <mat-error *ngIf="politicas.hasError('required')"></mat-error></mat-checkbox>
+      </div>
+
+
+      <div class="col col-12 align-content-center">
+        <button (click)="sweetAlertSuccess()" id="boton" mat-raised-button color="primary" type="submit" [disabled]=f.invalid>
+          <mat-icon>send</mat-icon> Registrarme
+        </button>
+      </div>
+      <div class="col col-12 mr-auto" style="color: white; text-align: left !important; font-size: 3em">
+        <h3><i class="fas fa-arrow-circle-left"></i> Atrás</h3>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+-->
+<app-footer></app-footer>
+

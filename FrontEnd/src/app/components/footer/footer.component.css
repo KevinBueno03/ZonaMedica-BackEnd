@@ -1,0 +1,19 @@
+.container-fluid, .container{
+    background-color:#03334F;
+    color:white;
+    text-align:center;
+    align-content: center;
+}
+span i{
+    margin:1em;
+    font-size:1em;
+    padding:1em;
+}
+.politicas{
+    color: #5A874B;
+
+}
+.politicas span{
+    margin-left:2em;
+    color: #5A874B;
+}
