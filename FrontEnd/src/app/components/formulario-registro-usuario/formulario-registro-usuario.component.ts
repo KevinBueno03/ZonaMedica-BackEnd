@@ -37,7 +37,7 @@ export class FormularioRegistroUsuarioComponent implements OnInit {
 
   */
 
-    constructor(private formBuilder: FormBuilder, private _router: Router, private _userService: UserService) {
+    constructor(private formBuilder: FormBuilder, private _router: Router, private _userService: UserService, private modalService: NgbModal) {
       this.reactiveForm = this.formBuilder.group({
         firstName: new FormControl('', Validators.required),
         firstLastName: new FormControl('', Validators.required),
@@ -123,5 +123,27 @@ export class FormularioRegistroUsuarioComponent implements OnInit {
       )
     console.log(JSON.stringify(this.reactiveForm.value));
   }
+
+
+  //Metodos para los modales
+
+  open(content: any) {
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return `with: ${reason}`;
+    }
+  }
+
 
 }
