@@ -13,10 +13,9 @@
     font-weight: normal;
     font-size: 4em;
     line-height: 2em;
-
     color: #0A97FC;
-
 }
+
 row{
     padding:2em;
 }
@@ -155,13 +154,23 @@ row{
   font-size: small;
   cursor: pointer;
   text-align: center;
+  background-color: #ebebeb94;
+
+}
+
+.cardD{
+  width: 100%;
+  border: none;
+  font-size: small;
+  cursor: pointer;
+  text-align: center;
+  background-color: #ebebeb94;
 
 }
 
 .mensaje{
   margin-top: 1rem;
-  text-align: center;
-  display: block;
+
   color:rgb(0, 0, 0);
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   font-size: 16px;
