@@ -1,8 +1,8 @@
 var mongoose = require("mongoose");
-var Patients = mongoose.model("Doctors");
+var Doctors = mongoose.model("Doctors");
 
 module.exports.register = (req, res) => {
-    let user = new Doctor();
+    let user = new Doctors();
     user.firstName = req.body.firstName;
     user.secondName = req.body.secondName;
     user.firstLastName = req.body.firstLastName;
@@ -11,6 +11,11 @@ module.exports.register = (req, res) => {
     user.department = req.body.department;
     user.email = req.body.email;
     user.password = req.body.password;
+    user.phone = req.body.phone;
+    user.bibliography=req.body.bibliography;
+    user.medAppointment_modality=req.body.medAppointment_modality;
+    user.master_degree=req.body.master_degree;
+
 
     user.save((err, doc) => {
         let r = {
