@@ -1,0 +1,463 @@
+<app-navbar-usuario></app-navbar-usuario>
+<mat-sidenav-container>
+  <mat-sidenav #sidenav>
+
+    <mat-nav-list>
+      <h4 class="name" style="justify-content: center; text-align: center;">Filtros</h4>
+      <p class="designation" style="text-align: center; justify-content: center;">Escoje los filtros que necesites</p>
+
+      <mat-divider></mat-divider>
+      <mat-list role="list">
+
+        <mat-list-item role="listitem" class="lista">
+          <mat-form-field class="input example-full-width" appearance="outline" >
+            <mat-label>Area</mat-label>
+            <select matNativeControl>
+              <option value="Seleccione una area" disabled>--Seleccione un área--</option>
+              <option value="Medicina General">Medicina General</option>
+              <option value="Odontologia">Odontologia</option>
+              <option value="Nutricion">Nutrición</option>
+            </select>
+          </mat-form-field>
+        </mat-list-item>
+
+        <mat-list-item role="listitem" class="lista">
+          <mat-form-field class="input example-full-width" appearance="outline">
+            <mat-label>Departamento</mat-label>
+            <select matNativeControl>
+              <option value="Seleccione una departamento" disabled>--Seleccione un departamento--</option>
+              <option value="Francisco Morazan">Francisco Morazán</option>
+              <option value="Olancho">Olancho</option>
+              <option value="La Paz">La Paz</option>
+            </select>
+          </mat-form-field>
+        </mat-list-item>
+
+        <mat-list-item role="listitem" class="lista">
+          <mat-form-field class="input example-full-width" appearance="outline">
+            <mat-label>Municipio</mat-label>
+            <select matNativeControl>
+              <option value="Seleccione una municipio" disabled>--Seleccione un municipio--</option>
+              <option value="Distrito Central">Distrito Central</option>
+            </select>
+          </mat-form-field>
+        </mat-list-item>
+
+        <mat-list-item role="listitem" class="lista">
+          <mat-slide-toggle>Cerca de tu ubicación</mat-slide-toggle>
+        </mat-list-item>
+        <hr>
+        <br>
+        <mat-list-item role="listitem" class="lista">
+          <div>
+            <p class="designation">Tipo de Cita</p>
+            <mat-checkbox class="example-margin">Espacio Clinico</mat-checkbox> <br>
+            <mat-checkbox class="example-margin">A Domicilio</mat-checkbox> <br>
+            <mat-checkbox class="example-margin">En Linea</mat-checkbox>
+          </div>
+        </mat-list-item>
+        <br>
+        <hr>
+        <br>
+        <mat-list-item role="listitem" class="lista">
+          <div>
+            <p class="designation">Tipo de Pago</p>
+            <mat-checkbox class="example-margin">Efectivo</mat-checkbox> <br>
+            <mat-checkbox class="example-margin">Plataforma</mat-checkbox> <br>
+          </div>
+        </mat-list-item>
+      </mat-list>
+
+        </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <div style="height: 88vh;">
+    <div class="row">
+      <img src="../../../assets/img/banner-busqueda.jpg" style="width: 100%; height:250px;" alt="">
+      <div class="filtro">
+        <button mat-raised-button color="accent">
+          <mat-icon (click)="sidenav.toggle()">filter_list</mat-icon>
+        </button>
+      </div>
+
+      <div class="centrado">Espacio de Busqueda</div>
+
+      <div class="search">
+        <mat-form-field appearance="outline" class="example-full-width" style="width: 450px; border-color: black; border-width: 2px;">
+          <mat-label>Busqueda</mat-label>
+          <input matInput placeholder="Escribe lo que andas buscando" style="width: 498px; border-color: black; border-width: 2px;">
+          <mat-icon matSuffix>search</mat-icon>
+        </mat-form-field><br><br>
+      </div>
+      <div>
+
+      </div>
+    </div>
+      <div class="row">
+        <!--
+              <div class="col col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 filtros mat-elevation-z4">
+
+                <h4 class="name" style="text-align: center; align-items: center;">Filtros</h4>
+                <p class="designation" style="text-align: center; align-items: center;">Escoja sus filtros</p>
+
+                <hr>
+
+
+                <mat-list role="list">
+
+                  <mat-list-item role="listitem" class="lista">
+                    <mat-form-field class="input example-full-width" appearance="outline" >
+                      <mat-label>Area</mat-label>
+                      <select matNativeControl>
+                        <option value="Seleccione una area" disabled>--Seleccione un área--</option>
+                        <option value="Medicina General">Medicina General</option>
+                        <option value="Odontologia">Odontologia</option>
+                        <option value="Nutricion">Nutrición</option>
+                      </select>
+                    </mat-form-field>
+                  </mat-list-item>
+
+                  <mat-list-item role="listitem" class="lista">
+                    <mat-form-field class="input example-full-width" appearance="outline">
+                      <mat-label>Departamento</mat-label>
+                      <select matNativeControl>
+                        <option value="Seleccione una departamento" disabled>--Seleccione un departamento--</option>
+                        <option value="Francisco Morazan">Francisco Morazán</option>
+                        <option value="Olancho">Olancho</option>
+                        <option value="La Paz">La Paz</option>
+                      </select>
+                    </mat-form-field>
+                  </mat-list-item>
+
+                  <mat-list-item role="listitem" class="lista">
+                    <mat-form-field class="input example-full-width" appearance="outline">
+                      <mat-label>Municipio</mat-label>
+                      <select matNativeControl>
+                        <option value="Seleccione una municipio" disabled>--Seleccione un municipio--</option>
+                        <option value="Distrito Central">Distrito Central</option>
+                      </select>
+                    </mat-form-field>
+                  </mat-list-item>
+
+                  <mat-list-item role="listitem" class="lista">
+                    <mat-slide-toggle>Cerca de tu ubicación</mat-slide-toggle>
+                  </mat-list-item>
+                  <hr>
+                  <br>
+                  <mat-list-item role="listitem" class="lista">
+                    <div>
+                      <p class="designation">Tipo de Cita</p>
+                      <mat-checkbox class="example-margin">Espacio Clinico</mat-checkbox> <br>
+                      <mat-checkbox class="example-margin">A Domicilio</mat-checkbox> <br>
+                      <mat-checkbox class="example-margin">En Linea</mat-checkbox>
+                    </div>
+                  </mat-list-item>
+                  <br>
+                  <hr>
+                  <br>
+                  <mat-list-item role="listitem" class="lista">
+                    <div>
+                      <p class="designation">Tipo de Pago</p>
+                      <mat-checkbox class="example-margin">Efectivo</mat-checkbox> <br>
+                      <mat-checkbox class="example-margin">Plataforma</mat-checkbox> <br>
+                    </div>
+                  </mat-list-item>
+                </mat-list>
+
+              </div>
+        -->
+
+              <div class="col col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <br>
+                <div class="row">
+                  <div class="col col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
+                    <mat-card class="example-card">
+
+                      <img mat-card-image src="../../../assets/img/doctor_1.jpg" style="width: 379.55px; height: 257.12px;" alt="Photo of a Shiba Inu">
+                      <mat-card-header>
+                        <div mat-card-avatar class="example-header-image"></div>
+                        <mat-card-title>Meredith Grey</mat-card-title>
+                        <mat-card-subtitle>Médico General</mat-card-subtitle>
+                      </mat-card-header>
+                      <mat-card-content>
+                        <p>
+                          Tegucigalpa M.D.C, Francisco Morazán
+                        </p>
+                      </mat-card-content>
+                      <mat-card-actions>
+                        <button mat-raised-button color="primary" (click)="open(cita)">Agendar Cita</button>
+                        <button mat-raised-button color="accent" (click)="open(perfil)">Ver Perfil</button>
+                      </mat-card-actions>
+                    </mat-card>
+                  </div>
+
+                  <div class="col col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
+                    <mat-card class="example-card">
+
+                      <img mat-card-image src="../../../assets/img/doctor_2.jpg" style="width: 379.55px; height: 257.12px;" alt="Photo of a Shiba Inu">
+                      <mat-card-header>
+                        <div mat-card-avatar class="example-header-image"></div>
+                        <mat-card-title>April Kepner</mat-card-title>
+                        <mat-card-subtitle>Médico General</mat-card-subtitle>
+                      </mat-card-header>
+                      <mat-card-content>
+                        <p>
+                          San Pedro Sula, Cortés.
+                        </p>
+                      </mat-card-content>
+                      <mat-card-actions>
+                        <button mat-raised-button color="primary">Agendar Cita</button>
+                        <button mat-raised-button color="accent">Ver Perfil</button>
+                      </mat-card-actions>
+                    </mat-card>
+                  </div>
+
+                  <div class="col col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
+                    <mat-card class="example-card">
+
+                      <img mat-card-image src="../../../assets/img/doctor_3.jpg" style="width: 379.55px; height: 257.12px;" alt="Photo of a Shiba Inu">
+                      <mat-card-header>
+                        <div mat-card-avatar class="example-header-image"></div>
+                        <mat-card-title>Christina Yang</mat-card-title>
+                        <mat-card-subtitle>Médico General</mat-card-subtitle>
+                      </mat-card-header>
+                      <mat-card-content>
+                        <p>
+                          Tegucigalpa M.D.C, Francisco Morazán
+                        </p>
+                      </mat-card-content>
+                      <mat-card-actions>
+                        <button mat-raised-button color="primary">Agendar Cita</button>
+                        <button mat-raised-button color="accent">Ver Perfil</button>
+                      </mat-card-actions>
+                    </mat-card>
+                  </div>
+                </div>
+
+                <br>
+                <div class="row">
+                  <div class="col col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
+                    <mat-card class="example-card">
+
+                      <img mat-card-image src="../../../assets/img/doctor_4.jpeg" style="width: 379.55px; height: 257.12px;" alt="Photo of a Shiba Inu">
+                      <mat-card-header>
+                        <div mat-card-avatar class="example-header-image"></div>
+                        <mat-card-title>Dereck Shepherd</mat-card-title>
+                        <mat-card-subtitle>Médico General</mat-card-subtitle>
+                      </mat-card-header>
+                      <mat-card-content>
+                        <p>
+                          Tegucigalpa M.D.C, Francisco Morazán
+                        </p>
+                      </mat-card-content>
+                      <mat-card-actions>
+                        <button mat-raised-button color="primary">Agendar Cita</button>
+                        <button mat-raised-button color="accent">Ver Perfil</button>
+                      </mat-card-actions>
+                    </mat-card>
+                  </div>
+
+                  <div class="col col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
+                    <mat-card class="example-card">
+
+                      <img mat-card-image src="../../../assets/img/doctor_5.png" style="width: 379.55px; height: 257.12px;" alt="Photo of a Shiba Inu">
+                      <mat-card-header>
+                        <div mat-card-avatar class="example-header-image"></div>
+                        <mat-card-title>Jackson Avery</mat-card-title>
+                        <mat-card-subtitle>Médico General</mat-card-subtitle>
+                      </mat-card-header>
+                      <mat-card-content>
+                        <p>
+                          San Pedro Sula, Cortés.
+                        </p>
+                      </mat-card-content>
+                      <mat-card-actions>
+                        <button mat-raised-button color="primary">Agendar Cita</button>
+                        <button mat-raised-button color="accent">Ver Perfil</button>
+                      </mat-card-actions>
+                    </mat-card>
+                  </div>
+
+                  <div class="col col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
+                    <mat-card class="example-card">
+
+                      <img mat-card-image src="../../../assets/img/doctor_6.jpg" style="width: 379.55px; height: 257.12px;" alt="Photo of a Shiba Inu">
+                      <mat-card-header>
+                        <div mat-card-avatar class="example-header-image"></div>
+                        <mat-card-title>Owen Hunt</mat-card-title>
+                        <mat-card-subtitle>Médico General</mat-card-subtitle>
+                      </mat-card-header>
+                      <mat-card-content>
+                        <p>
+                          Tegucigalpa M.D.C, Francisco Morazán
+                        </p>
+                      </mat-card-content>
+                      <mat-card-actions>
+                        <button mat-raised-button color="primary">Agendar Cita</button>
+                        <button mat-raised-button color="accent">Ver Perfil</button>
+                      </mat-card-actions>
+                    </mat-card>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+        <!--MODALES-->
+        <ng-template #cita let-c="close" let-d="dismiss">
+          <div class="modal-header" style="justify-content: center; align-items: center;">
+            <h4 class="modal-title" id="modal-basic-title"><strong>Agendar Cita Médica</strong></h4>
+            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <mat-form-field appearance="outline" class="example-full-width">
+              <mat-label>Nombre Cita</mat-label>
+              <input matInput placeholder="Ingrese el nombre de la cita" style="width: 498px;">
+              <mat-icon matSuffix>drive_file_rename_outline</mat-icon>
+            </mat-form-field><br>
+
+            <mat-form-field appearance="outline" class="example-full-width">
+              <mat-label>Escoja la fecha</mat-label>
+              <input matInput placeholder="Ingrese la fecha de la cita" type="date">
+            </mat-form-field>
+            <br>
+            <mat-form-field appearance="outline" class="example-full-width">
+              <mat-label>Escoja la hora</mat-label>
+              <input matInput placeholder="Ingrese la hora de la cita" type="time">
+            </mat-form-field>
+            <br>
+            <mat-form-field appearance="outline" class="example-full-width">
+              <mat-label>Exponer Situacion</mat-label>
+              <textarea matInput></textarea>
+            </mat-form-field>
+
+            <div class="row">
+              <div class="col col-6">
+              <p class="designation" style="align-items: center; justify-content: center;">Tipo de Cita</p>
+              <mat-radio-button value="Espacio Clinico">Espacio Clinico</mat-radio-button><br>
+              <mat-radio-button value="A Domicilio">A Domicilio</mat-radio-button> <br>
+              <mat-radio-button value="En linea">En Linea</mat-radio-button> <br>
+            </div>
+
+            <div class="col col-6">
+              <p class="designation"  style="align-items: center; justify-content: center;">Tipo de Pago</p>
+              <mat-radio-button value="efectivo">Efectivo</mat-radio-button> <br>
+              <mat-radio-button value="plataforma">Plataforma</mat-radio-button> <br>
+            </div>
+            </div>
+            <!--
+            <mat-form-field appearance="fill">
+              <mat-label>Nombre de Cita</mat-label>
+              <input matInput>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>Escoja la fecha</mat-label>
+              <input matInput [matDatepicker]="picker">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>Escoja la hora</mat-label>
+              <input matInput type="time">
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>Exponer Situcacion</mat-label>
+              <textarea matInput></textarea>
+            </mat-form-field>
+            -->
+          </div>
+          <div class="modal-footer">
+            <button mat-raised-button class="close" (click)="d('Cross click')">Cerrar</button>
+            <button mat-raised-button color="primary" (click)="sweetAlertSuccessCita()">Agendar Cita</button>
+          </div>
+        </ng-template>
+
+
+        <!--PERFIL-->
+        <ng-template #perfil let-c="close" let-d="dismiss">
+          <div class="modal-header">
+           <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <h3 class="modal-title name" id="modal-basic-title" style="text-align: center; align-items: center;">Dra. Meredith Grey</h3>
+            <span style="justify-content: center; align-items: center;">
+            <img mat-card-image class="img-fluid example-full-width" src="../../../assets/img/doctor_1.jpg" style="width: 379.55px; height: 257.12px;" alt="Photo of a Shiba Inu">
+          </span>
+                <h3>Titulo: </h3><strong>Medicina y Cirugia</strong>
+                <p class="designation" >Ciudad de Atención</p><p>F.M Tegucigalpa</p>
+                <p class="designation" >Lugar de Atención</p><p>Hospital Viera</p>
+          </div>
+          <div class="modal-footer">
+            <p class="designation" >Biografía</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut mattis nibh ut magna maximus, ut molestie purus pharetra. Suspendisse dapibus, urna ut cursus hendrerit, elit lectus auctor mauris, sit amet dapibus purus augue eu risus. Ut viverra commodo iaculis. Proin ac urna id ipsum pulvinar cursus vel dapibus tortor. Integer id felis at metus consequat feugiat non a tellus.</p>
+          </div>
+        </ng-template>
+
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+
+
+
+<!--
+<mat-nav-list>
+<img class="avatar mat-elevation-z4" src="../../../assets/img/profile-pic.jpg" alt="">
+<h4 class="name">Sofia Videa</h4>
+<p class="designation">Paciente</p>
+
+<mat-divider></mat-divider>
+
+<button mat-button class="menu-button">
+      <mat-icon class="iconos">home</mat-icon>
+      <span>Inicio</span>
+    </button>
+
+    <button mat-button class="menu-button">
+      <mat-icon class="iconos">event</mat-icon>
+      <span>Calendario</span>
+    </button>
+
+    <button mat-button class="menu-button">
+      <mat-icon class="iconos">medication</mat-icon>
+      <span>Doctores</span>
+    </button>
+
+    <mat-list-item [matMenuTriggerFor]="menu">
+      <button mat-button style="    width: 100%;
+      display: flex;
+      align-items: center;
+      justify-self: flex-start;
+      font-size: 1rem; color:white;">
+        <mat-icon style="margin-right: 8px;">arrow_drop_down</mat-icon>
+        <span>Categorias</span>
+      </button>
+    </mat-list-item>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item class="menu-button">Medicina General</button>
+      <button mat-menu-item class="menu-button">Odontologia</button>
+      <button mat-menu-item class="menu-button">Laboratorio</button>
+      <button mat-menu-item class="menu-button">Especialidades</button>
+      <button mat-menu-item class="menu-button">Nutrición</button>
+    </mat-menu>
+
+
+    <mat-divider></mat-divider>
+
+    <button mat-button class="menu-button">
+      <mat-icon class="iconos">help</mat-icon>
+      <span>Ayuda</span>
+    </button>
+
+    <mat-divider></mat-divider>
+    <button mat-button class="menu-button" (click)="onSidenavClose()">
+      <mat-icon class="iconos">close</mat-icon>
+      <span>Cerrar</span>
+    </button>
+  </mat-nav-list>
+-->

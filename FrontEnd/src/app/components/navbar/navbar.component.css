@@ -61,22 +61,43 @@ header.sticky ul li a{
 
 */
 
-
-.nav-item{
-    padding-right: 2em;
-    margin-right: 2em;
-    font-family: Ropa Sans;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 1em;
-    line-height: 0.5em;
-    /* identical to box height*/
-
-
-
+.nav-item {
+  padding-right: 2em;
+  margin-right: 2em;
+  font-family: Ropa Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 1em;
+  line-height: 0.5em;
+  /* identical to box height*/
 }
-li, i{
-    color: #7BBCEB;
+.spacer {
+  flex: 1 1 auto;
 }
 
+li,
+i {
+  color: #7bbceb;
+}
 
+a {
+  text-decoration: none;
+  color: white;
+}
+
+a:hover,
+a:active {
+  color: lightgrey;
+}
+
+.navigation-items {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+@media (max-width: 959px) {
+  mat-toolbar {
+    border-radius: 0px;
+  }
+}
