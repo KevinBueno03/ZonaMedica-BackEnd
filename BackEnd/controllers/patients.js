@@ -1,9 +1,8 @@
-const mongoose = require("mongoose");
-const Users = mongoose.model("Users");
+var mongoose = require("mongoose");
+var Patients = mongoose.model("Patients");
 
 module.exports.register = (req, res) => {
-    console.log(req.body);
-    var user = new Users();
+    let user = new Patients();
     user.firstName = req.body.firstName;
     user.secondName = req.body.secondName;
     user.firstLastName = req.body.firstLastName;
@@ -14,10 +13,22 @@ module.exports.register = (req, res) => {
     user.password = req.body.password;
 
     user.save((err, doc) => {
+        let r = {
+            _err: false,
+            message: undefined,
+            items: undefined,
+        };
+
         if (!err) {
+            console.log(doc);
             res.send(doc);
         } else {
-            res.send(err);
+            if (err.code == 11000) {
+                r._err = true;
+                r.message = "Elementos duplicados";
+                r.items = err.keyValue;
+                res.send(r);
+            }
         }
     });
 };

@@ -1,9 +1,10 @@
 let mongoose = require("mongoose");
 let validator = require("validator");
-let bcrypt = require("bcryptjs");
 let timestampPlugin = require("./plugins/timestamp");
+let verificationToken = require("./plugins/verification");
+let passwordHash = require("./plugins/password");
 
-var userSchema = new mongoose.Schema({
+var patientSchema = new mongoose.Schema({
     firstName: {
         type: String,
         required: true,
@@ -21,12 +22,13 @@ var userSchema = new mongoose.Schema({
 
     secondLastName: {
         type: String,
-        required: false,
+        required: true,
     },
 
     hn_id: {
         type: String,
         required: true,
+        unique: true,
         validate: {
             validator: function (value) {
                 return value.length == 13;
@@ -49,7 +51,7 @@ var userSchema = new mongoose.Schema({
             validator: function (value) {
                 return validator.isEmail(value);
             },
-            message: "El email se encuentra en uso",
+            message: "Email no valido",
         },
     },
     password: {
@@ -59,7 +61,7 @@ var userSchema = new mongoose.Schema({
     active: { type: Boolean, default: false },
 });
 
-userSchema.virtual("fullName").get(function () {
+patientSchema.virtual("fullName").get(function () {
     return (
         this.firstName +
         " " +
@@ -71,29 +73,8 @@ userSchema.virtual("fullName").get(function () {
     );
 });
 
-userSchema.plugin(timestampPlugin);
+patientSchema.plugin(timestampPlugin);
+patientSchema.plugin(passwordHash);
+patientSchema.plugin(verificationToken);
 
-userSchema.pre("save", function (next) {
-    const user = this;
-
-    if (this.isModified("password") || this.isNew) {
-        bcrypt.genSalt(10, function (saltError, salt) {
-            if (saltError) {
-                return next(saltError);
-            } else {
-                bcrypt.hash(user.password, salt, function (hashError, hash) {
-                    if (hashError) {
-                        return next(hashError);
-                    }
-
-                    user.password = hash;
-                    next();
-                });
-            }
-        });
-    } else {
-        return next();
-    }
-});
-
-module.exports = mongoose.model("Users", userSchema);
+module.exports = mongoose.model("Patients", patientSchema);

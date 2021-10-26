@@ -16,4 +16,5 @@ try {
 module.exports = mongoose;
 
 //////
-require("./user");
+require("./patient");
+require("./doctor");
