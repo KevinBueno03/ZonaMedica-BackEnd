@@ -10,6 +10,17 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { UserService } from './user.service';
 import { AppComponent } from './app.component';
+import {MatSelectModule} from '@angular/material/select';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatDividerModule} from '@angular/material/divider';
+import { MatListModule } from '@angular/material/list';
+import { MatMenuModule } from '@angular/material/menu';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import {MatCardModule} from '@angular/material/card';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatRadioModule} from '@angular/material/radio';
+import { FullCalendarModule } from '@fullcalendar/angular';
 
 @NgModule({
   imports: [
@@ -23,6 +34,17 @@ import { AppComponent } from './app.component';
     ReactiveFormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    MatSelectModule,
+    MatToolbarModule,
+    MatSidenavModule,
+    MatDividerModule,
+    MatListModule,
+    MatMenuModule,
+    MatSlideToggleModule,
+    MatCardModule,
+    MatDatepickerModule,
+    MatRadioModule,
+    FullCalendarModule
   ],
   exports: [
     MatButtonModule,
@@ -35,6 +57,17 @@ import { AppComponent } from './app.component';
     ReactiveFormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    MatSelectModule,
+    MatToolbarModule,
+    MatSidenavModule,
+    MatDividerModule,
+    MatListModule,
+    MatMenuModule,
+    MatSlideToggleModule,
+    MatCardModule,
+    MatDatepickerModule,
+    MatRadioModule,
+    FullCalendarModule
   ],
   providers: [UserService],
   bootstrap: [AppComponent],

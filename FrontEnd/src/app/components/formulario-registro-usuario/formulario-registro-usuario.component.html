@@ -1,4 +1,5 @@
 <app-navbar></app-navbar>
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!--CODIGO CON POSIBLES ERRORES-->
 <div class="container-fluid">
@@ -13,7 +14,7 @@
       <form [formGroup]="reactiveForm">
         <div class="row">
           <div class="col col-6" style="margin-top: 5em;">
-            <mat-form-field class="example-full-width input" appearance="fill">
+            <mat-form-field class="example-full-width input" appearance="outline">
               <mat-label>Primer Nombre</mat-label>
               <input matInput placeholder="Ingresa tu primer nombre" type="text" name="firstName" formControlName="firstName" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" required/><br>
               <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
@@ -22,7 +23,7 @@
               <mat-icon matSuffix>person</mat-icon>
             </mat-form-field>
 
-            <mat-form-field class="example-full-width input" appearance="fill">
+            <mat-form-field class="example-full-width input" appearance="outline">
               <mat-label>Primer Apellido</mat-label>
               <input matInput placeholder="Ingresa tu primer apellido" type="text" name="firstLastName" formControlName="firstLastName"
               [ngClass]="{ 'is-invalid': submitted && f.firstLastName.errors }" required/><br>
@@ -32,7 +33,7 @@
               <mat-icon matSuffix>person</mat-icon>
             </mat-form-field>
 
-            <mat-form-field hintLabel="La identidad debe tener 13 caracteres." class="example-full-width input" appearance="fill">
+            <mat-form-field hintLabel="La identidad debe tener 13 caracteres." class="example-full-width input" appearance="outline">
               <mat-label>Identidad</mat-label>
               <input matInput placeholder="Ingresa tu identidad" type="text" name="hn_id" minlength="13" maxlength="13" formControlName="hn_id"
               [ngClass]="{ 'is-invalid':f.hn_id.errors }" required/><br>
@@ -42,7 +43,8 @@
               <mat-icon matSuffix>badge</mat-icon>
             </mat-form-field>
 
-            <mat-form-field hintLabel="La contraseña debe tener 8 caracteres o más" class="example-full-width input" appearance="fill">
+            <!--
+            <mat-form-field hintLabel="La contraseña debe tener 8 caracteres o más" class="example-full-width input" appearance="outline">
               <mat-label>Contraseña</mat-label>
               <input matInput placeholder="Escriba su contraseña" type="password" style="width: 30em;" formControlName="password" class="form-control" value=""
                   [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
@@ -53,8 +55,31 @@
                 </div>
                 <mat-icon matSuffix>lock</mat-icon>
             </mat-form-field>
+-->
+            <mat-form-field hintLabel="La contraseña debe tener 8 caracteres o más" class="example-full-width input" appearance="outline">
+              <mat-label>Contraseña</mat-label>
+              <input matInput placeholder="Escriba su contraseña" type="password" style="width: 29em;" formControlName="password" class="form-control" value=""
+              [ngClass]="{ 'is-invalid': submitted && f.password.errors }" minlength="8" required [type]="hide ? 'password' : 'text'">
+              <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                <div *ngIf="f.password.errors.required">Escriba la contraseña</div>
+                <div *ngIf="f.password.errors.minlength">La contraseña debe tener 8 caracteres o más.</div>
+              </div>
+                <mat-icon mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" style="cursor: pointer;" [attr.aria-pressed]="hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </mat-form-field>
 
-            <mat-form-field class="example-full-width input" appearance="fill">
+            <mat-form-field hintLabel="La contraseña debe tener 8 caracteres o más" class="example-full-width input" appearance="outline">
+              <mat-label>Confirmar Contraseña</mat-label>
+              <input matInput placeholder="Escriba su contraseña" type="password" style="width: 27em;" formControlName="confirmPassword" class="form-control" value=""
+              [ngClass]="{ 'is-invalid':f.confirmPassword.errors }" minlength="8" required [type]="hideC ? 'password' : 'text'">
+              <div *ngIf="f.confirmPassword.errors" class="invalid-feedback">
+                <div *ngIf="f.confirmPassword.errors.required">Debe confirmar la contraseña</div>
+                <div *ngIf="f.confirmPassword.errors.mustMatch">Las contraseñas deben coincidir</div>
+              </div>
+                <mat-icon mat-icon-button matSuffix (click)="hideC = !hideC" [attr.aria-label]="'Hide password'" style="cursor: pointer;" [attr.aria-pressed]="hideC">{{hideC ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </mat-form-field>
+
+            <!--
+            <mat-form-field class="example-full-width input" appearance="outline">
               <mat-label>Confirmar Contraseña</mat-label>
               <input matInput placeholder="Escriba de nuevo su contraseña" type="password" formControlName="confirmPassword" style="width: 28em;" class="form-control"
               [ngClass]="{ 'is-invalid':f.confirmPassword.errors }"
@@ -65,15 +90,16 @@
               </div>
               <mat-icon matSuffix>lock</mat-icon>
             </mat-form-field>
+            -->
           </div>
           <div class="col col-6" style="margin-top: 5em;">
-            <mat-form-field class="example-full-width input" appearance="fill">
+            <mat-form-field class="example-full-width input" appearance="outline">
               <mat-label>Segundo Nombre</mat-label>
               <input matInput placeholder="Ingresa tu segundo nombre" formControlName="secondName"/>
               <mat-icon matSuffix>person</mat-icon>
             </mat-form-field>
 
-            <mat-form-field class="example-full-width input" appearance="fill">
+            <mat-form-field class="example-full-width input" appearance="outline">
               <mat-label>Segundo Apellido</mat-label>
               <input matInput placeholder="Ingresa tu segundo apellido" type="text" name="secondLastName" formControlName="secondLastName"
               [ngClass]="{ 'is-invalid': submitted && f.secondLastName.errors }" required/><br>
@@ -85,7 +111,7 @@
             </mat-form-field>
 
 
-            <mat-form-field class="example-full-width input" appearance="fill">
+            <mat-form-field class="example-full-width input" appearance="outline">
               <mat-label>Correo Electrónico</mat-label>
               <input matInput type="email" placeholder="Ejem. sofia@gmail.com" formControlName="email" style="width: 28em;" class="form-control"
               [ngClass]="{ 'is-invalid':f.email.errors }" required/>
@@ -96,6 +122,7 @@
               </div>
               <mat-icon matSuffix>email</mat-icon>
             </mat-form-field>
+
 <!--
             <mat-form-field class="example-full-width input" appearance="fill">
               <mat-label>Teléfono</mat-label>
@@ -104,7 +131,7 @@
               <mat-icon matSuffix>call</mat-icon>
             </mat-form-field>
 -->
-            <mat-form-field class="input" appearance="fill">
+            <mat-form-field class="input" appearance="outline">
               <mat-label>Departamento</mat-label>
               <select matNativeControl required formControlName="department">
                 <option value="Francisco Morazan">Francisco Morazán</option>
@@ -112,6 +139,8 @@
                 <option value="La Paz">La Paz</option>
               </select>
             </mat-form-field>
+
+
           </div>
         </div>
         <div class="

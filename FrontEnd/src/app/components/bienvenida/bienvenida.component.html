@@ -15,17 +15,17 @@
     </div>
     <div id="loginPaciente" class="col col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
 
-      <form fxLayout="column" fxLayoutAlign="center center" #f="ngForm" (ngSubmit)="login(f)">
+
         <div class="bienvenido_de_nuevo">
-          <div class="row mensaje">
+          <div class="row mensaje" style="justify-content: center;justify-items: center; align-items: center;">
             <span>Elije el tipo de usuario para iniciar sesión</span>
           </div>
           <hr>
           <div class="row">
             <div class="col col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
               <div class="contenedor" (click)="doctor.toggle()" [attr.aria-expanded]="isCollapsedD"
-                aria-controls="collapseExample">
-                <img src="../assets/img/loginDoctor.svg" alt="" style="width: 22em" />
+                aria-controls="collapseExample" style="justify-items: center; justify-content: center; align-items: center;">
+                <img src="../assets/img/loginDoctor.svg" alt="" style="width: 24em" />
                 <div class="centradoD">Doctor</div>
               </div>
             </div>
@@ -68,7 +68,7 @@
             <div class="col col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
               <div class="contenedor" (click)="paciente.toggle()" [attr.aria-expanded]="isCollapsedP"
                 aria-controls="collapseExample">
-                <img src="../assets/img/loginPaciente.svg" alt="" style="width: 20em" />
+                <img src="../assets/img/loginPaciente.svg" alt="" style="width: 22em" />
                 <div class="centradoP">Paciente</div>
               </div>
             </div>
@@ -79,26 +79,36 @@
               <div #paciente="ngbCollapse" [(ngbCollapse)]="isCollapsedP">
                 <div class="card cardP">
                   <div class="card-body">
-                    <mat-form-field class="example-full-width input" appearance="fill">
-                      <mat-label>Email</mat-label>
-                      <input type="email" matInput placeholder="Ejemplo: sofia@gmail.com" ngModel name="correo" email
-                        required #emailInput="ngModel" />
-                      <mat-error *ngIf="emailInput.hasError('required')">El correo no puede estar en blanco.
-                      </mat-error>
-                      <mat-error *ngIf="!emailInput.hasError('required')">¡El correo es invalido!</mat-error>
-                    </mat-form-field>
-                    <mat-form-field class="example-full-width input" appearance="fill">
+                    <form [formGroup]="formLogin">
+
+                      <mat-form-field class="example-full-width input" appearance="outline">
+                        <mat-label>Correo Electrónico</mat-label>
+                        <input matInput type="email" placeholder="Ejem. sofia@gmail.com" formControlName="email" style="width: 26em;" class="form-control"
+                        [ngClass]="{ 'is-invalid':form.email.errors }" required/>
+                        <div *ngIf="form.email.errors" class="invalid-feedback">
+                          <mat-error *ngIf="form.email.errors.required">El correo no puede estar en blanco.</mat-error>
+                          <!--<div *ngIf="f.email.errors.required">Escriba un email Electrónico</div>-->
+                          <div *ngIf="form.email.errors.email">Ingrese un correo válido.</div>
+                        </div>
+                        <mat-icon matSuffix>email</mat-icon>
+                      </mat-form-field>
+
+                    <mat-form-field hintLabel="La contraseña debe tener 8 caracteres o más" class="example-full-width input" appearance="outline">
                       <mat-label>Contraseña</mat-label>
-                      <input type="password" matInput placeholder="Ingresa tu contraseña" ngModel name="contra" required
-                        minlength="8" />
-                      <mat-error>¡La contraseña debe tener más de 8 caracteres!</mat-error>
+                      <input matInput placeholder="Escriba su contraseña" type="password" style="width: 29em;" formControlName="passwordLogin" class="form-control" value=""
+                      [ngClass]="{ 'is-invalid': submitted && form.passwordLogin.errors }" minlength="8" [type]="hideP ? 'password' : 'text'">
+                      <div *ngIf="submitted && form.passwordLogin.errors" class="invalid-feedback">
+                        <div *ngIf="form.passwordLogin.errors.required">Escriba la contraseña</div>
+                        <div *ngIf="form.passwordLogin.errors.minlength">La contraseña debe tener 8 caracteres o más.</div>
+                      </div>
+                        <mat-icon mat-icon-button matSuffix (click)="hideP = !hideP" [attr.aria-label]="'Hide password'" style="cursor: pointer;" [attr.aria-pressed]="hideP">{{hideP ? 'visibility_off' : 'visibility'}}</mat-icon>
                     </mat-form-field>
                     <a href="#" style="margin-top: 5px" class="olvidar" style="color: black;">¿Olvidaste la
                       contraseña?</a>
-                    <button mat-raised-button style="margin-top: 10px; margin-right: 5px" color="primary"
-                      (click)="sweetAlertSuccess()">
+                    <button mat-raised-button style="margin-top: 10px; margin-right: 5px" color="primary" type="button" [disabled]=formLogin.invalid (click)="loginUsuario()">
                       Iniciar Sesión como Paciente
                     </button>
+                  </form>
                   </div>
                 </div>
               </div>
@@ -136,7 +146,6 @@
             Registrate
           </button>
         </div>
-      </form>
     </div>
   </div>
 

@@ -19,6 +19,19 @@ import { EscogerComponent } from './components/modales/escoger/escoger.component
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { UserService } from 'src/app/user.service';
 import { HttpClientModule } from '@angular/common/http';
+import { NavbarUsuarioComponent } from './components/navbar-usuario/navbar-usuario.component';
+import { SeccionesUsuarioComponent } from './components/secciones-usuario/secciones-usuario.component';
+import { SidenavPacienteComponent } from './components/sidenav-paciente/sidenav-paciente.component';
+import { InicioPacienteComponent } from './components/inicio-paciente/inicio-paciente.component';
+import { CalendarioUsuarioComponent } from './components/calendario-usuario/calendario-usuario.component';
+import { FullCalendarModule } from '@fullcalendar/angular';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import { LoginAdministradorComponent } from './components/login-administrador/login-administrador.component'; // a plugin!
+
+FullCalendarModule.registerPlugins([ // register FullCalendar plugins
+  dayGridPlugin
+]);
+
 
 @NgModule({
   declarations: [
@@ -31,7 +44,14 @@ import { HttpClientModule } from '@angular/common/http';
     FormularioRegistroUsuarioComponent,
     CarouselFuncionalidadesComponent,
     ContactanosPageComponent,
-    EscogerComponent
+    EscogerComponent,
+    NavbarUsuarioComponent,
+    SeccionesUsuarioComponent,
+    SidenavPacienteComponent,
+    InicioPacienteComponent,
+    CalendarioUsuarioComponent,
+    LoginAdministradorComponent
+
   ],
   imports: [
     BrowserModule,
@@ -42,7 +62,8 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     NgbModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    FullCalendarModule
   ],
   providers: [UserService],
   bootstrap: [AppComponent]

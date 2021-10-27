@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import Swal from 'sweetalert2';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder, Validators, FormGroup, AbstractControl, NgForm, FormControl } from '@angular/forms';
@@ -17,6 +17,8 @@ export class FormularioRegistroUsuarioComponent implements OnInit {
 
   closeResult = '';
   reactiveForm: FormGroup;
+  hide=true;
+  hideC=true;
   //rutas: Routes[];
 /*
   reactiveForm: FormGroup = new FormGroup({
@@ -54,6 +56,11 @@ export class FormularioRegistroUsuarioComponent implements OnInit {
         validators: this.MustMatch('password', 'confirmPassword')
       });
     }
+
+/* Validaciones Handle de errores.
+Email validar que ese correo no este en uso
+*/
+
 
 
   submitted: boolean = false;
@@ -105,12 +112,6 @@ export class FormularioRegistroUsuarioComponent implements OnInit {
     Swal.fire('¡Upps!', 'Algo no ha salido como lo esperabamos.', 'error');
   }
 
-  /*
-  limpiarFormulario(){
-    firstName='';
-  }
-  */
-
   register() {
     if (!this.reactiveForm.valid) {
       console.log('Formulario Invalido');
@@ -123,7 +124,6 @@ export class FormularioRegistroUsuarioComponent implements OnInit {
       )
     console.log(JSON.stringify(this.reactiveForm.value));
   }
-
 
   //Metodos para los modales
 
@@ -144,6 +144,8 @@ export class FormularioRegistroUsuarioComponent implements OnInit {
       return `with: ${reason}`;
     }
   }
+
+
 
 
 }

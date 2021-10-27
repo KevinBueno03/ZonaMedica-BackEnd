@@ -90,24 +90,24 @@ row{
 
 .centradoD{
   position: absolute;
-  top: 20%;
+  top: 10%;
   left: 50%;
   transform: translate(-50%, -50%);
   color: #FFFFFF;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  font-size: x-large;
+  font-size: xx-large;
   font-weight: bolder;
   font-style: normal;
 }
 
 .centradoP{
   position: absolute;
-  top: 20%;
+  top: 10%;
   left: 50%;
   transform: translate(-50%, -50%);
   color: #303030;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  font-size: x-large;
+  font-size: xx-large;
   font-weight: bolder;
   font-style: normal;
 }

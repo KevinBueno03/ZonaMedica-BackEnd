@@ -1,0 +1,151 @@
+<!--ULTIMA PRUEBA UGH.-->
+
+<mat-toolbar color="primary" class="mat-elevation-z8">
+
+  <span><img src="../assets/img/up (9).svg" style="width:50px; height: 50px;" routerLink="/inicio-usuario"></span>
+
+   <div class="spacer"></div>
+
+   <button mat-button class="menu-buttons" routerLink="/inicio-usuario">
+    <mat-icon class="iconos">home</mat-icon>
+    <span>Inicio</span>
+  </button>
+  <button mat-button class="menu-buttons" routerLink="/calendario-usuario">
+    <mat-icon class="iconos">event</mat-icon>
+    <span>Calendario</span>
+  </button>
+
+  <mat-list-item [matMenuTriggerFor]="menu">
+    <button mat-button class="menu-buttons">
+      <mat-icon class="iconos">arrow_drop_down</mat-icon>
+      <span>Categorias</span>
+    </button>
+  </mat-list-item>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item class="menu-buttons">Medicina General</button>
+    <button mat-menu-item class="menu-buttons">Odontologia</button>
+    <button mat-menu-item class="menu-buttons">Laboratorio</button>
+    <button mat-menu-item class="menu-buttons">Especialidades</button>
+    <button mat-menu-item class="menu-buttons">Nutrición</button>
+  </mat-menu>
+
+  <button mat-button class="menu-buttons" routerLink="/doctores">
+    <mat-icon class="iconos">medication</mat-icon>
+    <span>Doctores</span>
+  </button>
+
+  <button mat-button class="menu-buttons">
+    <mat-icon class="iconos">help</mat-icon>
+    <span>Ayuda</span>
+  </button>
+  <a href="/inicio-usuario"><img src="../../../assets/img/profile-pic.jpg" style="width:40px; height:40px; border-color: black; border-width: 2px; border-radius: 50%;"></a>
+
+  <mat-list-item [matMenuTriggerFor]="menus">
+    <button mat-button class="menu-buttons">
+      <mat-icon class="iconos">arrow_drop_down</mat-icon>
+      <span>Sofia Videa</span>
+    </button>
+  </mat-list-item>
+  <mat-menu #menus="matMenu">
+    <button mat-button class="menu-buttons">
+      <mat-icon class="iconos">edit</mat-icon>
+      <span>Editar Perfil</span>
+    </button><br>
+    <button mat-button class="menu-buttons">
+      <mat-icon class="iconos">logout</mat-icon>
+      <span>Cerrar Sesion</span>
+    </button>
+  </mat-menu>
+  <!--<a mat-button routerLink="/">Sofia Videa</a>
+  -->
+</mat-toolbar>
+
+<!--
+
+
+<mat-toolbar color="primary" class="mat-elevation-z8">
+  <button mat-icon-button *ngIf="sidenav.mode==='over'" (click)="sidenav.toggle()">
+    <mat-icon *ngIf="!sidenav.opened">
+      menu
+    </mat-icon>
+    <mat-icon *ngIf="sidenav.opened">
+      close
+    </mat-icon>
+  </button>
+
+  <span><img src="../assets/img/up (9).svg" style="width:50px; height: 50px;"></span>
+
+   <div class="spacer"></div>
+
+
+
+  <button *ngIf="showMe===false" mat-button class="menu-buttons">
+    <mat-icon class="iconos">event</mat-icon>
+    <span>Calendario</span>
+  </button>
+
+  <button mat-button class="menu-buttons">
+    <mat-icon class="iconos">medication</mat-icon>
+    <span>Doctores</span>
+  </button>
+
+  <button mat-button class="menu-buttons">
+    <mat-icon class="iconos">help</mat-icon>
+    <span>Ayuda</span>
+  </button>
+  <a href="/inicio-usuario"><img src="../../../assets/img/profile-pic.jpg" style="width:50px; height:50px; border-color: black; border-width: 2px; border-radius: 50%;"></a>
+  <a mat-button routerLink="/">Sofia Videa</a>
+
+ </mat-toolbar>
+
+
+-->
+<!--
+<nav class="navbar navbar-expand-lg  fixed-top navbar-light bg-light" style="position: sticky !important; left: 0; top: 0; right: 0;">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+  <span class="navbar-toggler-icon"></span>
+  </button>
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo01" style="flex:auto">
+      <a class="navbar-brand" href="/inicio-usuario"><img src="../assets/img/up (9).svg" style="width:60px;"></a>
+      <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+        <li class="nav-item active">
+            <mat-form-field appearance="outline">
+              <mat-label>Categorias</mat-label>
+              <select matNativeControl>
+                <option value="med_general">Medicina General</option>
+                <option value="odontologia">Odontología</option>
+                <option value="laboratorios">Laboratorios</option>
+                <option value="nutricion">Nutrición</option>
+                <option value="especialidades">Especialidades Medicas</option>
+              </select>
+            </mat-form-field>
+        </li>
+        <li class="nav-item active"  style="padding: 2px 2px 2px 2px">
+          <mat-form-field class="example-full-width input" style="width: 100%;" appearance="outline">
+            <mat-icon matSuffix>search</mat-icon>
+            <input matInput placeholder="Busca dentro de la página" type="text" name="search"/><br>
+          </mat-form-field>
+        </li>
+          <li class="nav-item active">
+          <a class="nav-link" routerLink="/inicio-usuario"> Inicio<span class="sr-only"></span></a>
+          </li>
+          <li class="nav-item">
+          <a class="nav-link" href="">Mi calendario</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="">Doctores</a>
+          </li>
+          <li>
+            <a class="navbar-brand" href="/inicio-usuario"><img src="../../../assets/img/profile-pic.jpg" style="width:50px; height:50px; border-color: black; border-width: 2px; border-radius: 50%;"></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="">Sofia Videa</a>
+          </li>
+      </ul>
+  </div>
+</nav>
+
+<div class="main">
+
+</div>
+-->
