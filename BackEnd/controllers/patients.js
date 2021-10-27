@@ -24,10 +24,11 @@ module.exports.register = (req, res) => {
             res.send(doc);
         } else {
             if (err.code == 11000) {
+                console.log(err);
                 r._err = true;
                 r.message = "Elementos duplicados";
                 r.items = err.keyValue;
-                res.send(r);
+                res.send(err);
             }
         }
     });

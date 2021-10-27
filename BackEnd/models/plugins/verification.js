@@ -13,9 +13,9 @@ const transport = nodemailer.createTransport({
     },
 });
 
-function sendConfirmationEmail(name, email, confirmationCode) {
+function sendConfirmationEmail(name, email, confirmationCode, model) {
     url = config[process.env.ENV].url.verify_email;
-    code = `${url + confirmationCode}`;
+    code = `${url + confirmationCode}?type=${model}`;
     transport
         .sendMail({
             from: process.env.EMAIL,
@@ -34,7 +34,7 @@ module.exports = function verificationToken(schema) {
     schema.add({
         code: {
             type: String,
-            unique: true,
+            unique: false,
         },
     });
 
@@ -52,7 +52,8 @@ module.exports = function verificationToken(schema) {
             sendConfirmationEmail(
                 doc.firstName,
                 doc.email,
-                doc.confirmationCode
+                doc.code,
+                String(doc.constructor.modelName).toLowerCase()
             );
     });
 };

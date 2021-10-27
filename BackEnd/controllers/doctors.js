@@ -1,5 +1,5 @@
 var mongoose = require("mongoose");
-var Patients = mongoose.model("Doctors");
+var Doctor = mongoose.model("Doctors");
 
 module.exports.register = (req, res) => {
     let user = new Doctor();
@@ -11,6 +11,7 @@ module.exports.register = (req, res) => {
     user.department = req.body.department;
     user.email = req.body.email;
     user.password = req.body.password;
+    user.phone = req.body.phone;
 
     user.save((err, doc) => {
         let r = {
