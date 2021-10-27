@@ -2,7 +2,7 @@ var mongoose = require("mongoose");
 var Doctor = mongoose.model("Doctors");
 
 module.exports.register = (req, res) => {
-    let user = new Doctors();
+    let user = new Doctor();
     user.firstName = req.body.firstName;
     user.secondName = req.body.secondName;
     user.firstLastName = req.body.firstLastName;
@@ -12,6 +12,8 @@ module.exports.register = (req, res) => {
     user.email = req.body.email;
     user.password = req.body.password;
     user.phone = req.body.phone;
+    user.bibliografy=req.body.bibliografy;
+    user.master_degree=req.body.master_degree;
 
     user.save((err, doc) => {
         let r = {
