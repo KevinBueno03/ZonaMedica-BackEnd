@@ -2,7 +2,7 @@
 var config = {
     dev: {
         url: {
-            verify_email: `http://localhost:${process.env.PORT}/api/verifyaccount/`,
+            verify_email: `http://${process.env.IP}:${process.env.PORT}/api/verifyaccount/`,
         },
     },
     prod: {
