@@ -8,6 +8,8 @@ import { InicioPacienteComponent } from './components/inicio-paciente/inicio-pac
 import { SidenavPacienteComponent } from './components/sidenav-paciente/sidenav-paciente.component';
 import { CalendarioUsuarioComponent } from './components/calendario-usuario/calendario-usuario.component';
 import { LoginAdministradorComponent } from './components/login-administrador/login-administrador.component';
+import { PacientesComponent } from './components/pacientes/pacientes.component';
+import { DoctoresComponent } from './components/doctores/doctores.component';
 
 const routes: Routes = [
   { path: '', redirectTo:'login', pathMatch:'full'},
@@ -17,7 +19,9 @@ const routes: Routes = [
   { path: 'inicio-usuario', component: SeccionesUsuarioComponent},
   { path: 'doctores', component: SidenavPacienteComponent},
   { path: 'calendario-usuario', component: CalendarioUsuarioComponent},
-  { path: 'login-admin', component: LoginAdministradorComponent}
+  { path: 'login-admin', component: LoginAdministradorComponent},
+  { path: 'admin/listar-pacientes', component: PacientesComponent},
+  { path: 'admin/listar-doctores', component: DoctoresComponent}
 ];
 
 @NgModule({

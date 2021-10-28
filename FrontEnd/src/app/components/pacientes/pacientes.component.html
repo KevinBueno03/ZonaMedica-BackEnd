@@ -1,196 +1,76 @@
-<app-navbar></app-navbar>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!--Parte de la bienvenida-->
-<div class="container">
-  <div class="row">
-    <div class="col col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
-      <h1 class="header_z_m">ZONA MÉDICA</h1>
-      <p class="z_m">
-        Zona médica es una aplicación que simplifica la comunicación entre el
-        personal de salud y el paciente. Dando la oportunidad al personal médico
-        de virtualizar su cartera de servicios. Y para los pacientes la
-        comodidad de agendar sus servicios desde sus dispositivos.
-      </p>
-      <img src="../assets/img/cuate.png" alt="" />
-    </div>
-    <div id="loginPaciente" class="col col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+<app-navbar-admin></app-navbar-admin>
 
-
-      <div class="bienvenido_de_nuevo">
-        <div class="row mensaje" style="justify-content: center;justify-items: center; align-items: center;">
-          <span>Elije el tipo de usuario para iniciar sesión</span>
-        </div>
-        <hr>
-        <div class="row">
-          <div class="col col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
-            <div class="contenedor" (click)="doctor.toggle()" [attr.aria-expanded]="isCollapsedD"
-              aria-controls="collapseExample"
-              style="justify-items: center; justify-content: center; align-items: center;">
-              <img src="../assets/img/loginDoctor.svg" alt="" style="width: 24em" />
-              <div class="centradoD">Doctor</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col">
-            <div #doctor="ngbCollapse" [(ngbCollapse)]="isCollapsedD">
-              <div class="card cardD">
-                <div class="card-body">
-
-<!--AQUI AGREGAR EL FORM DE INICIO DE SESION DE DOCTOR-->
-
-
-
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <hr>
-        <div class="row">
-          <div class="col col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
-            <div class="contenedor" (click)="paciente.toggle()" [attr.aria-expanded]="isCollapsedP"
-              aria-controls="collapseExample">
-              <img src="../assets/img/loginPaciente.svg" alt="" style="width: 22em" />
-              <div class="centradoP">Paciente</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col">
-            <div #paciente="ngbCollapse" [(ngbCollapse)]="isCollapsedP">
-              <div class="card cardP">
-                <div class="card-body">
-                  <form [formGroup]="formLogin">
-
-                    <mat-form-field class="example-full-width input" appearance="outline">
-                      <mat-label>Correo Electrónico</mat-label>
-                      <input matInput type="email" placeholder="Ejem. sofia@gmail.com" formControlName="email"
-                        style="width: 26em;" class="form-control" [ngClass]="{ 'is-invalid':form.email.errors }"
-                        required />
-                      <div *ngIf="form.email.errors" class="invalid-feedback">
-                        <mat-error *ngIf="form.email.errors.required">El correo no puede estar en blanco.</mat-error>
-                        <!--<div *ngIf="f.email.errors.required">Escriba un email Electrónico</div>-->
-                        <div *ngIf="form.email.errors.email">Ingrese un correo válido.</div>
-                      </div>
-                      <mat-icon matSuffix>email</mat-icon>
-                    </mat-form-field>
-
-                    <mat-form-field hintLabel="La contraseña debe tener 8 caracteres o más"
-                      class="example-full-width input" appearance="outline">
-                      <mat-label>Contraseña</mat-label>
-                      <input matInput placeholder="Escriba su contraseña" type="password" style="width: 29em;"
-                        formControlName="passwordLogin" class="form-control" value=""
-                        [ngClass]="{ 'is-invalid': submitted && form.passwordLogin.errors }" minlength="8"
-                        [type]="hideP ? 'password' : 'text'">
-                      <div *ngIf="submitted && form.passwordLogin.errors" class="invalid-feedback">
-                        <div *ngIf="form.passwordLogin.errors.required">Escriba la contraseña</div>
-                        <div *ngIf="form.passwordLogin.errors.minlength">La contraseña debe tener 8 caracteres o más.
-                        </div>
-                      </div>
-                      <mat-icon mat-icon-button matSuffix (click)="hideP = !hideP" [attr.aria-label]="'Hide password'"
-                        style="cursor: pointer;" [attr.aria-pressed]="hideP">{{hideP ? 'visibility_off' : 'visibility'}}
-                      </mat-icon>
-                    </mat-form-field>
-                    <a href="#" style="margin-top: 5px" class="olvidar" style="color: black;">¿Olvidaste la
-                      contraseña?</a>
-                    <button mat-raised-button style="margin-top: 10px; margin-right: 5px" color="primary" type="button"
-                      [disabled]=formLogin.invalid (click)="loginUsuario()">
-                      Iniciar Sesión como Paciente
-                    </button>
-                  </form>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!--<h2>¡Bienvenido de nuevo!</h2>
-          <img src="../assets/img/undraw_Hello_re_3evm 1.png" alt="" />
-          Validacion del correo
-          <mat-form-field class="example-full-width input" appearance="fill">
-            <mat-label>Email</mat-label>
-            <input type="email" matInput placeholder="Ejemplo: sofia@gmail.com" ngModel name="correo" email required
-              #emailInput="ngModel" />
-            <mat-error *ngIf="emailInput.hasError('required')">El correo no puede estar en blanco.</mat-error>
-            <mat-error *ngIf="!emailInput.hasError('required')">¡El correo es invalido!</mat-error>
-          </mat-form-field>
-
-          <mat-form-field class="example-full-width input" appearance="fill">
-            <mat-label>Contraseña</mat-label>
-            <input type="password" matInput placeholder="Ingresa tu contraseña" ngModel name="contra" required
-              minlength="=8" />
-            <mat-error>¡La contraseña debe tener más de caracteres!</mat-error>
-          </mat-form-field>
-
-          <input type="email" name="" id="" placeholder="ingrese su correo electrónico">
-                <input type="password" name="" id="" placeholder="ingrese su contraseña">
-
-          <a href="#" style="margin-top: 5px" class="olvidar">¿Olvidaste la contraseña?</a>
-          -->
-        <!--<button mat-raised-button style="margin-top: 10px; margin-right: 5px" color="primary" (click)="open(usuario)">
-            Iniciar Sesión
-          </button>-->
-        <hr />
-        <button mat-raised-button style="margin-top: 10px" color="primary" class="registrar" (click)="open(content)">
-          Registrate
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col col-12 flecha ml-auto mr-auto align-content-center" style="align-items: center"></div>
-  </div>
+<div fxLayoutAlign="center center" class="mt-4">
+  <span><h1><strong>Listado de Pacientes Registrados</strong></h1></span>
 </div>
 
-<app-carousel-funcionalidades></app-carousel-funcionalidades>
-<app-acerca-de-nosotros></app-acerca-de-nosotros>
+<div fxLayoutAlign="center center">
+  <mat-form-field fxFlex=40%>
+    <input matInput type="text" (keyup)="hacerFiltro($any($event.target).value)" placeholder="Ingrese lo que desea buscar">
+    <mat-icon matSuffix>search</mat-icon>
+  </mat-form-field>
+</div>
+<table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
 
-<app-contactanos></app-contactanos>
+  <!--- Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition" -->
 
-<app-footer></app-footer>
+  <!-- Position Column -->
+  <ng-container matColumnDef="firstName">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Primer Nombre</mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.firstName}} </mat-cell>
+  </ng-container>
 
-<!--MODALES-->
-<ng-template #content let-modal>
-  <div class="modal-header  align-items-center align-content-center" style="text-align: center">
-    <h2 class="modal-title" id="modal-basic-title" style="text-align: center !important; font-weight: 100">
-      Escoje para quien crearás la cuenta
-      <h5>Haz click sobre la imagen que desees.</h5>
-    </h2>
+  <!-- Name Column -->
+  <ng-container matColumnDef="firstLastName">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Primer Apellido </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.firstLastName}} </mat-cell>
+  </ng-container>
 
-    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body">
-    <form>
-      <div class="form-group">
-        <div class="row">
-          <div class="col-6">
-            <a (click)="open(registroDoctor)" class="hover">
-              <img src="../assets/img/modalD.png" alt="" style="width: 17em; height: 18em" />
-            </a>
-            <h3 style="text-align: center">Doctor</h3>
-          </div>
-          <div class="col-6">
-            <a (click)="open(registroPaciente)" class="hover">
-              <!--<a href="/api/register" class="hover">-->
-              <!--Por si no funciona-->
-              <img src="../assets/img/modalP.png" alt="" style="width: 16em; height: 17em" />
-            </a>
-            <h3 style="text-align: center">Paciente</h3>
-          </div>
-        </div>
-      </div>
-    </form>
-  </div>
-</ng-template>
+  <!-- Weight Column -->
+  <ng-container matColumnDef="hn_id">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Identidad </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.hn_id}} </mat-cell>
+  </ng-container>
 
-<!--REGISTRO DE PACIENTES-->
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="email">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Email </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.email}} </mat-cell>
+  </ng-container>
 
+  <ng-container matColumnDef="estado">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Estado </mat-header-cell>
+    <mat-cell *matCellDef="let element"><mat-slide-toggle></mat-slide-toggle></mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="desactivar">
+    <mat-header-cell *matHeaderCellDef mat-sort-header > Desactivar </mat-header-cell>
+    <mat-cell *matCellDef="let element"><mat-radio-button value="activo"></mat-radio-button></mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="editar" fxLay>
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Editar </mat-header-cell>
+    <mat-cell *matCellDef="let element"><mat-icon>edit</mat-icon></mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="desplegarColumnas"></mat-header-row>
+  <mat-row *matRowDef="let row, columns: desplegarColumnas"></mat-row>
+
+  <!--<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>-->
+</table>
+
+<mat-paginator [pageSize]="10" [pageSizeOptions]="[5,10,20,50]"></mat-paginator>
+
+<!--Es un boton flotante para agregar Usuarios desde el admin-->
+<button mat-fab id="boton-agregar" (click)="open(registroPaciente)" color="accent">
+  <mat-icon>add</mat-icon>
+</button>
+
+<!--MODALESSS-->
+
+<!--MODAL PARA REGISTRAR PACIENTES-->
 <ng-template #registroPaciente let-c="close" let-d="dismiss">
   <div class="modal-header" style="justify-content: center; align-items: center;">
     <h4 class="modal-title" id="modal-basic-title"><strong>REGISTRO DE PACIENTE</strong></h4>
@@ -373,73 +253,6 @@
 <!--FIN REGISTRO DE PACIENTES-->
 
 
-<!--INICIO REGISTRO DE DOCTOR-->
-<ng-template #registroDoctor let-c="close" let-d="dismiss">
-  <div class="modal-header" style="justify-content: center; align-items: center;">
-    <h4 class="modal-title" id="modal-basic-title"><strong>REGISTRO DE DOCTOR</strong></h4>
-    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body">
-    <form class="example-form">
-      <mat-form-field class="example-full-width" appearance="fill">
-        <mat-label>Company (disabled)</mat-label>
-        <input matInput disabled value="Google">
-      </mat-form-field>
-
-      <table class="example-full-width" cellspacing="0">
-        <tr>
-          <td>
-            <mat-form-field class="example-full-width" appearance="fill">
-              <mat-label>First name</mat-label>
-              <input matInput>
-            </mat-form-field>
-          </td>
-          <td>
-            <mat-form-field class="example-full-width" appearance="fill">
-              <mat-label>Long Last Name That Will Be Truncated</mat-label>
-              <input matInput>
-            </mat-form-field>
-          </td>
-        </tr>
-      </table>
-
-      <p>
-        <mat-form-field class="example-full-width" appearance="fill">
-          <mat-label>Address</mat-label>
-          <textarea matInput placeholder="Ex. 100 Main St">1600 Amphitheatre Pkwy</textarea>
-        </mat-form-field>
-        <mat-form-field class="example-full-width" appearance="fill">
-          <mat-label>Address 2</mat-label>
-          <textarea matInput></textarea>
-        </mat-form-field>
-      </p>
-
-      <table class="example-full-width" cellspacing="0">
-        <tr>
-          <td>
-            <mat-form-field class="example-full-width" appearance="fill">
-              <mat-label>First name</mat-label>
-              <input matInput>
-            </mat-form-field>
-          </td>
-          <td>
-            <mat-form-field class="example-full-width" appearance="fill">
-              <mat-label>Long Last Name That Will Be Truncated</mat-label>
-              <input matInput>
-            </mat-form-field>
-          </td>
-        </tr>
-      </table>
-    </form>
-  </div>
-  <div class="modal-footer">
-    <button mat-raised-button class="close" (click)="d('Cross click')">Cerrar</button>
-    <a mat-raised-button routerLink="/login" color="primary" target="_blank">Agendar Cita</a>
-  </div>
-</ng-template>
-
 
 <!--MODALES TERMINOS Y CONDICIONES-->
 <ng-template #terminos let-modal>
@@ -521,4 +334,5 @@
 
 <!--FIN MODAL POLITICAS-->
 
-<pre>{{ closeResult }}</pre>
+
+

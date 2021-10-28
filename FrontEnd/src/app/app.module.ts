@@ -26,8 +26,11 @@ import { InicioPacienteComponent } from './components/inicio-paciente/inicio-pac
 import { CalendarioUsuarioComponent } from './components/calendario-usuario/calendario-usuario.component';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import dayGridPlugin from '@fullcalendar/daygrid';
-import { LoginAdministradorComponent } from './components/login-administrador/login-administrador.component'; // a plugin!
-
+import { LoginAdministradorComponent } from './components/login-administrador/login-administrador.component';
+import { PacientesComponent } from './components/pacientes/pacientes.component';
+import { PacienteService } from './components/pacientes/pacientes.service';
+import { NavbarAdminComponent } from './components/navbar-admin/navbar-admin.component';
+import { DoctoresComponent } from './components/doctores/doctores.component';
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin
 ]);
@@ -50,7 +53,10 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     SidenavPacienteComponent,
     InicioPacienteComponent,
     CalendarioUsuarioComponent,
-    LoginAdministradorComponent
+    LoginAdministradorComponent,
+    PacientesComponent,
+    NavbarAdminComponent,
+    DoctoresComponent
 
   ],
   imports: [
@@ -65,7 +71,7 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     HttpClientModule,
     FullCalendarModule
   ],
-  providers: [UserService],
+  providers: [UserService, PacienteService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -13,7 +13,8 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 export class CalendarioUsuarioComponent implements OnInit {
 
   calendario: CalendarOptions = {
-    initialView: 'dayGridMonth', // bind is important!
+    initialView: 'dayGridMonth',
+    locale: 'es',
     events: [
       { title: 'Cita Doctora Grey', date: '2021-10-05'},
       { title: 'Cita Doctor Hunt', date: '2021-10-09'},
