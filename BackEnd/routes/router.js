@@ -7,19 +7,19 @@ const verifyAccount = require("../controllers/verify_account");
 const userLogin = require("../controllers/login");
 const auth = require("../controllers/auth");
 
-
+//patientes
 router.post("/register-patient", ctrlPatient.register);
 router.get("/patients", ctrlPatient.listALL);
 router.get("/patients/:id", ctrlPatient.listOne);
 
+
+//doctors
 router.post("/register-doctor", ctrlDoctor.register);
 
-
+//others
 router.post("/login", userLogin.login);
-
 router.get("/verifyaccount/:code", verifyAccount.verify);
-
-router.get("/auth",auth.verifyToken)
+router.get("/auth",auth.verifyToken);
 
 
 module.exports = router;
