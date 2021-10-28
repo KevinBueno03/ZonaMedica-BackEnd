@@ -1,23 +1,27 @@
-
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { NgForm } from '@angular/forms';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { PacienteService } from './pacientes.service';
+import { Pacientes } from './pacientes.model';
+import { MatTableDataSource } from '@angular/material/table';
+import { ViewApi } from '@fullcalendar/common';
+import { MatSort } from '@angular/material/sort';
+import { MatPaginator, MatPaginatorIntl } from '@angular/material/paginator';
 import { MatDialog } from '@angular/material/dialog';
-import { EscogerComponent } from '../modales/escoger/escoger.component';
-import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
-import Swal from 'sweetalert2';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/user.service';
-
+import Swal from 'sweetalert2';
+import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 @Component({
-  selector: 'app-bienvenida',
-  templateUrl: './bienvenida.component.html',
-  styleUrls: ['./bienvenida.component.css']
+  selector: 'app-pacientes',
+  templateUrl: './pacientes.component.html',
+  styleUrls: ['./pacientes.component.css']
 })
-export class BienvenidaComponent implements OnInit {
+export class PacientesComponent implements OnInit, AfterViewInit {
 
+  pacientesData: Pacientes[] = [];
+  desplegarColumnas=["firstName","firstLastName","hn_id","email","estado","desactivar","editar"];
+  dataSource = new MatTableDataSource<Pacientes>();
   closeResult = '';
-  formLogin: FormGroup;
   reactiveForm: FormGroup;
   //formLoginDoctor: FormGroup;
   hideP=true;
@@ -30,12 +34,12 @@ export class BienvenidaComponent implements OnInit {
   hide=true;
   hideC=true;
 
+  @ViewChild(MatSort)
+  ordenamiento!: MatSort;
 
-  ngOnInit(): void {
-  }
-
-
-  constructor(private formBuilder: FormBuilder, private formularioPacientes: FormBuilder,private _router: Router, private _userService: UserService, private modalService: NgbModal) {
+  @ViewChild(MatPaginator)
+  paginacion !: MatPaginator;
+  constructor(private pacientesService: PacienteService, private formBuilder: FormBuilder, private _router: Router, private _userService: UserService,private modalService: NgbModal, private pacienteService: PacienteService) {
     this.reactiveForm = this.formBuilder.group({
       firstName: new FormControl('', Validators.required),
       firstLastName: new FormControl('', Validators.required),
@@ -51,20 +55,11 @@ export class BienvenidaComponent implements OnInit {
     }, {
       validators: this.MustMatch('passwordPaciente', 'confirmPasswordPaciente')
     });
+   }
 
-    this.formLogin = this.formBuilder.group({
-      email: new FormControl('',[Validators.required, Validators.email]),
-      passwordLogin: new FormControl('', Validators.required)
-    });
-
-    /*
-    this.formLoginDoctor = this.formBuilder.group({
-      email: new FormControl('',[Validators.required, Validators.email]),
-      passwordLogin: new FormControl('', Validators.required)
-    }); */
-
+  hacerFiltro(filtro: string){
+    this.dataSource.filter= filtro;
   }
-
 
 
 
@@ -88,17 +83,6 @@ export class BienvenidaComponent implements OnInit {
   }
 
 
-
-  ch(e: any) {
-    if (e.checked) {
-      this.formLogin.controls['password'].setValidators([Validators.required])
-      this.formLogin.controls['password'].updateValueAndValidity()
-    } else {
-      this.formLogin.controls['password'].setValidators(null)
-      this.formLogin.controls['password'].updateValueAndValidity()
-    }
-  }
-
   registrarPaciente() {
     if (!this.reactiveForm.valid) {
       console.log('Formulario Invalido');
@@ -112,39 +96,12 @@ export class BienvenidaComponent implements OnInit {
     console.log(JSON.stringify(this.reactiveForm.value));
   }
 
-
-  //Fin Funciones de Registro Paciente*/
-
-  //INICIO LOGIN PACIENTE
   onSubmit() {
-    this.submitted = true;
     this.submittedPaciente=true;
-    if (this.formLogin.invalid) {
+    if (this.reactiveForm.invalid) {
       return;
     }
   }
-
-
-  get form() {
-    return this.formLogin.controls;
-  }
-
-
-  loginUsuario() {
-    if (!this.formLogin.valid) {
-      console.log('Formulario Invalido');
-      return;
-    }
-    this._userService.login_Usuario(JSON.stringify(this.formLogin.value))
-      .subscribe(
-        data => { console.log(data); this._router.navigate(['/inicio-usuario']); this.sweetAlertLoginSuccess() },
-        error => {console.log(error); this.sweetAlertLoginError()}
-      )
-    console.log(JSON.stringify(this.formLogin.value));
-  }
-
-  //FIN LOGIN PACIENTE
-
 
   //INICIO FUNCIONES PARA MODALES
 
@@ -188,4 +145,18 @@ export class BienvenidaComponent implements OnInit {
 
 
   //FIN ALERTAS
+
+
+  ngOnInit(): void {
+    //this.pacientesData = this.pacientesService.obtenerPacientes();
+    this.dataSource.data=this.pacientesService.obtenerPacientes();
+  }
+
+  ngAfterViewInit(){
+    this.dataSource.sort= this.ordenamiento;
+    this.dataSource.paginator= this.paginacion;
+  }
+
+
+
 }
