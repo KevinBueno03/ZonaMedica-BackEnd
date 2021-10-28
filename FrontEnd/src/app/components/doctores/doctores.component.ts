@@ -10,6 +10,7 @@ import { UserService } from '../../user.service';
 import { Doctores } from './doctores.model';
 import { DoctorService } from './doctores.service';
 
+
 @Component({
   selector: 'app-doctores',
   templateUrl: './doctores.component.html',

@@ -1,8 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-import { ProtectedRoutingModule } from './protected-routing.module';
+import { MaterialModule } from '../material.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { CalendarioUsuarioComponent } from '../components/calendario-usuario/calendario-usuario.component';
+import { NavbarUsuarioComponent } from '../components/navbar-usuario/navbar-usuario.component';
+import { SeccionesUsuarioComponent } from '../components/secciones-usuario/secciones-usuario.component';
+import { SidenavPacienteComponent } from '../components/sidenav-paciente/sidenav-paciente.component';
+
 
 
 @NgModule({
@@ -11,7 +15,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
   ],
   imports: [
     CommonModule,
-    ProtectedRoutingModule
+    MaterialModule,
   ]
 })
 export class ProtectedModule { }
