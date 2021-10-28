@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { AuthRespones, Usuario } from '../interfaces/interfaces';
@@ -26,13 +26,11 @@ export class AuthService {
     //Para que reorne el observable; el objeto. Con los mensajes exitoso o no
     return this.http.post<AuthRespones>(url, body)
     .pipe(
-      /*tap(resp=>{
+      tap(resp =>{
         if(resp.session_code){
-          this.loginPaciente={
-            firstName: resp.f
-          }
+          localStorage.setItem('token', resp.session_code!);
         }
-      }),*/
+      }),
       map( resp=> true),
       catchError( err => of(false))
     )
@@ -40,7 +38,10 @@ export class AuthService {
 
 
   validarToken(){
-    const url =`${this.baseUrl}`
+    const url =`${this.baseUrl}/auth`;
+    const headers= new HttpHeaders()
+    .set('x-access-token', localStorage.getItem('token') || '');
+    return this.http.get(url,{headers});
   }
 
 

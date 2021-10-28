@@ -131,18 +131,22 @@ export class BienvenidaComponent implements OnInit {
   }
 
   logPaciente(){
+    /*this.authService.validarToken()
+    .subscribe(resp=> console.log(resp));
+    */
     console.log(this.formLogin.value);
     const {email, password}= this.formLogin.value;
     this.authService.loginPaciente(email, password)
     .subscribe( resp =>{
       if(resp){
-        this._router.navigateByUrl('/inicio-usuario');
+        this._router.navigateByUrl('/dashboard');
       }else{
         //mostrar mensaje de error
         this.sweetAlertLoginError();
       }
       //console.log(resp);
     });
+
     //this._router.navigateByUrl('/dashboard');
   }
 

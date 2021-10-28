@@ -13,11 +13,12 @@ import { DoctoresComponent } from './components/doctores/doctores.component';
 import { DoctorLoginComponent } from './components/doctor-login/doctor-login.component';
 import { MaterialModule } from './material.module';
 import { DashboardComponent } from './protected/dashboard/dashboard.component';
+import { ValidarTokenGuard } from './guards/validar-token.guard';
 
 const routes: Routes = [
   { path: '', redirectTo:'login', pathMatch:'full'},
   { path: 'login', component:BienvenidaComponent},
-  { path: 'api/register', component: FormularioRegistroUsuarioComponent},
+  { path: 'paciente/registrar-paciente', component: FormularioRegistroUsuarioComponent},
   { path: 'contactanos', component: ContactanosPageComponent},
   { path: 'inicio-usuario', component: SeccionesUsuarioComponent},
   { path: 'doctores', component: SidenavPacienteComponent},
@@ -25,7 +26,12 @@ const routes: Routes = [
   { path: 'login-admin', component: LoginAdministradorComponent},
   { path: 'admin/listar-pacientes', component: PacientesComponent},
   { path: 'admin/listar-doctores', component: DoctoresComponent},
-  { path: 'dashboard', component: DashboardComponent},
+  {
+    path: 'dashboard',
+    loadChildren: () => import('./protected/protected.module').then(m=> m.ProtectedModule),
+    canActivate: [ValidarTokenGuard],
+    canLoad: [ValidarTokenGuard]
+  },
   { path: 'login-doctor', component: DoctorLoginComponent}
 ];
 
