@@ -8,6 +8,7 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/user.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-bienvenida',
@@ -35,7 +36,7 @@ export class BienvenidaComponent implements OnInit {
   }
 
 
-  constructor(private formBuilder: FormBuilder, private formularioPacientes: FormBuilder,private _router: Router, private _userService: UserService, private modalService: NgbModal) {
+  constructor(private formBuilder: FormBuilder, private formularioPacientes: FormBuilder,private _router: Router, private _userService: UserService, private modalService: NgbModal, private authService: AuthService) {
     this.reactiveForm = this.formBuilder.group({
       firstName: new FormControl('', Validators.required),
       firstLastName: new FormControl('', Validators.required),
@@ -54,7 +55,7 @@ export class BienvenidaComponent implements OnInit {
 
     this.formLogin = this.formBuilder.group({
       email: new FormControl('',[Validators.required, Validators.email]),
-      passwordLogin: new FormControl('', Validators.required)
+      password: new FormControl('', Validators.required)
     });
 
     /*
@@ -129,8 +130,24 @@ export class BienvenidaComponent implements OnInit {
     return this.formLogin.controls;
   }
 
+  logPaciente(){
+    console.log(this.formLogin.value);
+    const {email, password}= this.formLogin.value;
+    this.authService.loginPaciente(email, password)
+    .subscribe( resp =>{
+      if(resp){
+        this._router.navigateByUrl('/inicio-usuario');
+      }else{
+        //mostrar mensaje de error
+        this.sweetAlertLoginError();
+      }
+      //console.log(resp);
+    });
+    //this._router.navigateByUrl('/dashboard');
+  }
 
-  loginUsuario() {
+
+  loginPaciente() {
     if (!this.formLogin.valid) {
       console.log('Formulario Invalido');
       return;
@@ -183,7 +200,7 @@ export class BienvenidaComponent implements OnInit {
   }
 
   sweetAlertLoginError() {
-    Swal.fire('¡Upps!', 'Algo no ha salido como lo esperabamos.', 'error');
+    Swal.fire('¡Upps!', 'Revisa que tu correo y contraseña estén bien escritos', 'error');
   }
 
 

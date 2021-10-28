@@ -19,10 +19,19 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatCardModule} from '@angular/material/card';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatRadioModule} from '@angular/material/radio';
-import { FullCalendarModule } from '@fullcalendar/angular';
 import {MatTableModule} from '@angular/material/table';
 import {MatSortModule} from '@angular/material/sort';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import { FullCalendarModule } from '@fullcalendar/angular';
+import dayGridPlugin from '@fullcalendar/daygrid';
+
+
+
+FullCalendarModule.registerPlugins([ // register FullCalendar plugins
+  dayGridPlugin
+]);
+
+
 
 @NgModule({
   imports: [
@@ -76,7 +85,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     FullCalendarModule,
     MatTableModule,
     MatSortModule,
-    MatPaginatorModule,
+    MatPaginatorModule
 
   ],
   providers: [UserService],

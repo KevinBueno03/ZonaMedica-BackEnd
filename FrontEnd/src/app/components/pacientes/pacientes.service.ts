@@ -1,6 +1,8 @@
 import { Injectable } from "@angular/core";
 import { Subject } from "rxjs";
 import { Pacientes } from "./pacientes.model";
+import { environment } from "src/environments/environment";
+import { HttpClient } from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
@@ -8,21 +10,27 @@ import { Pacientes } from "./pacientes.model";
 
 export class PacienteService{
 
-  private listaPacientes: Pacientes[]=[
-{firstName: 'Sofia', firstLastName: 'Valladares', hn_id: '0801-2000-03105', email: 'sofia@gmail.com'},
-{firstName: 'Juanita', firstLastName: 'Alvarez', hn_id: '1502-1989-28988', email: 'mari@fmmf'},
-{firstName: 'Kevin', firstLastName: 'Bueno', hn_id: '1767-1999-28989', email: 'kevin@gmail.com'},
-  ];
+  //baseUrl = environment.baseUrl;
+  baseUrl= environment.APIBASEURL;
+  private listaPacientes: Pacientes[]=[];
 
-  pacienteSubject = new Subject<Pacientes>();
+  private pacientesSubject = new Subject<Pacientes[]>();
+
+  constructor(private http: HttpClient){}
 
   obtenerPacientes(){
-    return this.listaPacientes.slice();
+    this.http.get<Pacientes[]>(this.baseUrl + 'api/listaPacientes')
+    .subscribe((data)=>{
+      this.listaPacientes=data;
+      this.pacientesSubject.next([...this.listaPacientes]); //con el next va a refrescarse y obtener la nueva data del servidor
+    });
+    //return this.listaPacientes.slice();
   }
 
-  guardarPaciente(paciente: Pacientes){
-    this.listaPacientes.push(paciente);
-    this.pacienteSubject.next(paciente);
+  //El componente que obtiene la lista ejecuta el actual listener porque es el que devuelve la data
+  obtenerActualListener(){
+    return this.pacientesSubject.asObservable();
   }
+
 
 }

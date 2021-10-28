@@ -19,27 +19,27 @@ import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 export class PacientesComponent implements OnInit, AfterViewInit {
 
   pacientesData: Pacientes[] = [];
-  desplegarColumnas=["firstName","firstLastName","hn_id","email","estado","desactivar","editar"];
+  desplegarColumnas = ["firstName", "firstLastName", "hn_id", "email", "estado", "desactivar", "editar"];
   dataSource = new MatTableDataSource<Pacientes>();
   closeResult = '';
   reactiveForm: FormGroup;
   //formLoginDoctor: FormGroup;
-  hideP=true;
+  hideP = true;
   isVisible: any;
   isSelected: boolean = true;
   public isCollapsedD = true;
   public isCollapsedP = true;
-  submittedPaciente: boolean=false;
+  submittedPaciente: boolean = false;
   submitted: boolean = false;
-  hide=true;
-  hideC=true;
+  hide = true;
+  hideC = true;
 
   @ViewChild(MatSort)
   ordenamiento!: MatSort;
 
   @ViewChild(MatPaginator)
   paginacion !: MatPaginator;
-  constructor(private pacientesService: PacienteService, private formBuilder: FormBuilder, private _router: Router, private _userService: UserService,private modalService: NgbModal, private pacienteService: PacienteService) {
+  constructor(private pacientesService: PacienteService, private formBuilder: FormBuilder, private _router: Router, private _userService: UserService, private modalService: NgbModal, private pacienteService: PacienteService) {
     this.reactiveForm = this.formBuilder.group({
       firstName: new FormControl('', Validators.required),
       firstLastName: new FormControl('', Validators.required),
@@ -47,18 +47,18 @@ export class PacientesComponent implements OnInit, AfterViewInit {
       secondLastName: new FormControl('', Validators.required),
       hn_id: new FormControl('', Validators.required),
       department: new FormControl(''),
-      emailPaciente: new FormControl('',[Validators.required, Validators.email]),
+      emailPaciente: new FormControl('', [Validators.required, Validators.email]),
       terminos: new FormControl('', Validators.required),
-      politicas: new FormControl('',Validators.required),
+      politicas: new FormControl('', Validators.required),
       passwordPaciente: new FormControl('', Validators.required),
       confirmPasswordPaciente: new FormControl('', Validators.required),
     }, {
       validators: this.MustMatch('passwordPaciente', 'confirmPasswordPaciente')
     });
-   }
+  }
 
-  hacerFiltro(filtro: string){
-    this.dataSource.filter= filtro;
+  hacerFiltro(filtro: string) {
+    this.dataSource.filter = filtro;
   }
 
 
@@ -91,13 +91,13 @@ export class PacientesComponent implements OnInit, AfterViewInit {
     this._userService.registrarPaciente(JSON.stringify(this.reactiveForm.value))
       .subscribe(
         data => { console.log(data); this._router.navigate(['/']); this.sweetAlertRegistroSuccess() },
-        error => {console.log(error); this.sweetAlertRegistroError()}
+        error => { console.log(error); this.sweetAlertRegistroError() }
       )
     console.log(JSON.stringify(this.reactiveForm.value));
   }
 
   onSubmit() {
-    this.submittedPaciente=true;
+    this.submittedPaciente = true;
     if (this.reactiveForm.invalid) {
       return;
     }
@@ -106,7 +106,7 @@ export class PacientesComponent implements OnInit, AfterViewInit {
   //INICIO FUNCIONES PARA MODALES
 
   open(content: any) {
-    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
@@ -149,12 +149,17 @@ export class PacientesComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     //this.pacientesData = this.pacientesService.obtenerPacientes();
-    this.dataSource.data=this.pacientesService.obtenerPacientes();
+    //this.dataSource.data=this.pacientesService.obtenerPacientes();
+    this.pacientesService.obtenerPacientes();
+    this.pacientesService.obtenerActualListener()
+      .subscribe((pacientes: Pacientes[]) => {
+        this.dataSource.data = pacientes;
+      });
   }
 
-  ngAfterViewInit(){
-    this.dataSource.sort= this.ordenamiento;
-    this.dataSource.paginator= this.paginacion;
+  ngAfterViewInit() {
+    this.dataSource.sort = this.ordenamiento;
+    this.dataSource.paginator = this.paginacion;
   }
 
 

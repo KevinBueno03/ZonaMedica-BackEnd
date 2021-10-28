@@ -7,7 +7,7 @@
   <div class="container">
     <div class="row">
       <div class="col-md-6">
-        <img src="../../../assets/img/login-adminis.svg" alt="Image" class="img-fluid">
+        <img src="../../../assets/img/login-doctor.svg" alt="Image" class="img-fluid">
       </div>
       <div class="col-md-6 contents">
         <div class="row justify-content-center">
@@ -16,7 +16,7 @@
               <h2><strong>Iniciar Sesión como Doctor</strong></h2>
               <p class="mb-4">Ingresa tus datos para iniciar Sesion</p>
             </div>
-            <form [formGroup]="formLoginAdmin">
+            <form [formGroup]="formLoginDoctor">
 
               <mat-form-field class="example-full-width input" style="width: 28em;"  appearance="outline">
                 <mat-label>Correo Electrónico</mat-label>
@@ -43,7 +43,7 @@
             <br>
             <a (click)="olvidoContra()" style="margin-top: 5px; cursor: pointer;" style="color: rgb(56, 40, 145);">¿Olvidaste la
               contraseña?</a><br><br>
-            <button mat-raised-button style="margin-top: 10px; margin-right: 5px; width: 15em;" color="primary" type="button" [disabled]=formLoginAdmin.invalid (click)="loginAdmin()">
+            <button mat-raised-button style="margin-top: 10px; margin-right: 5px; width: 15em;" color="primary" type="button" [disabled]=formLoginDoctor.invalid (click)="loginDoctor()">
               Iniciar Sesión
             </button>
           </form>

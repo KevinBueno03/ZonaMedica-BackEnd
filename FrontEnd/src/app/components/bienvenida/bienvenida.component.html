@@ -1,5 +1,4 @@
 <app-navbar></app-navbar>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!--Parte de la bienvenida-->
 <div class="container">
   <div class="row">
@@ -15,56 +14,22 @@
     </div>
     <div id="loginPaciente" class="col col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
 
+      <!--
 
       <div class="bienvenido_de_nuevo">
-        <div class="row mensaje" style="justify-content: center;justify-items: center; align-items: center;">
-          <span>Elije el tipo de usuario para iniciar sesión</span>
-        </div>
         <hr>
         <div class="row">
           <div class="col col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
-            <div class="contenedor" (click)="doctor.toggle()" [attr.aria-expanded]="isCollapsedD"
-              aria-controls="collapseExample"
-              style="justify-items: center; justify-content: center; align-items: center;">
-              <img src="../assets/img/loginDoctor.svg" alt="" style="width: 24em" />
-              <div class="centradoD">Doctor</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col">
-            <div #doctor="ngbCollapse" [(ngbCollapse)]="isCollapsedD">
-              <div class="card cardD">
-                <div class="card-body">
-
-<!--AQUI AGREGAR EL FORM DE INICIO DE SESION DE DOCTOR-->
-
-
-
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <hr>
-        <div class="row">
-          <div class="col col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
-            <div class="contenedor" (click)="paciente.toggle()" [attr.aria-expanded]="isCollapsedP"
-              aria-controls="collapseExample">
+            <div class="contenedor">
               <img src="../assets/img/loginPaciente.svg" alt="" style="width: 22em" />
               <div class="centradoP">Paciente</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="row">
+              </div>
+<div class="row">
           <div class="col">
-            <div #paciente="ngbCollapse" [(ngbCollapse)]="isCollapsedP">
-              <div class="card cardP">
+            <div>
+              <div class="card cardP" style="width: 100%!important;">
                 <div class="card-body">
                   <form [formGroup]="formLogin">
-
                     <mat-form-field class="example-full-width input" appearance="outline">
                       <mat-label>Correo Electrónico</mat-label>
                       <input matInput type="email" placeholder="Ejem. sofia@gmail.com" formControlName="email"
@@ -72,7 +37,7 @@
                         required />
                       <div *ngIf="form.email.errors" class="invalid-feedback">
                         <mat-error *ngIf="form.email.errors.required">El correo no puede estar en blanco.</mat-error>
-                        <!--<div *ngIf="f.email.errors.required">Escriba un email Electrónico</div>-->
+
                         <div *ngIf="form.email.errors.email">Ingrese un correo válido.</div>
                       </div>
                       <mat-icon matSuffix>email</mat-icon>
@@ -82,12 +47,12 @@
                       class="example-full-width input" appearance="outline">
                       <mat-label>Contraseña</mat-label>
                       <input matInput placeholder="Escriba su contraseña" type="password" style="width: 29em;"
-                        formControlName="passwordLogin" class="form-control" value=""
-                        [ngClass]="{ 'is-invalid': submitted && form.passwordLogin.errors }" minlength="8"
+                        formControlName="password" class="form-control" value=""
+                        [ngClass]="{ 'is-invalid': submitted && form.password.errors }" minlength="8"
                         [type]="hideP ? 'password' : 'text'">
-                      <div *ngIf="submitted && form.passwordLogin.errors" class="invalid-feedback">
-                        <div *ngIf="form.passwordLogin.errors.required">Escriba la contraseña</div>
-                        <div *ngIf="form.passwordLogin.errors.minlength">La contraseña debe tener 8 caracteres o más.
+                      <div *ngIf="submitted && form.password.errors" class="invalid-feedback">
+                        <div *ngIf="form.password.errors.required">Escriba la contraseña</div>
+                        <div *ngIf="form.password.errors.minlength">La contraseña debe tener 8 caracteres o más.
                         </div>
                       </div>
                       <mat-icon mat-icon-button matSuffix (click)="hideP = !hideP" [attr.aria-label]="'Hide password'"
@@ -97,7 +62,7 @@
                     <a href="#" style="margin-top: 5px" class="olvidar" style="color: black;">¿Olvidaste la
                       contraseña?</a>
                     <button mat-raised-button style="margin-top: 10px; margin-right: 5px" color="primary" type="button"
-                      [disabled]=formLogin.invalid (click)="loginUsuario()">
+                      [disabled]=formLogin.invalid (click)="logPaciente()">
                       Iniciar Sesión como Paciente
                     </button>
                   </form>
@@ -107,44 +72,72 @@
           </div>
         </div>
 
-        <!--<h2>¡Bienvenido de nuevo!</h2>
-          <img src="../assets/img/undraw_Hello_re_3evm 1.png" alt="" />
-          Validacion del correo
-          <mat-form-field class="example-full-width input" appearance="fill">
-            <mat-label>Email</mat-label>
-            <input type="email" matInput placeholder="Ejemplo: sofia@gmail.com" ngModel name="correo" email required
-              #emailInput="ngModel" />
-            <mat-error *ngIf="emailInput.hasError('required')">El correo no puede estar en blanco.</mat-error>
-            <mat-error *ngIf="!emailInput.hasError('required')">¡El correo es invalido!</mat-error>
-          </mat-form-field>
-
-          <mat-form-field class="example-full-width input" appearance="fill">
-            <mat-label>Contraseña</mat-label>
-            <input type="password" matInput placeholder="Ingresa tu contraseña" ngModel name="contra" required
-              minlength="=8" />
-            <mat-error>¡La contraseña debe tener más de caracteres!</mat-error>
-          </mat-form-field>
-
-          <input type="email" name="" id="" placeholder="ingrese su correo electrónico">
-                <input type="password" name="" id="" placeholder="ingrese su contraseña">
-
-          <a href="#" style="margin-top: 5px" class="olvidar">¿Olvidaste la contraseña?</a>
-          -->
-        <!--<button mat-raised-button style="margin-top: 10px; margin-right: 5px" color="primary" (click)="open(usuario)">
-            Iniciar Sesión
-          </button>-->
+            </div>
+          </div>
+        </div>
         <hr />
-        <button mat-raised-button style="margin-top: 10px" color="primary" class="registrar" (click)="open(content)">
+        <button mat-raised-button style="margin-top: 10px; width: 100%!important;" color="primary" class="registrar" (click)="open(content)">
           Registrate
         </button>
+      </div>-->
+
+      <div class="vl">
+
+        <div fxLayoutAlign="center center">
+        <h2><strong>¡Bienvenido de nuevo!</strong></h2>
+        </div>
+          <img src="../assets/img/undraw_Hello_re_3evm 1.png" alt="" />
+          <hr>
+          <form [formGroup]="formLogin">
+            <mat-form-field class="example-full-width input" appearance="outline">
+              <mat-label>Correo Electrónico</mat-label>
+              <input matInput type="email" placeholder="Ejem. sofia@gmail.com" formControlName="email"
+                style="width: 33em;" class="form-control" [ngClass]="{ 'is-invalid':form.email.errors }"
+                required />
+              <div *ngIf="form.email.errors" class="invalid-feedback">
+                <mat-error *ngIf="form.email.errors.required">El correo no puede estar en blanco.</mat-error>
+
+                <div *ngIf="form.email.errors.email">Ingrese un correo válido.</div>
+              </div>
+              <mat-icon matSuffix>email</mat-icon>
+            </mat-form-field>
+
+            <mat-form-field hintLabel="La contraseña debe tener 8 caracteres o más"
+              class="example-full-width input" appearance="outline">
+              <mat-label>Contraseña</mat-label>
+              <input matInput placeholder="Escriba su contraseña" type="password" style="width: 33em;"
+                formControlName="password" class="form-control" value=""
+                [ngClass]="{ 'is-invalid': submitted && form.password.errors }" minlength="8"
+                [type]="hideP ? 'password' : 'text'">
+              <div *ngIf="submitted && form.password.errors" class="invalid-feedback">
+                <div *ngIf="form.password.errors.required">Escriba la contraseña</div>
+                <div *ngIf="form.password.errors.minlength">La contraseña debe tener 8 caracteres o más.
+                </div>
+              </div>
+              <mat-icon mat-icon-button matSuffix (click)="hideP = !hideP" [attr.aria-label]="'Hide password'"
+                style="cursor: pointer;" [attr.aria-pressed]="hideP">{{hideP ? 'visibility_off' : 'visibility'}}
+              </mat-icon>
+            </mat-form-field>
+            <a href="#" style="margin-top: 5px" class="olvidar" style="color: black;">¿Olvidaste la
+              contraseña?</a>
+            <button mat-raised-button style="margin-top: 10px; margin-right: 5px" color="primary" type="button"
+              [disabled]=formLogin.invalid (click)="logPaciente()">
+              Iniciar Sesión como Paciente
+            </button>
+          </form>
+          <hr />
+        <button mat-raised-button style="margin-top: 10px; width: 100%!important;" color="primary" class="registrar" (click)="open(content)">
+          Registrate
+        </button>
+
       </div>
+
     </div>
   </div>
 
   <div class="row">
     <div class="col col-12 flecha ml-auto mr-auto align-content-center" style="align-items: center"></div>
   </div>
-</div>
 
 <app-carousel-funcionalidades></app-carousel-funcionalidades>
 <app-acerca-de-nosotros></app-acerca-de-nosotros>
