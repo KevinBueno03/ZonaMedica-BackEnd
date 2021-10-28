@@ -33,3 +33,23 @@ module.exports.register = (req, res) => {
         }
     });
 };
+
+module.exports.listALL= async(res) => {
+    const patients = await Patients.find();
+    res.send(patients);
+};
+
+module.exports.listOne= async(req,res) => {
+    
+    try {
+		
+        const patients = await Patients.findOne({code:req.params.id});
+		res.send(patients)
+	} catch {
+		res.status(404)
+		res.send({ error: "patient doesn't exist!" })
+	}
+
+};
+
+
