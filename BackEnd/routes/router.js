@@ -9,18 +9,17 @@ const auth = require("../controllers/auth");
 
 
 router.post("/register-patient", ctrlPatient.register);
-router.post("/patients", ctrlPatient.listALL);
-router.post("/patients/:id", ctrlPatient.listOne);
+router.get("/patients", ctrlPatient.listALL);
+router.get("/patients/:id", ctrlPatient.listOne);
 
 router.post("/register-doctor", ctrlDoctor.register);
 
 
 router.post("/login", userLogin.login);
+
 router.get("/verifyaccount/:code", verifyAccount.verify);
 
-router.post("/auth",auth,(req,res)=>{
-    res.status(200).send("Entro al token y es valido")
-})
+router.get("/auth",auth.verifyToken)
 
 
 module.exports = router;
