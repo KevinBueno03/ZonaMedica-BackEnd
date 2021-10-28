@@ -28,7 +28,7 @@ const routes: Routes = [
   { path: 'admin/listar-doctores', component: DoctoresComponent},
   {
     path: 'dashboard',
-    loadChildren: () => import('./protected/protected.module').then(m=> m.ProtectedModule),
+    component: DashboardComponent,
     canActivate: [ValidarTokenGuard],
     canLoad: [ValidarTokenGuard]
   },

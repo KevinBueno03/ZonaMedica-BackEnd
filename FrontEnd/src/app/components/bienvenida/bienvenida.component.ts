@@ -66,8 +66,34 @@ export class BienvenidaComponent implements OnInit {
 
   }
 
+  //Inicio Funciones Login Logout Paciente
+
+  logoutPaciente(){
+    this._router.navigateByUrl('login');
+    this.authService.logoutPaciente();
+  }
+
+  logPaciente(){
+    /*this.authService.validarToken()
+    .subscribe(resp=> console.log(resp));
+    */
+    console.log(this.formLogin.value);
+    const {email, password}= this.formLogin.value;
+    this.authService.loginPaciente(email, password)
+    .subscribe( resp =>{
+      if(resp){
+        this._router.navigateByUrl('/inicio-usuario');
+      }else{
+        //mostrar mensaje de error
+        this.sweetAlertLoginError();
+      }
+      //console.log(resp);
+    });
+    //this._router.navigateByUrl('/dashboard');
+  }
 
 
+//Fin Login Logout Paciente
 
   get formularioPaciente() {
     return this.reactiveForm.controls;
@@ -130,25 +156,7 @@ export class BienvenidaComponent implements OnInit {
     return this.formLogin.controls;
   }
 
-  logPaciente(){
-    /*this.authService.validarToken()
-    .subscribe(resp=> console.log(resp));
-    */
-    console.log(this.formLogin.value);
-    const {email, password}= this.formLogin.value;
-    this.authService.loginPaciente(email, password)
-    .subscribe( resp =>{
-      if(resp){
-        this._router.navigateByUrl('/dashboard');
-      }else{
-        //mostrar mensaje de error
-        this.sweetAlertLoginError();
-      }
-      //console.log(resp);
-    });
 
-    //this._router.navigateByUrl('/dashboard');
-  }
 
 
   loginPaciente() {

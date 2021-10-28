@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild, Output, EventEmitter} from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { BreakpointObserver } from '@angular/cdk/layout';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 @Component({
   selector: 'app-navbar-usuario',
   templateUrl: './navbar-usuario.component.html',
@@ -14,9 +16,14 @@ export class NavbarUsuarioComponent {
 */
 @Output() public sidenavToggle = new EventEmitter();
 
-constructor(){
+constructor(private _router: Router,private authService: AuthService){
 
 }
+logoutPaciente(){
+  this._router.navigateByUrl('login');
+  this.authService.logoutPaciente();
+}
+
 
 ngOnInit(): void{
 }

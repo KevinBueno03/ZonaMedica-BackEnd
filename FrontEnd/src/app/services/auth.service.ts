@@ -44,5 +44,9 @@ export class AuthService {
     return this.http.get(url,{headers});
   }
 
+  logoutPaciente(){
+    localStorage.clear();
+  }
+
 
 }
