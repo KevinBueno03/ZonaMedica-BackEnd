@@ -16,11 +16,12 @@ import { DashboardComponent } from './protected/dashboard/dashboard.component';
 import { ValidarTokenGuard } from './guards/validar-token.guard';
 import { FormularioRegistroDoctorComponent } from './components/formulario-registro-doctor/formulario-registro-doctor.component';
 import { DashboardDoctorComponent } from './components/dashboard-doctor/dashboard-doctor.component';
+import { CalendarioDoctorComponent } from './components/calendario-doctor/calendario-doctor.component';
 
 const routes: Routes = [
 
   //RUTAS PARA LAS ACCIONES DEL USUARIO CUALQUIERA
-  { path: '**', redirectTo:'user/login-user', pathMatch:'full'},
+  { path: '', redirectTo:'user/login-user', pathMatch:'full'},
   { path: 'user/login-user', component:BienvenidaComponent},
   { path: 'user/registrar-paciente', component: FormularioRegistroUsuarioComponent},
   { path: 'user/registrar-doctor', component: FormularioRegistroDoctorComponent},
@@ -39,6 +40,7 @@ const routes: Routes = [
 //RUTAS PARA LAS ACCIONES DEL DOCTOR
   { path: 'doctor/login-doctor', component: DoctorLoginComponent},
   { path: 'doctor/dashboard-doctor', component: DashboardDoctorComponent},
+  { path: 'doctor/calendario-doctor', component: CalendarioDoctorComponent},
 
 //RUTAS PROTEGIDAS
   {

@@ -32,6 +32,7 @@ import { InicioPacienteComponent } from './components/inicio-paciente/inicio-pac
 import { NavbarDoctorComponent } from './components/navbar-doctor/navbar-doctor.component';
 import { FormularioRegistroDoctorComponent } from './components/formulario-registro-doctor/formulario-registro-doctor.component';
 import { DashboardDoctorComponent } from './components/dashboard-doctor/dashboard-doctor.component';
+import { CalendarioDoctorComponent } from './components/calendario-doctor/calendario-doctor.component';
 
 
 @NgModule({
@@ -59,6 +60,7 @@ import { DashboardDoctorComponent } from './components/dashboard-doctor/dashboar
     NavbarDoctorComponent,
     FormularioRegistroDoctorComponent,
     DashboardDoctorComponent,
+    CalendarioDoctorComponent,
 
   ],
   imports: [
