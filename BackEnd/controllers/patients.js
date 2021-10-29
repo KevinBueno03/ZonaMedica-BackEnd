@@ -34,21 +34,38 @@ module.exports.register = (req, res) => {
     });
 };
 
-module.exports.listALL= async(res) => {
-    const patients = await Patients.find();
-    res.send(patients);
+module.exports.findAll= async(req,res) => {
+    const title = req.query.title;
+    var condition = title ? { title: { $regex: new RegExp(title), $options: "i" } } : {};
+  
+    Patients.find(condition)
+      .then(data => {
+        res.send(data);
+      })
+      .catch(err => {
+        res.status(500).send({
+          message:
+            err.message || "Some error occurred while retrieving patients."
+        });
+      });
+    
 };
 
-module.exports.listOne= async(req,res) => {
-    
-    try {
-		
-        const patients = await Patients.findOne({code:req.params.id});
-		res.send(patients)
-	} catch {
-		res.status(404)
-		res.send({ error: "patient doesn't exist!" })
-	}
+module.exports.findOneByCode= async(req,res) => {
+    const code = req.params.code;
+
+    Patients.findOne({'code':code})
+      .then(data => {
+        if (!data)
+          res.status(404).send({ message: "Not found Patient with code " + code });
+        else res.send(data);
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .send({ message: "Error retrieving Patient with code=" + code });
+      });
+ 
 
 };
 
