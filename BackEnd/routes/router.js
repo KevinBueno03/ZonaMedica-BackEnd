@@ -9,8 +9,8 @@ const auth = require("../controllers/auth");
 
 //patientes
 router.post("/register-patient", ctrlPatient.register);
-router.get("/patients", ctrlPatient.listALL);
-router.get("/patients/:id", ctrlPatient.listOne);
+router.get("/patients", ctrlPatient.findAll);
+router.get("/patients/:code", ctrlPatient.findOneByCode);
 
 
 //doctors
