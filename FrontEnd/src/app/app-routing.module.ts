@@ -20,7 +20,7 @@ import { DashboardDoctorComponent } from './components/dashboard-doctor/dashboar
 const routes: Routes = [
 
   //RUTAS PARA LAS ACCIONES DEL USUARIO CUALQUIERA
-  { path: '', redirectTo:'user/login-user', pathMatch:'full'},
+  { path: '**', redirectTo:'user/login-user', pathMatch:'full'},
   { path: 'user/login-user', component:BienvenidaComponent},
   { path: 'user/registrar-paciente', component: FormularioRegistroUsuarioComponent},
   { path: 'user/registrar-doctor', component: FormularioRegistroDoctorComponent},
