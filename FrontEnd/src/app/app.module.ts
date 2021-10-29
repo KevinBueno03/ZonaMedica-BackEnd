@@ -29,6 +29,9 @@ import { SidenavPacienteComponent } from './components/sidenav-paciente/sidenav-
 import { NavbarAdminComponent } from './components/navbar-admin/navbar-admin.component';
 import { PacientesComponent } from './components/pacientes/pacientes.component';
 import { InicioPacienteComponent } from './components/inicio-paciente/inicio-paciente.component';
+import { NavbarDoctorComponent } from './components/navbar-doctor/navbar-doctor.component';
+import { FormularioRegistroDoctorComponent } from './components/formulario-registro-doctor/formulario-registro-doctor.component';
+import { DashboardDoctorComponent } from './components/dashboard-doctor/dashboard-doctor.component';
 
 
 @NgModule({
@@ -53,6 +56,9 @@ import { InicioPacienteComponent } from './components/inicio-paciente/inicio-pac
     NavbarUsuarioComponent,
     SeccionesUsuarioComponent,
     SidenavPacienteComponent,
+    NavbarDoctorComponent,
+    FormularioRegistroDoctorComponent,
+    DashboardDoctorComponent,
 
   ],
   imports: [

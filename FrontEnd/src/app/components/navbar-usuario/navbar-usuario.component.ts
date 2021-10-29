@@ -20,7 +20,7 @@ constructor(private _router: Router,private authService: AuthService){
 
 }
 logoutPaciente(){
-  this._router.navigateByUrl('login');
+  this._router.navigateByUrl('/user/login-user');
   this.authService.logoutPaciente();
 }
 

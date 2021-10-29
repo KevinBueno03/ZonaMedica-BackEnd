@@ -105,7 +105,7 @@ Email validar que ese correo no este en uso
 
 
   sweetAlertSuccess() {
-    Swal.fire('¡Muy Bien!', 'Te has registrado satisfactoriamente.', 'success');
+    Swal.fire('¡Muy Bien!', 'Te hemos enviado un correo para que valides tu cuenta.', 'success');
   }
 
   sweetAlertError() {
@@ -119,7 +119,7 @@ Email validar que ese correo no este en uso
     }
     this._userService.registrar(JSON.stringify(this.reactiveForm.value))
       .subscribe(
-        data => { console.log(data); this._router.navigate(['/']); this.sweetAlertSuccess() },
+        data => { console.log(data);  this.sweetAlertSuccess() ; this._router.navigate(['/']);},
         error => {console.log(error); this.sweetAlertError()}
       )
     console.log(JSON.stringify(this.reactiveForm.value));

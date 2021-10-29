@@ -6,3 +6,8 @@ export interface Usuario{
   firstName: string;
   firstLastName: string;
 }
+
+export interface Doctor{
+  firstName:string;
+  firstLastName: string;
+}

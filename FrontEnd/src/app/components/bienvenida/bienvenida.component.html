@@ -126,6 +126,7 @@
             </button>
           </form>
           <hr />
+          <span fxLayoutAlign="center center"><a routerLink="/doctor/login-doctor">Iniciar Sesión como Doctor.</a></span>
         <button mat-raised-button style="margin-top: 10px; width: 100%!important;" color="primary" class="registrar" (click)="open(content)">
           Registrate
         </button>
@@ -163,13 +164,13 @@
       <div class="form-group">
         <div class="row">
           <div class="col-6">
-            <a routerLink="/paciente/registrar-doctor" class="hover">
+            <a routerLink="/user/registrar-doctor" class="hover">
               <img src="../assets/img/modalD.png" alt="" style="width: 17em; height: 18em" />
             </a>
             <h3 style="text-align: center">Doctor</h3>
           </div>
           <div class="col-6">
-            <a routerLink="/paciente/registrar-paciente" class="hover">
+            <a routerLink="/user/registrar-paciente" class="hover">
               <!--<a href="/api/register" class="hover">-->
               <!--Por si no funciona-->
               <img src="../assets/img/modalP.png" alt="" style="width: 16em; height: 17em" />

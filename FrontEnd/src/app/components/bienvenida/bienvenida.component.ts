@@ -69,7 +69,7 @@ export class BienvenidaComponent implements OnInit {
   //Inicio Funciones Login Logout Paciente
 
   logoutPaciente(){
-    this._router.navigateByUrl('login');
+    this._router.navigateByUrl('/');
     this.authService.logoutPaciente();
   }
 
@@ -82,7 +82,7 @@ export class BienvenidaComponent implements OnInit {
     this.authService.loginPaciente(email, password)
     .subscribe( resp =>{
       if(resp){
-        this._router.navigateByUrl('/inicio-usuario');
+        this._router.navigateByUrl('/paciente/inicio-usuario');
       }else{
         //mostrar mensaje de error
         this.sweetAlertLoginError();

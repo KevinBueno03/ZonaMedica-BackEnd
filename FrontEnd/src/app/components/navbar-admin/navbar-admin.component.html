@@ -5,7 +5,7 @@
 
    <div class="spacer"></div>
 
-   <button mat-button class="menu-buttons" routerLink="/login-admin">
+   <button mat-button class="menu-buttons" routerLink="/admin/listar-pacientes">
     <mat-icon class="iconos">home</mat-icon>
     <span>Inicio</span>
   </button>
@@ -44,12 +44,12 @@
     <span>Pacientes</span>
   </button>
 
-  <a href="/inicio-usuario"><img src="../../../assets/img/admin.jpg" style="width:40px; height:40px; border-color: black; border-width: 2px; border-radius: 50%;"></a>
+  <a href="/admin/listar-pacientes"><img src="../../../assets/img/profile-admin.svg" style="width:40px; height:40px; border-color: black; border-width: 2px; border-radius: 50%;"></a>
 
   <mat-list-item [matMenuTriggerFor]="menus">
     <button mat-button class="menu-buttons">
       <mat-icon class="iconos">arrow_drop_down</mat-icon>
-      <span>Kevin Bueno</span>
+      <span>Nombre Apellido</span>
     </button>
   </mat-list-item>
   <mat-menu #menus="matMenu">
@@ -57,7 +57,7 @@
       <mat-icon class="iconos">edit</mat-icon>
       <span>Editar Perfil</span>
     </button><br>
-    <button mat-button class="menu-buttons" routerLink="/login-admin">
+    <button mat-button class="menu-buttons">
       <mat-icon class="iconos">logout</mat-icon>
       <span>Cerrar Sesion</span>
     </button>

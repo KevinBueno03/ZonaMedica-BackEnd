@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 import { UserService } from 'src/app/user.service';
 import Swal from 'sweetalert2';
 
@@ -14,7 +15,7 @@ export class DoctorLoginComponent implements OnInit {
   formLoginDoctor: FormGroup;
   hideA=true;
 
-  constructor(private formBuilder: FormBuilder, private _router: Router, private _userService: UserService) {
+  constructor(private formBuilder: FormBuilder, private _router: Router, private _userService: UserService, private authService: AuthService) {
     this.formLoginDoctor = this.formBuilder.group({
       email: new FormControl('',[Validators.required, Validators.email]),
       password: new FormControl('', Validators.required)
@@ -22,7 +23,7 @@ export class DoctorLoginComponent implements OnInit {
   }
 
   submitted: boolean = false;
-  get formAdmin() {
+  get formDoctor() {
     return this.formLoginDoctor.controls;
   }
 
@@ -33,6 +34,35 @@ export class DoctorLoginComponent implements OnInit {
     }
   }
 
+  //Inicio Funciones Login Logout Doctor
+
+  logoutPaciente(){
+    this._router.navigateByUrl('/doctor/login-doctor');
+    this.authService.logoutDoctor();
+  }
+
+  logDoctor(){
+    /*this.authService.validarToken()
+    .subscribe(resp=> console.log(resp));
+    */
+    console.log(this.formLoginDoctor.value);
+    const {email, password}= this.formLoginDoctor.value;
+    this.authService.loginDoctor(email, password)
+    .subscribe( resp =>{
+      if(resp){
+        this._router.navigateByUrl('/doctor/dashboard-doctor');
+      }else{
+        //mostrar mensaje de error
+        this.sweetAlertLoginError();
+      }
+      //console.log(resp);
+    });
+    //this._router.navigateByUrl('/dashboard');
+  }
+
+
+//Fin Login LogoutDoctor
+
 
   ngOnInit(): void {
   }
@@ -42,8 +72,8 @@ export class DoctorLoginComponent implements OnInit {
     Swal.fire('¡Muy Bien!', 'Has iniciado sesion satisfactiamente.', 'success');
   }
 
-  sweetAlertError() {
-    Swal.fire('¡Upps!', 'Algo no ha salido como lo esperabamos.', 'error');
+  sweetAlertLoginError() {
+    Swal.fire('¡Upps!', 'Revisa que tu usuario y contraseña estén bien escritos.', 'error');
   }
 
 
@@ -52,6 +82,7 @@ export class DoctorLoginComponent implements OnInit {
   }
 
 
+  /*
   loginDoctor() {
     if (!this.formLoginDoctor.valid) {
       console.log('Formulario Invalido');
@@ -64,5 +95,5 @@ export class DoctorLoginComponent implements OnInit {
       )
     console.log(JSON.stringify(this.formLoginDoctor.value));
   }
-
+*/
 }

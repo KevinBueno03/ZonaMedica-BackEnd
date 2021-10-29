@@ -1,0 +1,57 @@
+<mat-toolbar color="primary" class="mat-elevation-z8">
+
+  <span><img src="../assets/img/up (9).svg" style="width:50px; height: 50px;" routerLink="/doctor/dashboard-doctor"></span>
+
+   <div class="spacer"></div>
+
+   <button mat-button class="menu-buttons" routerLink="/inicio-usuario">
+    <mat-icon class="iconos">home</mat-icon>
+    <span>Dashboard</span>
+  </button>
+  <button mat-button class="menu-buttons" routerLink="/doctor/dashboard-doctor">
+    <mat-icon class="iconos">event</mat-icon>
+    <span>Agenda</span>
+  </button>
+
+
+
+  <button mat-button class="menu-buttons" routerLink="/doctor/dashboard-doctor">
+    <mat-icon class="iconos">groups</mat-icon>
+    <span>Pacientes</span>
+  </button>
+
+  <button mat-button class="menu-buttons" routerLink="/doctor/dashboard-doctor">
+    <mat-icon class="iconos">paid</mat-icon>
+    <span>Billetera</span>
+  </button>
+
+  <button mat-button class="menu-buttons">
+    <mat-icon class="iconos">chat</mat-icon>
+  </button>
+
+  <button mat-button class="menu-buttons" routerLink="/doctor/dashboard-doctor">
+    <mat-icon class="iconos">notifications</mat-icon>
+  </button>
+
+
+  <a href="/doctor/dashboard-doctor"><img src="../../../assets/img/profilePaciente.svg" style="width:40px; height:40px; border-color: black; border-width: 2px; border-radius: 50%;"></a>
+
+  <mat-list-item [matMenuTriggerFor]="menus">
+    <button mat-button class="menu-buttons">
+      <mat-icon class="iconos">arrow_drop_down</mat-icon>
+      <span>Nombre Apellido</span>
+    </button>
+  </mat-list-item>
+  <mat-menu #menus="matMenu">
+    <button mat-button class="menu-buttons">
+      <mat-icon class="iconos">edit</mat-icon>
+      <span>Editar Perfil</span>
+    </button><br>
+    <button mat-button (click)="logoutDoctor()" class="menu-buttons">
+      <mat-icon class="iconos">logout</mat-icon>
+      <span>Cerrar Sesion</span>
+    </button>
+  </mat-menu>
+  <!--<a mat-button routerLink="/">Sofia Videa</a>
+  -->
+</mat-toolbar>

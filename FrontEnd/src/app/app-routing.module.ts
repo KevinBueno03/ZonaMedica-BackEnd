@@ -14,25 +14,42 @@ import { DoctorLoginComponent } from './components/doctor-login/doctor-login.com
 import { MaterialModule } from './material.module';
 import { DashboardComponent } from './protected/dashboard/dashboard.component';
 import { ValidarTokenGuard } from './guards/validar-token.guard';
+import { FormularioRegistroDoctorComponent } from './components/formulario-registro-doctor/formulario-registro-doctor.component';
+import { DashboardDoctorComponent } from './components/dashboard-doctor/dashboard-doctor.component';
 
 const routes: Routes = [
-  { path: '', redirectTo:'login', pathMatch:'full'},
-  { path: 'login', component:BienvenidaComponent},
-  { path: 'paciente/registrar-paciente', component: FormularioRegistroUsuarioComponent},
-  { path: 'contactanos', component: ContactanosPageComponent},
-  { path: 'inicio-usuario', component: SeccionesUsuarioComponent},
-  { path: 'doctores', component: SidenavPacienteComponent},
-  { path: 'calendario-usuario', component: CalendarioUsuarioComponent},
-  { path: 'login-admin', component: LoginAdministradorComponent},
+
+  //RUTAS PARA LAS ACCIONES DEL USUARIO CUALQUIERA
+  { path: '', redirectTo:'user/login-user', pathMatch:'full'},
+  { path: 'user/login-user', component:BienvenidaComponent},
+  { path: 'user/registrar-paciente', component: FormularioRegistroUsuarioComponent},
+  { path: 'user/registrar-doctor', component: FormularioRegistroDoctorComponent},
+  { path: 'user/contactanos', component: ContactanosPageComponent},
+
+//RUTAS PARA LAS ACCIONES DEL PACIENTE
+  { path: 'paciente/inicio-usuario', component: SeccionesUsuarioComponent},
+  { path: 'paciente/doctores', component: SidenavPacienteComponent},
+  { path: 'paciente/calendario-usuario', component: CalendarioUsuarioComponent},
+
+//RUTAS PARA LAS ACCIONES DEL ADMINISTRADOR
+  { path: 'admin/login-admin', component: LoginAdministradorComponent},
   { path: 'admin/listar-pacientes', component: PacientesComponent},
   { path: 'admin/listar-doctores', component: DoctoresComponent},
+
+//RUTAS PARA LAS ACCIONES DEL DOCTOR
+  { path: 'doctor/login-doctor', component: DoctorLoginComponent},
+  { path: 'doctor/dashboard-doctor', component: DashboardDoctorComponent},
+
+//RUTAS PROTEGIDAS
   {
     path: 'dashboard',
     component: DashboardComponent,
     canActivate: [ValidarTokenGuard],
     canLoad: [ValidarTokenGuard]
-  },
-  { path: 'login-doctor', component: DoctorLoginComponent}
+  }
+
+
+//FIN RUTAS
 ];
 
 @NgModule({
