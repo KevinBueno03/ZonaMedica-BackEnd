@@ -115,6 +115,8 @@ module.exports.getData = async function (req, res) {
                     res.status(400).send("Invalid query");
                 }
             }
+        } else {
+            res.status(400).send("Missing parameters");
         }
     });
 };
