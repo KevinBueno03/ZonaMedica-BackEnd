@@ -1,6 +1,7 @@
 var mongoose = require("mongoose");
 var Patients = mongoose.model("Patients");
 var Doctors = mongoose.model("Doctors");
+var Admin = mongoose.model("Admin");
 var bcrypt = require("bcryptjs");
 var jwt = require("jsonwebtoken");
 var nodemailer = require("nodemailer");
@@ -10,6 +11,8 @@ var path = require("path");
 var map = {
     doctors: Doctors,
     patients: Patients,
+    admin :Admin,
+    
 };
 
 function getUser(model, e) {
@@ -18,9 +21,10 @@ function getUser(model, e) {
 
 module.exports.login = (req, res) => {
     let e = req.body.email,
-        p = req.body.password;
+        p = req.body.password
+        
     if (e && p) {
-        if (req.query.type == "doctors" || req.query.type == "patients") {
+        if (req.query.type == "doctors" || req.query.type == "patients" || req.query.type == "admin") {
             var item = getUser(map[req.query.type], e);
             item.next((err, doc) => {
                 if (err) res.send(err);
