@@ -3,6 +3,7 @@ require("./config/config.js");
 const express = require("express");
 const cors = require("cors");
 const { mongoose } = require("./models/db");
+var path = require("path");
 
 //routes
 const rtsIndex = require("./routes/router");
@@ -21,6 +22,9 @@ app.use(express.json());
 
 //routers
 app.use("/api", rtsIndex); // api endpoint
+
+// static
+app.use(express.static(path.join(__dirname, "public")));
 
 //server
 app.listen(process.env.PORT, function () {

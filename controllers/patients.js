@@ -120,3 +120,28 @@ module.exports.getData = async function (req, res) {
         }
     });
 };
+
+module.exports.updateData = async function (req, res) {
+    user = Patients.findOne({ email: req.user.email }, function (err, data) {
+        if (err) res.send(err);
+        if (data) {
+            d = req.body.data;
+            t = {};
+            err = { message: "Invalid query parameters", query: [] };
+            for (const p in d) {
+                if (list.includes(p)) {
+                    user[p] = d[p];
+                } else {
+                    err.query.push(p);
+                }
+            }
+            if (err.query.length > 0) {
+                t.err = err;
+            }
+            user.save();
+            res.status(200).send(t);
+        } else {
+            res.status(400).send("Missing parameters: data");
+        }
+    });
+};

@@ -5,6 +5,7 @@ var bcrypt = require("bcryptjs");
 var jwt = require("jsonwebtoken");
 var nodemailer = require("nodemailer");
 var config = require("../config/config");
+var path = require("path");
 
 var map = {
     doctors: Doctors,
@@ -78,10 +79,10 @@ function sendResetPasswordEmail(name, email, confirmationCode, model) {
 module.exports.resetPassword = function (req, res) {
     if (req.method == "POST") {
         if (req.query.type == "doctors" || req.query.type == "patients") {
-            if (req.params.code) {
+            if (req.body.code) {
                 try {
                     const decoded = jwt.verify(
-                        req.params.code,
+                        req.body.code,
                         process.env.SECRET
                     );
                     var item = getUser(map[req.query.type], decoded.email);
@@ -134,6 +135,6 @@ module.exports.resetPassword = function (req, res) {
             res.status(400).send("Invalid parameters");
         }
     } else if (req.method == "GET") {
-        res.send("Hola");
+        res.sendFile(path.resolve("public/html/password.html"));
     }
 };
