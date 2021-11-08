@@ -14,6 +14,9 @@ module.exports.register = (req, res) => {
     user.phone = req.body.phone;
     user.bibliografy = req.body.bibliografy;
     user.master_degree = req.body.master_degree;
+    user.medAppointment_modality_inHouse=req.body.medAppointment_modality_inHouse;
+    user.medAppointment_modality_inClinic=req.body.medAppointment_modality_inClinic;
+    user.medAppointment_modality_online=req.body.medAppointment_modality_online;
 
     user.save((err, doc) => {
         let r = {
@@ -88,6 +91,26 @@ module.exports.getData = async function (req, res) {
         }
     });
 };
+
+module.exports.findAll = async (req, res) => {
+    const title = req.query.title;
+    var condition = title
+        ? { title: { $regex: new RegExp(title), $options: "i" } }
+        : {};
+
+    Doctor.find(condition)
+        .then((data) => {
+            res.send(data);
+        })
+        .catch((err) => {
+            res.status(500).send({
+                message:
+                    err.message ||
+                    "Some error occurred while retrieving patients.",
+            });
+        });
+};
+
 
 module.exports.updateData = async function (req, res) {
     user = Patients.findOne({ email: req.user.email }, function (err, data) {

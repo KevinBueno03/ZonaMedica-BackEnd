@@ -3,8 +3,10 @@ const router = express.Router();
 
 const ctrlPatient = require("../controllers/patients");
 const ctrlDoctor = require("../controllers/doctors");
+const ctrlAdmin= require ("../controllers/admin");
 const verifyAccount = require("../controllers/verify_account");
 const userLogin = require("../controllers/login");
+
 const auth = require("../controllers/auth");
 
 //patients
@@ -15,6 +17,7 @@ router.get("/patients/data", auth.verifyToken, ctrlPatient.getData);
 router.put("/patients/data/update", auth.verifyToken, ctrlPatient.updateData);
 
 //doctors
+router.get("/doctors", ctrlDoctor.findAll);
 router.post("/register-doctor", ctrlDoctor.register);
 router.get("/doctors/data", auth.verifyToken, ctrlDoctor.getData);
 router.put("/doctors/data/update", auth.verifyToken, ctrlDoctor.updateData);

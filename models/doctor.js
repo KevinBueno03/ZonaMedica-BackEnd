@@ -78,16 +78,19 @@ var doctorSchema = new mongoose.Schema({
     },
 
     medAppointment_modality_inHouse: {
+        default:false,
         type:Boolean,
-        default:false
+        
     },
-    medAppointment_modality_inClinc: {
+    medAppointment_modality_inClinic: {
+        default:false,
         type:Boolean,
-        default:false
+        
     },
     medAppointment_modality_online: {
+        default:false,
         type:Boolean,
-        default:false
+        
     },
    
 });
