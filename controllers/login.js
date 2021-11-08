@@ -107,8 +107,8 @@ module.exports.resetPassword = function (req, res) {
                 } catch (err) {
                     return res.status(401).send("Invalid Token or Expired");
                 }
-            } else if (req.body.email) {
-                var item = getUser(map[req.query.type], req.body.email);
+            } else if (req.body.emailRecu) {
+                var item = getUser(map[req.query.type], req.body.emailRecu);
                 item.next((err, doc) => {
                     if (err) {
                         res.send(err);
