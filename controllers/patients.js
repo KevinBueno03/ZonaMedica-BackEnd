@@ -130,7 +130,7 @@ module.exports.updateData = async function (req, res) {
             err = { message: "Invalid query parameters", query: [] };
             for (const p in d) {
                 if (list.includes(p)) {
-                    user[p] = d[p];
+                    data[p] = d[p];
                 } else {
                     err.query.push(p);
                 }
@@ -138,7 +138,7 @@ module.exports.updateData = async function (req, res) {
             if (err.query.length > 0) {
                 t.err = err;
             }
-            user.save();
+            data.save();
             res.status(200).send(t);
         } else {
             res.status(400).send("Missing parameters: data");
