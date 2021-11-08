@@ -13,24 +13,14 @@ const auth = require("../controllers/auth");
 router.post("/register-patient", ctrlPatient.register);
 router.get("/patients", ctrlPatient.findAll);
 router.get("/patients/:code", ctrlPatient.findOneByCode);
-<<<<<<< Updated upstream
 router.get("/patients/data", auth.verifyToken, ctrlPatient.getData);
 router.get("/patients/data/update", auth.verifyToken, ctrlPatient.updateData);
 
 //doctors
+router.get("/doctors", ctrlDoctor.findAll);
 router.post("/register-doctor", ctrlDoctor.register);
 router.get("/doctors/data", auth.verifyToken, ctrlDoctor.getData);
 router.get("/doctors/data/update", auth.verifyToken, ctrlDoctor.updateData);
-=======
-router.get("/patient/data", auth.verifyToken, ctrlPatient.getData);
-
-//doctors
-router.post("/register-doctor", ctrlDoctor.register);
-router.get("/doctor/data", auth.verifyToken, ctrlDoctor.getData);
-
-//admin
-router.post("/register-admin",ctrlAdmin.register);
->>>>>>> Stashed changes
 
 //others
 router.post("/login", userLogin.login);

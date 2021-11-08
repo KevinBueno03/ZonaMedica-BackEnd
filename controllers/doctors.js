@@ -89,6 +89,26 @@ module.exports.getData = async function (req, res) {
     });
 };
 
+module.exports.findAll = async (req, res) => {
+    const title = req.query.title;
+    var condition = title
+        ? { title: { $regex: new RegExp(title), $options: "i" } }
+        : {};
+
+    Doctor.find(condition)
+        .then((data) => {
+            res.send(data);
+        })
+        .catch((err) => {
+            res.status(500).send({
+                message:
+                    err.message ||
+                    "Some error occurred while retrieving patients.",
+            });
+        });
+};
+
+
 module.exports.updateData = async function (req, res) {
     user = Patients.findOne({ email: req.user.email }, function (err, data) {
         if (err) res.send(err);
