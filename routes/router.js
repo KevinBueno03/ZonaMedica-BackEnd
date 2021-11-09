@@ -23,7 +23,7 @@ router.get("/doctors/data/get", auth.verifyToken, ctrlDoctor.getData);
 router.put("/doctors/data/update", auth.verifyToken, ctrlDoctor.updateData);
 
 //admin
-router.post("/register-admin", ctrlPatient.register);
+router.post("/register-admin", ctrlAdmin.register);
 
 //others
 router.post("/login", userLogin.login);
