@@ -2,6 +2,7 @@ let mongoose = require("mongoose");
 let validator = require("validator");
 let timestampPlugin = require("./plugins/timestamp");
 let verificationToken = require("./plugins/verification");
+let acceptance = require("./plugins/acceptance");
 let passwordHash = require("./plugins/password");
 
 var doctorSchema = new mongoose.Schema({
@@ -60,9 +61,8 @@ var doctorSchema = new mongoose.Schema({
     },
     active: { type: Boolean, default: false },
 
-    master_degree: { type: String},
+    master_degree: { type: String },
 
-   
     phone: {
         type: String,
         required: true,
@@ -78,21 +78,21 @@ var doctorSchema = new mongoose.Schema({
     },
 
     medAppointment_modality_inHouse: {
-        default:false,
-        type:Boolean,
-        
+        default: false,
+        type: Boolean,
     },
     medAppointment_modality_inClinic: {
-        default:false,
-        type:Boolean,
-        
+        default: false,
+        type: Boolean,
     },
     medAppointment_modality_online: {
-        default:false,
-        type:Boolean,
-        
+        default: false,
+        type: Boolean,
     },
-   
+    accepted: {
+        type: Boolean,
+        default: false,
+    },
 });
 
 doctorSchema.virtual("fullName").get(function () {
@@ -110,5 +110,6 @@ doctorSchema.virtual("fullName").get(function () {
 doctorSchema.plugin(timestampPlugin);
 doctorSchema.plugin(passwordHash);
 doctorSchema.plugin(verificationToken);
+doctorSchema.plugin(acceptance);
 
 module.exports = mongoose.model("Doctors", doctorSchema);

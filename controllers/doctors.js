@@ -52,6 +52,7 @@ const list = [
     "phone",
     "bibliografy",
     "master_degree",
+    "accepted",
 ];
 
 module.exports.getData = async function (req, res) {
