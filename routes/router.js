@@ -22,6 +22,9 @@ router.post("/register-doctor", ctrlDoctor.register);
 router.get("/doctors/data/get", auth.verifyToken, ctrlDoctor.getData);
 router.put("/doctors/data/update", auth.verifyToken, ctrlDoctor.updateData);
 
+//admin
+router.post("/register-admin", ctrlPatient.register);
+
 //others
 router.post("/login", userLogin.login);
 router.all("/reset/password/:code", userLogin.resetPassword);
