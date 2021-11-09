@@ -55,6 +55,26 @@ const list = [
     "accepted",
 ];
 
+module.exports.findOneByCode = async (req, res) => {
+    //const code = req.params.code;
+    const code = req.headers["x-access-token"];
+
+    Doctor.findOne({ code: code })
+        .then((data) => {
+            if (!data)
+                res.status(404).send({
+                    message: "Not found Doctor with code " + code,
+                });
+            else res.send(data);
+        })
+        .catch((err) => {
+            res.status(500).send({
+                message: "Error retrieving docotor with code=" + code,
+            });
+        });
+};
+
+
 module.exports.getData = async function (req, res) {
     user = Doctor.findOne({ email: req.user.email }, function (err, data) {
         if (err) res.send(err);

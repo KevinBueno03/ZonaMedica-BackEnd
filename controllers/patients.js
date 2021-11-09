@@ -54,7 +54,8 @@ module.exports.findAll = async (req, res) => {
 };
 
 module.exports.findOneByCode = async (req, res) => {
-    const code = req.params.code;
+    //const code = req.params.code;
+    const code = req.headers["x-access-token"];
 
     Patients.findOne({ code: code })
         .then((data) => {
@@ -81,7 +82,7 @@ const list = [
 ];
 
 module.exports.getData = async function (req, res) {
-    user = Patients.findOne({ email: req.user.email }, function (err, data) {
+    user = Patients.findOne({ email: req.user.email  }, function (err, data) {
         if (err) res.send(err);
         if (data) {
             d = req.body.data;
