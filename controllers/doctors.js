@@ -14,9 +14,12 @@ module.exports.register = (req, res) => {
     user.phone = req.body.phone;
     user.bibliografy = req.body.bibliografy;
     user.master_degree = req.body.master_degree;
-    user.medAppointment_modality_inHouse=req.body.medAppointment_modality_inHouse;
-    user.medAppointment_modality_inClinic=req.body.medAppointment_modality_inClinic;
-    user.medAppointment_modality_online=req.body.medAppointment_modality_online;
+    user.medAppointment_modality_inHouse =
+        req.body.medAppointment_modality_inHouse;
+    user.medAppointment_modality_inClinic =
+        req.body.medAppointment_modality_inClinic;
+    user.medAppointment_modality_online =
+        req.body.medAppointment_modality_online;
 
     user.save((err, doc) => {
         let r = {
@@ -111,9 +114,8 @@ module.exports.findAll = async (req, res) => {
         });
 };
 
-
 module.exports.updateData = async function (req, res) {
-    user = Patients.findOne({ email: req.user.email }, function (err, data) {
+    user = Doctor.findOne({ email: req.user.email }, function (err, data) {
         if (err) res.send(err);
         if (data) {
             d = req.body.data;
