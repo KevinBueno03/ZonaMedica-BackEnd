@@ -4,6 +4,7 @@ const router = express.Router();
 const ctrlPatient = require("../controllers/patients");
 const ctrlDoctor = require("../controllers/doctors");
 const ctrlAdmin = require("../controllers/admin");
+const ctrlAddress =require("../controllers/address")
 const verifyAccount = require("../controllers/verify_account");
 const userLogin = require("../controllers/login");
 
@@ -22,10 +23,12 @@ router.post("/register-doctor", ctrlDoctor.register);
 router.get("/doctors/token", ctrlDoctor.findOneByCode);
 router.get("/doctors/data/get", auth.verifyToken, ctrlDoctor.getData);
 router.put("/doctors/data/update", auth.verifyToken, ctrlDoctor.updateData);
+router.post("/doctors/direction",ctrlAddress.register);
 
 //admin
 router.post("/register-admin", ctrlAdmin.register);
 
+//adrress
 //others
 router.post("/login", userLogin.login);
 router.all("/reset/password/:code", userLogin.resetPassword);

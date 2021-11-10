@@ -1,0 +1,49 @@
+var mongoose = require("mongoose");
+var Address = mongoose.model("Address");
+
+module.exports.register = (req, res) => {
+    let address = new Address();
+    address.token = req.body.token;
+    address.longitud = req.body.longitud;
+    address.latitud = req.body.latitud;
+   
+    address.save((err, doc) => {
+        let r = {
+            _err: false,
+            message: undefined,
+            items: undefined,
+        };
+
+        if (!err) {
+            console.log(doc);
+            res.send(doc);
+        } else {
+            if (err.code == 11000) {
+                console.log(err);
+                r._err = true;
+                r.message = "Elementos duplicados";
+                r.items = err.keyValue;
+                res.send(err);
+            }
+        }
+    });
+};
+
+module.exports.findOneByCode = async (req, res) => {
+    //const code = req.params.code;
+    const code = req.body.token;
+
+    Address.findOne({ token: code })
+        .then((data) => {
+            if (!data)
+                res.status(404).send({
+                    message: "Not found Doctor with code " + code,
+                });
+            else res.send([data]);
+        })
+        .catch((err) => {
+            res.status(500).send({
+                message: "Error retrieving docotor with code=" + code,
+            });
+        });
+};

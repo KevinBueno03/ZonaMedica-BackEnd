@@ -19,3 +19,4 @@ module.exports = mongoose;
 require("./patient");
 require("./doctor");
 require("./admin")
+require("./address")
