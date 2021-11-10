@@ -65,7 +65,7 @@ module.exports.findOneByCode = async (req, res) => {
                 res.status(404).send({
                     message: "Not found Doctor with code " + code,
                 });
-            else res.send(data);
+            else res.send([data]);
         })
         .catch((err) => {
             res.status(500).send({
