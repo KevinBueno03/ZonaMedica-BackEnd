@@ -4,8 +4,8 @@ var Address = mongoose.model("Address");
 module.exports.register = (req, res) => {
     let address = new Address();
     address.token = req.body.token;
-    address.longitud = req.body.longitud;
-    address.latitud = req.body.latitud;
+    address.lng = req.body.lng;
+    address.lat = req.body.lat;
    
     address.save((err, doc) => {
         let r = {

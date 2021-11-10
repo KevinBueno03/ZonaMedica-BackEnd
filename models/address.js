@@ -8,11 +8,11 @@ const addressSchema = new mongoose.Schema({
         required: true,
       
     },
-    latitud: {
+    lng: {
         type: String,
         required: true,
     },
-    longitud: { 
+    lat: { 
         type: String, 
         required: true 
     }
