@@ -3,7 +3,7 @@ var Address = mongoose.model("Address");
 
 module.exports.register = (req, res) => {
     let address = new Address();
-    address.token = req.body.token;
+    address.token = req.headers["x-access-token"];
     address.lng = req.body.lng;
     address.lat = req.body.lat;
    
