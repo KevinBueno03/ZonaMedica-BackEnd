@@ -27,6 +27,7 @@ router.post("/doctors/direction",ctrlAddress.register);
 
 //admin
 router.post("/register-admin", ctrlAdmin.register);
+router.get("/admin/token", ctrlAdmin.findOneByCode);
 
 //adrress
 //others

@@ -29,3 +29,21 @@ module.exports.register = (req, res) => {
     });
 }
 
+module.exports.findOneByCode = async (req, res) => {
+    //const code = req.params.code;
+    const code = req.headers["x-access-token"];
+
+    Admin.findOne({ code: code })
+        .then((data) => {
+            if (!data)
+                res.status(404).send({
+                    message: "Not found Admin with code " + code,
+                });
+            else res.send([data]);
+        })
+        .catch((err) => {
+            res.status(500).send({
+                message: "Error retrieving admin with code=" + code,
+            });
+        });
+};
