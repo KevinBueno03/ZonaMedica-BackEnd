@@ -185,3 +185,17 @@ module.exports.updateData = async function (req, res) {
         }
     });
 };
+
+module.exports.updateImg = (req,res) => {
+    Doctor.update({code: req.params.token},
+    {
+        img:req.body.img
+    }).then(result => {
+        res.send({ codigo: 1, message: "img" });
+        res.end();
+    }).catch(error => {
+        res.send({ codigo: 0, messa: error });
+        res.end;
+    });
+}
+

@@ -24,7 +24,8 @@ router.get("/doctors/token", ctrlDoctor.findOneByCode);
 router.get("/doctors/data/get", auth.verifyToken, ctrlDoctor.getData);
 router.put("/doctors/data/update", auth.verifyToken, ctrlDoctor.updateData);
 router.post("/doctors/direction",ctrlAddress.register);
-router.put("/doctors/:token",ctrlDoctor.update)
+router.put("/doctors/:token",ctrlDoctor.update);
+router.put("/doctors/img/:token",ctrlDoctor.updateImg);
 
 //admin
 router.post("/register-admin", ctrlAdmin.register);
