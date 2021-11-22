@@ -143,7 +143,8 @@ module.exports.update = (req, res) => {
       });
     }
 
-    Doctor.findOneAndUpdate({code:req.params.token},req.body)
+    Doctor.findOneAndUpdate({code:req.params.token},
+        {$set:{img:req.body.img}}, { returnOriginal: false })
     .then(data => {
         if (!data) {
           res.status(404).send({
