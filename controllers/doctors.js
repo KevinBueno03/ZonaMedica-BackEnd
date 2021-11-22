@@ -191,7 +191,7 @@ module.exports.updateImg = (req,res) => {
     {
         img:req.body.img
     }).then(result => {
-        res.send({ codigo: 1, message: "img" });
+        res.send({ codigo: 1, message: 'Si se pudo c:' });
         res.end();
     }).catch(error => {
         res.send({ codigo: 0, messa: error });
