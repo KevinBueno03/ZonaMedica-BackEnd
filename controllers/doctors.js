@@ -135,6 +135,31 @@ module.exports.findAll = async (req, res) => {
         });
 };
 
+module.exports.update = (req, res) => {
+
+    if (!req.body) {
+      return res.status(400).send({
+        message: "Data to update can not be empty!"
+      });
+    }
+
+    Doctor.findOneAndUpdate({code:req.params.token},req.body)
+    .then(data => {
+        if (!data) {
+          res.status(404).send({
+            message: `Cannot update Doctor with token=${req.params.token}. Maybe Docotor was not found!`
+          });
+        } else res.send({ message: "Doctor was updated successfully."});
+      })
+      .catch(err => {
+        res.status(500).send({
+          message: "Error updating Doctor with id=" + id
+        });
+      });
+
+  };
+
+
 module.exports.updateData = async function (req, res) {
     user = Doctor.findOne({ email: req.user.email }, function (err, data) {
         if (err) res.send(err);
