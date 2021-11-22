@@ -94,7 +94,7 @@ var doctorSchema = new mongoose.Schema({
         default: false,
     },
     img:{
-        type: String,
+        type: mongoose.Schema.Types.Mixed,
         required: false
     }
     

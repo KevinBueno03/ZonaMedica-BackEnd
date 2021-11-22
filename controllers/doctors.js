@@ -149,11 +149,11 @@ module.exports.update = (req, res) => {
           res.status(404).send({
             message: `Cannot update Doctor with token=${req.params.token}. Maybe Docotor was not found!`
           });
-        } else res.send({ message: "Doctor was updated successfully."});
+        } else res.send({ message: "Dato actualizado exitosamente"});
       })
       .catch(err => {
         res.status(500).send({
-          message: "Error updating Doctor with id=" + id
+          message: "Error updating Doctor with id=" + req.params.token
         });
       });
 
