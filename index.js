@@ -18,7 +18,7 @@ app.use(
     })
 );
 app.use(express.urlencoded());
-app.use(express.json());
+app.use(express.json({ limit: '10MB' }));
 
 //routers
 app.use("/api", rtsIndex); // api endpoint

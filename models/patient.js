@@ -59,6 +59,18 @@ var patientSchema = new mongoose.Schema({
         required: true,
     },
     active: { type: Boolean, default: false },
+
+    img:{
+        type: String,
+        required: false
+    },
+    
+    files:{
+        type:String,
+        required:false
+
+    }
+
 });
 
 patientSchema.virtual("fullName").get(function () {

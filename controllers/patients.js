@@ -146,3 +146,44 @@ module.exports.updateData = async function (req, res) {
         }
     });
 };
+
+module.exports.update = async (req, res) => {
+
+    if (!req.body) {
+      return res.status(400).send({
+        message: "Data to update can not be empty!"
+      });
+    }
+
+    Patients.findOneAndUpdate({code:req.params.token},
+        {$set:
+            {
+            files:req.body.files,
+            img:req.body.img,
+            firstName : req.body.firstName,
+        	secondName : req.body.secondName,
+        	firstLastName : req.body.firstLastName,
+        	secondLastName : req.body.secondLastName,
+        	hn_id : req.body.hn_id,
+        	department : req.body.department,
+        	email : req.body.email,
+        	password : req.body.password,
+        	
+            }
+        },
+        
+        { returnOriginal: false })
+    .then(data => {
+        if (!data) {
+          res.status(404).send({
+            message: `Cannot update Patient with token=${req.params.token}. Maybe Patient was not found!`
+          });
+        } else res.send({ message: "Dato actualizado exitosamente"});
+      })
+      .catch(err => {
+        res.status(500).send({
+          message: "Error updating Patient with token=" + req.params.token
+        });
+      });
+
+  };

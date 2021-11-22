@@ -74,6 +74,18 @@ module.exports.findOneByCode = async (req, res) => {
         });
 };
 
+module.exports.findAllActive = async (req,res) => {
+    Doctor.find({active:true,accepted:true}).then((data) => {
+        res.send(data);
+    })
+    .catch((err) => {
+        res.status(500).send({
+            message:
+                err.message ||
+                "Some error occurred while retrieving doctors.",
+        });
+    });
+}
 
 module.exports.getData = async function (req, res) {
     user = Doctor.findOne({ email: req.user.email }, function (err, data) {
@@ -135,7 +147,7 @@ module.exports.findAll = async (req, res) => {
         });
 };
 
-module.exports.update = (req, res) => {
+module.exports.update = async (req, res) => {
 
     if (!req.body) {
       return res.status(400).send({
@@ -144,7 +156,27 @@ module.exports.update = (req, res) => {
     }
 
     Doctor.findOneAndUpdate({code:req.params.token},
-        {$set:{img:req.body.img}}, { returnOriginal: false })
+        {$set:
+            {file:req.body.file,
+            img:req.body.img,
+            firstName : req.body.firstName,
+        	secondName : req.body.secondName,
+        	firstLastName : req.body.firstLastName,
+        	secondLastName : req.body.secondLastName,
+        	hn_id : req.body.hn_id,
+        	department : req.body.department,
+        	email : req.body.email,
+        	password : req.body.password,
+        	phone : req.body.phone,
+        	bibliografy : req.body.bibliografy,
+        	master_degree : req.body.master_degree,
+            medAppointment_modality_inHouse :req.body.medAppointment_modality_inHouse,
+            medAppointment_modality_inClinic :req.body.medAppointment_modality_inClinic,
+            medAppointment_modality_online :req.body.medAppointment_modality_online,
+            }
+        },
+        
+        { returnOriginal: false })
     .then(data => {
         if (!data) {
           res.status(404).send({
@@ -159,7 +191,6 @@ module.exports.update = (req, res) => {
       });
 
   };
-
 
 module.exports.updateData = async function (req, res) {
     user = Doctor.findOne({ email: req.user.email }, function (err, data) {
@@ -187,11 +218,11 @@ module.exports.updateData = async function (req, res) {
 };
 
 module.exports.updateImg = (req,res) => {
-    Doctor.update({code: req.params.token},
+    Doctor.findOneAndUpdate({code: req.params.token},
     {
         img:req.body.img
     }).then(result => {
-        res.send({ codigo: 1, message: 'Si se pudo c:' });
+        res.send({ codigo: 1, message: 'IMAGEN SUBIDA CON EXITO' });
         res.end();
     }).catch(error => {
         res.send({ codigo: 0, messa: error });

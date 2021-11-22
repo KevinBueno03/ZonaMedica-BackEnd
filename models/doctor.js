@@ -94,8 +94,14 @@ var doctorSchema = new mongoose.Schema({
         default: false,
     },
     img:{
-        type: mongoose.Schema.Types.Mixed,
+        type: String,
         required: false
+    },
+
+    file:{
+        type:String,
+        required:false
+
     }
     
 });

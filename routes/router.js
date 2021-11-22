@@ -16,6 +16,7 @@ router.get("/patients", ctrlPatient.findAll);
 router.get("/patients/token", ctrlPatient.findOneByCode);
 router.get("/patients/data/get", auth.verifyToken, ctrlPatient.getData);
 router.put("/patients/data/update", auth.verifyToken, ctrlPatient.updateData);
+router.put("/patients/:token",ctrlPatient.update);
 
 //doctors
 router.get("/doctors", ctrlDoctor.findAll);
@@ -26,6 +27,7 @@ router.put("/doctors/data/update", auth.verifyToken, ctrlDoctor.updateData);
 router.post("/doctors/direction",ctrlAddress.register);
 router.put("/doctors/:token",ctrlDoctor.update);
 router.put("/doctors/img/:token",ctrlDoctor.updateImg);
+router.get("/doctors/accepted",ctrlDoctor.findAllActive);
 
 //admin
 router.post("/register-admin", ctrlAdmin.register);
