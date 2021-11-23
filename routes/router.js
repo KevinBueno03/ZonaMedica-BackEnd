@@ -22,6 +22,7 @@ router.put("/patients/:token",ctrlPatient.update);
 router.get("/doctors", ctrlDoctor.findAll);
 router.post("/register-doctor", ctrlDoctor.register);
 router.get("/doctors/token", ctrlDoctor.findOneByCode);
+router.get("/doctor/token", ctrlDoctor.findOne);
 router.get("/doctors/data/get", auth.verifyToken, ctrlDoctor.getData);
 router.put("/doctors/data/update", auth.verifyToken, ctrlDoctor.updateData);
 router.post("/doctors/direction",ctrlAddress.register);
