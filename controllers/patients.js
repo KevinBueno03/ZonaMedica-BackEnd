@@ -168,7 +168,7 @@ module.exports.update = async (req, res) => {
         	department : req.body.department,
         	email : req.body.email,
         	password : req.body.password,
-        	
+        	active: req.body.active
             }
         },
         

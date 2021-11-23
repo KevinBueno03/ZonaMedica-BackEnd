@@ -173,6 +173,8 @@ module.exports.update = async (req, res) => {
             medAppointment_modality_inHouse :req.body.medAppointment_modality_inHouse,
             medAppointment_modality_inClinic :req.body.medAppointment_modality_inClinic,
             medAppointment_modality_online :req.body.medAppointment_modality_online,
+            accepted: req.body.accepted,
+            active:req.body.active
             }
         },
         
