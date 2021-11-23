@@ -102,6 +102,10 @@ var doctorSchema = new mongoose.Schema({
         type:String,
         required:false
 
+    },
+    onService:{
+        type:Boolean,
+        default:true
     }
     
 });
