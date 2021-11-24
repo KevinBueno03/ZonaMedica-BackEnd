@@ -64,6 +64,7 @@ var doctorSchema = new mongoose.Schema({
     master_degree: { type: String },
 
     phone: {
+        unique: true,
         type: String,
         required: true,
         validate: {
