@@ -74,6 +74,7 @@ module.exports.findOneByCode = async (req, res) => {
         });
 };
 
+
 module.exports.findAllActive = async (req,res) => {
     Doctor.find({active:true,accepted:true}).then((data) => {
         res.send(data);
@@ -190,6 +191,54 @@ module.exports.update = async (req, res) => {
       .catch(err => {
         res.status(500).send({
           message: "Error updating Doctor with id=" + req.params.token
+        });
+      });
+
+  };
+
+module.exports.updateByEmail = async (req, res) => {
+
+    if (!req.body) {
+      return res.status(400).send({
+        message: "Data to update can not be empty!"
+      });
+    }
+
+    Doctor.findOneAndUpdate({email:req.params.email},
+        {$set:
+            {file:req.body.file,
+            img:req.body.img,
+            firstName : req.body.firstName,
+        	secondName : req.body.secondName,
+        	firstLastName : req.body.firstLastName,
+        	secondLastName : req.body.secondLastName,
+        	hn_id : req.body.hn_id,
+        	department : req.body.department,
+        	email : req.body.email,
+        	password : req.body.password,
+        	phone : req.body.phone,
+        	bibliografy : req.body.bibliografy,
+        	master_degree : req.body.master_degree,
+            medAppointment_modality_inHouse :req.body.medAppointment_modality_inHouse,
+            medAppointment_modality_inClinic :req.body.medAppointment_modality_inClinic,
+            medAppointment_modality_online :req.body.medAppointment_modality_online,
+            accepted: req.body.accepted,
+            active:req.body.active,
+            onService:req.body.onService,
+            }
+        },
+        
+        { returnOriginal: false })
+    .then(data => {
+        if (!data) {
+          res.status(404).send({
+            message: `Cannot update Doctor with email=${req.params.email}. Maybe Docotor was not found!`
+          });
+        } else res.send({ message: "Dato actualizado exitosamente"});
+      })
+      .catch(err => {
+        res.status(500).send({
+          message: "Error updating Doctor with email=" + req.params.email
         });
       });
 

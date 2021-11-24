@@ -26,6 +26,7 @@ router.get("/doctors/data/get", auth.verifyToken, ctrlDoctor.getData);
 router.put("/doctors/data/update", auth.verifyToken, ctrlDoctor.updateData);
 router.post("/doctors/direction",ctrlAddress.register);
 router.put("/doctors/:token",ctrlDoctor.update);
+router.put("/doctors/:email/email",ctrlDoctor.updateByEmail);
 router.put("/doctors/img/:token",ctrlDoctor.updateImg);
 router.get("/doctors/accepted",ctrlDoctor.findAllActive);
 
