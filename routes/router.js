@@ -5,6 +5,7 @@ const ctrlPatient = require("../controllers/patients");
 const ctrlDoctor = require("../controllers/doctors");
 const ctrlAdmin = require("../controllers/admin");
 const ctrlAddress = require("../controllers/address");
+const ctrlAppointment = require("../controllers/med_appointment");
 const verifyAccount = require("../controllers/verify_account");
 const userLogin = require("../controllers/login");
 
@@ -35,6 +36,11 @@ router.get("/doctors/accepted", ctrlDoctor.findAllActive);
 //admin
 router.post("/register-admin", ctrlAdmin.register);
 router.get("/admin/token", ctrlAdmin.findOneByCode);
+
+//appointement
+router.post("/med-appointment",ctrlAppointment.register);
+router.get("/med-appointment/doctor/:id_doctor",ctrlAppointment.findAllByDoctorID);
+router.get("/med-appointment/patiente/:id_patient",ctrlAppointment.findAllByPatienteID);
 
 //adrress
 //others
