@@ -94,21 +94,19 @@ var doctorSchema = new mongoose.Schema({
         type: Boolean,
         default: false,
     },
-    img:{
+    img: {
         type: String,
-        required: false
+        required: false,
     },
 
-    file:{
-        type:String,
-        required:false
-
+    file: {
+        type: String,
+        required: false,
     },
-    onService:{
-        type:Boolean,
-        default:true
-    }
-    
+    onService: {
+        type: Boolean,
+        default: true,
+    },
 });
 
 doctorSchema.virtual("fullName").get(function () {

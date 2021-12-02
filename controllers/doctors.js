@@ -92,19 +92,19 @@ module.exports.findOne = async (req, res) => {
         });
 };
 
-
-module.exports.findAllActive = async (req,res) => {
-    Doctor.find({active:true,accepted:true}).then((data) => {
-        res.send(data);
-    })
-    .catch((err) => {
-        res.status(500).send({
-            message:
-                err.message ||
-                "Some error occurred while retrieving doctors.",
+module.exports.findAllActive = async (req, res) => {
+    Doctor.find({ active: true, accepted: true })
+        .then((data) => {
+            res.send(data);
+        })
+        .catch((err) => {
+            res.status(500).send({
+                message:
+                    err.message ||
+                    "Some error occurred while retrieving doctors.",
+            });
         });
-    });
-}
+};
 
 module.exports.getData = async function (req, res) {
     user = Doctor.findOne({ email: req.user.email }, function (err, data) {
@@ -167,100 +167,109 @@ module.exports.findAll = async (req, res) => {
 };
 
 module.exports.update = async (req, res) => {
-
     if (!req.body) {
-      return res.status(400).send({
-        message: "Data to update can not be empty!"
-      });
+        return res.status(400).send({
+            message: "Data to update can not be empty!",
+        });
     }
 
-    Doctor.findOneAndUpdate({code:req.params.token},
-        {$set:
-            {file:req.body.file,
-            img:req.body.img,
-            firstName : req.body.firstName,
-        	secondName : req.body.secondName,
-        	firstLastName : req.body.firstLastName,
-        	secondLastName : req.body.secondLastName,
-        	hn_id : req.body.hn_id,
-        	department : req.body.department,
-        	email : req.body.email,
-        	password : req.body.password,
-        	phone : req.body.phone,
-        	bibliografy : req.body.bibliografy,
-        	master_degree : req.body.master_degree,
-            medAppointment_modality_inHouse :req.body.medAppointment_modality_inHouse,
-            medAppointment_modality_inClinic :req.body.medAppointment_modality_inClinic,
-            medAppointment_modality_online :req.body.medAppointment_modality_online,
-            accepted: req.body.accepted,
-            active:req.body.active,
-            onService:req.body.onService,
-            }
+    Doctor.findOneAndUpdate(
+        { code: req.params.token },
+        {
+            $set: {
+                file: req.body.file,
+                img: req.body.img,
+                firstName: req.body.firstName,
+                secondName: req.body.secondName,
+                firstLastName: req.body.firstLastName,
+                secondLastName: req.body.secondLastName,
+                hn_id: req.body.hn_id,
+                department: req.body.department,
+                email: req.body.email,
+                password: req.body.password,
+                phone: req.body.phone,
+                bibliografy: req.body.bibliografy,
+                master_degree: req.body.master_degree,
+                medAppointment_modality_inHouse:
+                    req.body.medAppointment_modality_inHouse,
+                medAppointment_modality_inClinic:
+                    req.body.medAppointment_modality_inClinic,
+                medAppointment_modality_online:
+                    req.body.medAppointment_modality_online,
+                accepted: req.body.accepted,
+                active: req.body.active,
+                onService: req.body.onService,
+            },
         },
-        
-        { returnOriginal: false })
-    .then(data => {
-        if (!data) {
-          res.status(404).send({
-            message: `Cannot update Doctor with token=${req.params.token}. Maybe Docotor was not found!`
-          });
-        } else res.send({ message: "Dato actualizado exitosamente"});
-      })
-      .catch(err => {
-        res.status(500).send({
-          message: "Error updating Doctor with id=" + req.params.token
-        });
-      });
 
-  };
+        { returnOriginal: false }
+    )
+        .then((data) => {
+            if (!data) {
+                res.status(404).send({
+                    message: `Cannot update Doctor with token=${req.params.token}. Maybe Docotor was not found!`,
+                });
+            } else res.send({ message: "Dato actualizado exitosamente" });
+        })
+        .catch((err) => {
+            console.log(err);
+            res.status(500).send({
+                message: "Error updating Doctor with id=" + req.params.token,
+            });
+        });
+};
 
 module.exports.updateByEmail = async (req, res) => {
-
     if (!req.body) {
-      return res.status(400).send({
-        message: "Data to update can not be empty!"
-      });
+        return res.status(400).send({
+            message: "Data to update can not be empty!",
+        });
     }
 
-    Doctor.findOneAndUpdate({email:req.params.email},
-        {$set:
-            {file:req.body.file,
-            img:req.body.img,
-            firstName : req.body.firstName,
-        	secondName : req.body.secondName,
-        	firstLastName : req.body.firstLastName,
-        	secondLastName : req.body.secondLastName,
-        	hn_id : req.body.hn_id,
-        	department : req.body.department,
-        	email : req.body.email,
-        	password : req.body.password,
-        	phone : req.body.phone,
-        	bibliografy : req.body.bibliografy,
-        	master_degree : req.body.master_degree,
-            medAppointment_modality_inHouse :req.body.medAppointment_modality_inHouse,
-            medAppointment_modality_inClinic :req.body.medAppointment_modality_inClinic,
-            medAppointment_modality_online :req.body.medAppointment_modality_online,
-            accepted: req.body.accepted,
-            active:req.body.active,
-            onService:req.body.onService,
-            }
+    Doctor.findOneAndUpdate(
+        { email: req.params.email },
+        {
+            $set: {
+                file: req.body.file,
+                img: req.body.img,
+                firstName: req.body.firstName,
+                secondName: req.body.secondName,
+                firstLastName: req.body.firstLastName,
+                secondLastName: req.body.secondLastName,
+                hn_id: req.body.hn_id,
+                department: req.body.department,
+                email: req.body.email,
+                password: req.body.password,
+                phone: req.body.phone,
+                bibliografy: req.body.bibliografy,
+                master_degree: req.body.master_degree,
+                medAppointment_modality_inHouse:
+                    req.body.medAppointment_modality_inHouse,
+                medAppointment_modality_inClinic:
+                    req.body.medAppointment_modality_inClinic,
+                medAppointment_modality_online:
+                    req.body.medAppointment_modality_online,
+                accepted: req.body.accepted,
+                active: req.body.active,
+                onService: req.body.onService,
+            },
         },
-        
-        { returnOriginal: false })
-    .then(data => {
-        if (!data) {
-          res.status(404).send({
-            message: `Cannot update Doctor with email=${req.params.email}. Maybe Docotor was not found!`
-          });
-        } else res.send({ message: "Dato actualizado exitosamente"});
-      })
-      .catch(err => {
-        res.status(500).send({
-          message: "Error updating Doctor with email=" + req.params.email
-        });
-      });
 
-  };
+        { returnOriginal: false }
+    )
+        .then((data) => {
+            if (!data) {
+                res.status(404).send({
+                    message: `Cannot update Doctor with email=${req.params.email}. Maybe Docotor was not found!`,
+                });
+            } else res.send({ message: "Dato actualizado exitosamente" });
+        })
+        .catch((err) => {
+            res.status(500).send({
+                message: "Error updating Doctor with email=" + req.params.email,
+            });
+        });
+};
 
 module.exports.updateData = async function (req, res) {
     user = Doctor.findOne({ email: req.user.email }, function (err, data) {
@@ -287,16 +296,19 @@ module.exports.updateData = async function (req, res) {
     });
 };
 
-module.exports.updateImg = (req,res) => {
-    Doctor.findOneAndUpdate({code: req.params.token},
-    {
-        img:req.body.img
-    }).then(result => {
-        res.send({ codigo: 1, message: 'IMAGEN SUBIDA CON EXITO' });
-        res.end();
-    }).catch(error => {
-        res.send({ codigo: 0, messa: error });
-        res.end;
-    });
-}
-
+module.exports.updateImg = (req, res) => {
+    Doctor.findOneAndUpdate(
+        { code: req.params.token },
+        {
+            img: req.body.img,
+        }
+    )
+        .then((result) => {
+            res.send({ codigo: 1, message: "IMAGEN SUBIDA CON EXITO" });
+            res.end();
+        })
+        .catch((error) => {
+            res.send({ codigo: 0, messa: error });
+            res.end;
+        });
+};

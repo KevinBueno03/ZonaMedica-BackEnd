@@ -11,14 +11,39 @@ function sendEmail(name, email, txt) {
     });
 }
 
-module.exports = function accepted(schema) {
-    schema.pre("save", function (next) {
-        let doc = this;
-        if (doc.isModified("accepted")) {
-            if (doc.accepted == true)
-                sendEmail(doc.firstName, doc.email, "Has sido aceptado.");
-            if (doc.accepted == false)
-                sendEmail(doc.firstName, doc.email, "Has sido removido.");
+module.exports = function acceptedDoctor(schema) {
+    schema.pre("findOneAndUpdate", async function (next) {
+        let set = this._update.$set;
+        let docToUpdate = await this.model.findOne(this.getQuery());
+        if (set.accepted == "true") {
+            sendEmail(
+                docToUpdate.firstName,
+                docToUpdate.email,
+                "Bienvenido al equipo de ZonaMedica! Tu solicitud ha sido aceptada. Nos complace tenerte con nosotros."
+            );
+        } else {
+            if (set.accepted == "false") {
+                sendEmail(
+                    docToUpdate.firstName,
+                    docToUpdate.email,
+                    "Nos entristese mencionarte que tu solicitu ha sido rechazada. Por favor ponte en contacto con nosotros para mayor informacion."
+                );
+            }
+        }
+        if (set.active == "true") {
+            sendEmail(
+                docToUpdate.firstName,
+                docToUpdate.email,
+                "Tu cuenta ha sido reactivada nuevamente."
+            );
+        } else {
+            if (set.active == "false") {
+                sendEmail(
+                    docToUpdate.firstName,
+                    docToUpdate.email,
+                    "Tu cuenta ha sido desactivada. Por favor ponte en contacto con nosotros."
+                );
+            }
         }
         next();
     });
