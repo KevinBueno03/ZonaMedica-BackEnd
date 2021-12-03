@@ -9,11 +9,11 @@ const schema = new mongoose.Schema({
         required:true
     },
     hour:{
-        type:String,
+        type:Number,
         required:true
     },
     minutes:{
-        type:String,
+        type:Number,
         required:true
     },
 
