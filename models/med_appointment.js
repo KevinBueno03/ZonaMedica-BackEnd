@@ -12,6 +12,11 @@ const schema = new mongoose.Schema({
         type:String,
         required:true
     },
+    minutes:{
+        type:String,
+        required:true
+    },
+
     description:{
         type:String,
         required:false

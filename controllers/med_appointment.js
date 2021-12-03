@@ -6,6 +6,7 @@ module.exports.register = (req, res) => {
     
     item.date=req.body.date;
     item.hour=req.body.hour;
+    item.minutes=req.body.minutes;
     item.description=req.body.description;
     item.medAppointment_modality_inHouse=req.body.medAppointment_modality_inHouse; 
     item.medAppointment_modality_inClinic=req.body.medAppointment_modality_inClinic; 
