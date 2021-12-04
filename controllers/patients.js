@@ -28,7 +28,7 @@ module.exports.register = (req, res) => {
                 r._err = true;
                 r.message = "Elementos duplicados";
                 r.items = err.keyValue;
-                res.send(err);
+                res.send(r);
             }
         }
     });
@@ -183,6 +183,45 @@ module.exports.update = async (req, res) => {
       .catch(err => {
         res.status(500).send({
           message: "Error updating Patient with token=" + req.params.token
+        });
+      });
+
+  };
+
+module.exports.updateByEmail = async (req, res) => {
+
+    if (!req.body) {
+      return res.status(400).send({
+        message: "Data to update can not be empty!"
+      });
+    }
+
+    Patients.findOneAndUpdate({email:req.params.email},
+        {$set:
+            {
+            files:req.body.files,
+            img:req.body.img,
+            firstName : req.body.firstName,
+        	secondName : req.body.secondName,
+        	firstLastName : req.body.firstLastName,
+        	secondLastName : req.body.secondLastName,
+        	hn_id : req.body.hn_id,
+        	department : req.body.department,
+        	active: req.body.active
+            }
+        },
+        
+        { returnOriginal: false })
+    .then(data => {
+        if (!data) {
+          res.status(404).send({
+            message: `Cannot update Patient with email=${req.params.email}. Maybe Patient was not found!`
+          });
+        } else res.send({ message: "Dato actualizado exitosamente"});
+      })
+      .catch(err => {
+        res.status(500).send({
+          message: "Error updating Patient with email=" + req.params.email
         });
       });
 

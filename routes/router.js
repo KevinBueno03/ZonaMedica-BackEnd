@@ -19,6 +19,7 @@ router.get("/patients/token", ctrlPatient.findOneByCode);
 router.get("/patients/data/get", auth.verifyToken, ctrlPatient.getData);
 router.put("/patients/data/update", auth.verifyToken, ctrlPatient.updateData);
 router.put("/patients/:token", ctrlPatient.update);
+router.put("/patients/:email/email", ctrlPatient.updateByEmail);
 
 //doctors
 router.get("/doctors", ctrlDoctor.findAll);
