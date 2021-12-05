@@ -3,6 +3,7 @@ let validator = require("validator");
 let timestampPlugin = require("./plugins/timestamp");
 let verificationToken = require("./plugins/verification");
 let passwordHash = require("./plugins/password");
+let acceptance = require("./plugins/acceptance");
 
 var patientSchema = new mongoose.Schema({
     firstName: {
@@ -60,18 +61,15 @@ var patientSchema = new mongoose.Schema({
     },
     active: { type: Boolean, default: false },
 
-    img:{
+    img: {
         type: String,
-        required: false
+        required: false,
     },
-    
-    files:{
-        type:String,
-        required:false
 
-    }
-
-    
+    files: {
+        type: String,
+        required: false,
+    },
 });
 
 patientSchema.virtual("fullName").get(function () {
@@ -89,5 +87,6 @@ patientSchema.virtual("fullName").get(function () {
 patientSchema.plugin(timestampPlugin);
 patientSchema.plugin(passwordHash);
 patientSchema.plugin(verificationToken);
+patientSchema.plugin(acceptance);
 
 module.exports = mongoose.model("Patients", patientSchema);
