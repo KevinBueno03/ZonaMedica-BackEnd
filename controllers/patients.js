@@ -71,6 +71,33 @@ module.exports.findOneByCode = async (req, res) => {
             });
         });
 };
+module.exports.findOneById = async (req, res) => {
+    //const code = req.params.code;
+    
+    Patients.findById(req.params.id,
+        {
+            "_id":0,
+            "email":0,
+            "password":0,
+            "img":0,
+            "hn_id":0,
+            "files":0,
+            "code":0,
+        "active":0
+        })
+        .then((data) => {
+            if (!data)
+                res.status(404).send({
+                    message: "Not found patient with id " + req.params.id,
+                });
+            else res.send(data);
+        })
+        .catch((err) => {
+            res.status(500).send({
+                message: "Error retrieving patient with id=" + req.params.id,
+            });
+        });
+};
 
 const list = [
     "firstName",

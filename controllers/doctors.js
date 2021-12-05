@@ -73,6 +73,34 @@ module.exports.findOneByCode = async (req, res) => {
             });
         });
 };
+module.exports.findOneById = async (req, res) => {
+    //const code = req.params.code;
+    
+    Doctor.findById(req.params.id,
+        {"_id":0,"active":0,
+        "medAppointment_modality_inHouse":0,
+        "medAppointment_modality_inClinic":0,
+         "medAppointment_modality_online":0,
+         "accepted":0,
+         "password":0,
+         "img":0,
+         "file":0,
+         "code":0,
+         
+        })
+        .then((data) => {
+            if (!data)
+                res.status(404).send({
+                    message: "Not found Doctor with id " + req.params.id,
+                });
+            else res.send(data);
+        })
+        .catch((err) => {
+            res.status(500).send({
+                message: "Error retrieving docotor with id=" + req.params.id,
+            });
+        });
+};
 module.exports.findOne = async (req, res) => {
     //const code = req.params.code;
     const code = req.headers["x-access-token"];
