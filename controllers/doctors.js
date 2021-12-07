@@ -269,7 +269,7 @@ module.exports.updateByEmail = async (req, res) => {
                 email: req.body.email,
                 password: req.body.password,
                 phone: req.body.phone,
-                bibliografy: req.body.bibliografy,
+                bibliography: req.body.bibliography,
                 master_degree: req.body.master_degree,
                 medAppointment_modality_inHouse:
                     req.body.medAppointment_modality_inHouse,

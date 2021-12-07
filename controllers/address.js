@@ -31,7 +31,7 @@ module.exports.register = (req, res) => {
 
 module.exports.findOneByCode = async (req, res) => {
     //const code = req.params.code;
-    const code = req.body.token;
+    const code = req.params.token;
 
     Address.findOne({ token: code })
         .then((data) => {
