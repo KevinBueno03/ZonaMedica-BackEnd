@@ -216,7 +216,7 @@ module.exports.update = async (req, res) => {
                 email: req.body.email,
                 password: req.body.password,
                 phone: req.body.phone,
-                bibliografphy: req.body.bibliography,
+                bibliography: req.body.bibliography,
                 master_degree: req.body.master_degree,
                 medAppointment_modality_inHouse:
                     req.body.medAppointment_modality_inHouse,
