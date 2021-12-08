@@ -340,3 +340,16 @@ module.exports.updateImg = (req, res) => {
             res.end;
         });
 };
+module.exports.findAllActiveByDegree = async (req, res) => {
+    Doctor.find({ active: true, accepted: true ,master_degree:req.params.degreeName},{file:0})
+        .then((data) => {
+            res.send(data);
+        })
+        .catch((err) => {
+            res.status(500).send({
+                message:
+                    err.message ||
+                    "Some error occurred while retrieving doctors.",
+            });
+        });
+};

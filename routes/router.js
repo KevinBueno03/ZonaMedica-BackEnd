@@ -35,6 +35,7 @@ router.put("/doctors/:token", ctrlDoctor.update);
 router.put("/doctors/:email/email", ctrlDoctor.updateByEmail);
 router.put("/doctors/img/:token", ctrlDoctor.updateImg);
 router.get("/doctors/accepted", ctrlDoctor.findAllActive);
+router.get("/doctors/master-degree/:degreeName", ctrlDoctor.findAllActiveByDegree);
 
 //admin
 router.post("/register-admin", ctrlAdmin.register);
