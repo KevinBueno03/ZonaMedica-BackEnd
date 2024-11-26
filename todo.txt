@@ -1,0 +1,4 @@
+1. Manejo de errores -- general
+2. Login/Register/Validacion para medicos
+3. Login/Validacion para usuarios
+4. Login para admin
